@@ -1,6 +1,7 @@
 html = $(patsubst %.md,%.html,$(notdir $(wildcard src/*.md)))
 
 all: $(html)
+	@./mkman || true
 
 %.html : src/%.md
 	@echo "    GEN        " $@
