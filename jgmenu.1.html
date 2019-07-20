@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Johan Malm" />
+  <title>JGMENU(1)</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="src/manual.css" />
+</head>
+<body>
+<header>
+<h1 class="title">JGMENU(1)</h1>
+<p class="author">Johan Malm</p>
+<p class="date">18 June, 2019</p>
+</header>
+<h1 id="name">NAME</h1>
+<p>jgmenu - A simple X11 menu</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>jgmenu [--no-spawn] [--checkout=&lt;<em>tag</em>&gt;] [--config-file=&lt;<em>file</em>&gt;]<br />
+       [--icon-size=&lt;<em>size</em>&gt;] [--at-pointer] [--hide-on-startup]<br />
+       [--simple] [--vsimple] [--csv-file&lt;<em>file</em>&gt;]<br />
+       [--csv-cmd=&lt;<em>command</em>&gt;] [--die-when-loaded]<br />
+       [--center]</p>
+<p>jgmenu init [--help | &lt;<em>options</em>&gt;]</p>
+<h2 id="use-these-three-commands-to-get-started">Use these three commands to get started</h2>
+<pre><code>┌────────────────────┬───────────────────────────┐
+│ jgmenu_run         │ Launch menu               │
+├────────────────────┼───────────────────────────┤
+│ jgmenu init        │ Create config file        │
+│                    │ ~/.config/jgmenu/jgmenurc │
+├────────────────────┼───────────────────────────┤
+│ jgmenu init -i     │ Interactive setup         │
+├────────────────────┼───────────────────────────┤
+│ man jgmenututorial │ Read step-by-step guide   │
+└────────────────────┴───────────────────────────┘</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>jgmenu is a small menu application for Linux/BSD. It is intended to<br />
+be used with openbox and tint2, but is not dependent on these.</p>
+<p>jgmenu reads a list of new-line (‘\n’) separated items from a file<br />
+and creates a menu. Each line is parsed into the following fields<br />
+using comma as a field separator:</p>
+<ol type="1">
+<li><em>description</em><br />
+</li>
+<li><em>command</em><br />
+</li>
+<li><em>icon</em>,<br />
+</li>
+<li><em>working directory</em><br />
+</li>
+<li><em>metadata</em></li>
+</ol>
+<p>Empty lines and lines beginning with ‘#’ are ignored. When the user<br />
+selects an item by left-clicking or pressing enter), the <code>command</code><br />
+of their selection is executed as a new process.</p>
+<p>For example:</p>
+<pre><code>printf &quot;Terminal,xterm\nWeb Browser,firefox&quot; | jgmenu --simple  </code></pre>
+<p>If the user wishes to use a comma in a field, triple quotes can be<br />
+used around the whole field in the format aaa,&quot;&quot;“bbb”&quot;&quot;</p>
+<p>For example:</p>
+<pre><code>foo,&quot;&quot;&quot;^pipe(find . -printf &#39;%f,display %p,%p\n&#39;)&quot;&quot;&quot;</code></pre>
+<h2 id="markup">Markup</h2>
+<p>The syntax ^foo(bar) is used to carry out action “foo” with argument<br />
+“bar”.</p>
+<p>The following markup is supported in the <em>description</em> field:</p>
+<ul>
+<li>^sep() - define a separator (with or without text)</li>
+</ul>
+<p>The following markup is supported in the <em>command</em> field:</p>
+<ul>
+<li><p>^tag() - define a submenu (can be in the <em>description</em> field if<br />
+  no other field is defined on that line)</p></li>
+<li><p>^checkout() - open a submenu in a new window</p></li>
+<li><p>^root() - open a submenu in the root window, replacing the<br />
+  current menu</p></li>
+<li><p>^sub() - draw a “submenu” arrow</p></li>
+<li><p>^back() - check-out parent menu</p></li>
+<li><p>^term() - run program in terminal</p></li>
+<li><p>^pipe() - execute sub-process and checkout a menu based on its<br />
+  stdout.</p></li>
+<li><p>^filter() - invoke search</p></li>
+</ul>
+<h2 id="icons">Icons</h2>
+<p>Icons will be displayed if the third field is populated; for example:</p>
+<pre><code>Terminal,xterm,utilities-terminal
+Firefox,firefox,firefox</code></pre>
+<h1 id="options">OPTIONS</h1>
+<dl>
+<dt>--no-spawn</dt>
+<dd>redirect command to stdout rather than executing it
+</dd>
+<dt>--checkout=&lt;<em>tag</em>&gt;</dt>
+<dd>checkout submenu &lt;<em>tag</em>&gt; on startup
+</dd>
+<dt>--config-file=&lt;<em>file</em>&gt;</dt>
+<dd>read config file
+</dd>
+<dt>--icon-size=&lt;<em>size</em>&gt;</dt>
+<dd>specify icon size (22 by default)<br />
+       If set to 0, icons will not be loaded.
+</dd>
+<dt>--at-pointer</dt>
+<dd>launch menu at mouse pointer
+</dd>
+<dt>--hide-on-startup</dt>
+<dd>start menu is hidden state
+</dd>
+<dt>--simple</dt>
+<dd> - ignore tint2 settings<br />
+        - run in ‘short-lived’ mode (i.e. exit after mouse click or<br />
+          enter/escape)<br />
+        - read menu items from <em>stdin</em>
+</dd>
+<dt>--vsimple</dt>
+<dd>same as –simple, but also disables icons and ignores jgmenurc
+</dd>
+<dt>--csv-file=&lt;<em>file</em>&gt;</dt>
+<dd>specify menu file (in jgmenu flavoured CSV format)<br />
+       If file cannot be opened, input if reverted to <em>stdin</em>
+</dd>
+<dt>--csv-cmd=&lt;<em>command</em>&gt;</dt>
+<dd>specify command to produce menu data<br />
+       E.g. <code>jgmenu_run pmenu</code>
+</dd>
+<dt>--die-when-loaded</dt>
+<dd>open menu and then exit(0). This is for debugging and testing.
+</dd>
+<dt>--center</dt>
+<dd>center align menu horizontally and vertically<br />
+       Also set <code>tint2_look=0</code> to disable alignment to tint2 panel
+</dd>
+</dl>
+<h1 id="user-interface">USER INTERFACE</h1>
+<ul>
+<li>Up/Down - select previous/next item<br />
+</li>
+<li>Left/Right - move to parent/sub menu<br />
+</li>
+<li>PgUp/PgDn - scroll up/down by one menu’s worth of items<br />
+</li>
+<li>Home/End - select first/last item<br />
+</li>
+<li>Enter - select an item or open a submenu<br />
+</li>
+<li>F5 - restart<br />
+</li>
+<li>F8 - print node tree to stderr<br />
+</li>
+<li>F9 - exit(1)<br />
+</li>
+<li>F10 - exit(0)<br />
+</li>
+<li>Backspace - return to parent menu</li>
+</ul>
+<p>Type any string to invoke a search. Words separated by space will<br />
+be searched for using OR logic (i.e. the match of either word is<br />
+sufficient to display an item).</p>
+<h1 id="configuration-file">CONFIGURATION FILE</h1>
+<p>If no file is specified using the –config-file= option, the XDG Base<br />
+Directory Specification is adhered to. I.e:</p>
+<ul>
+<li>Global config in <code>${XDG_CONFIG_DIRS:-/etc/xdg}</code><br />
+</li>
+<li>User config override in <code>${XDG_CONFIG_HOME:-$HOME/.config}</code></li>
+</ul>
+<p>For most users ~/.config/jgmenu/jgmenurc is appropriate.</p>
+<p>Global config variables are set in the following order (i.e. bottom<br />
+of list has higher precedence):</p>
+<ul>
+<li>built-in defaults (config.c)<br />
+</li>
+<li>tint2rc config file (can be specified by <code>TINT2_CONFIG</code><br />
+    environment variable<br />
+</li>
+<li>jgmenurc config file (can be specified by –config-file=)<br />
+</li>
+<li>command line arguments</li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<p>Lines beginning with # are ignored.</p>
+<p>All other lines are recognised as setting variables in the format<br />
+<em>key</em> = <em>value</em></p>
+<p>White spaces are mostly ignored.</p>
+<h3 id="values">Values</h3>
+<p>Unless otherwise specified, values as treated as simple strings.</p>
+<p>Here follow some specific types:</p>
+<p>boolean<br />
+    When a variable takes a boolean value, only 0 and 1 are accepted.<br />
+    0 means false; 1 means true.</p>
+<p>integer<br />
+    When a variable takes an integer value, only numerical values are<br />
+    accepted. The only valid characters are digits (0-9) and<br />
+    minus-sign.</p>
+<p>    All integer variables relating to geometry and position are<br />
+    interpreted as pixel values unless otherwise specified.</p>
+<p>color<br />
+    When a variable takes a color value, only the syntax described<br />
+    below is recognised:</p>
+<p>    #rrggbb aaa</p>
+<p>    where rr, gg and bb represent hexadecimal values (00-ff) for<br />
+    the colours red, green and blue respectively; and aaa stands for<br />
+    the alpha channel value expressed as a percentage (0-100).<br />
+    (i.e. 100 means no transparency and 0 means fully transparent.)</p>
+<p>    For example #ff0000 100 represents red with no transparency,<br />
+    whereas #000088 50 means dark blue with 50% transparency.</p>
+<p>pathname<br />
+    When a variable takes a pathname value, it is evaluated as a<br />
+    string. If the first character is tilde (~), it will be<br />
+    replaced by the the environment variable $HOME just as a shell<br />
+    would expand it.</p>
+<h2 id="variables">Variables</h2>
+<p>stay_alive = <strong>boolean</strong> (default 1)</p>
+<p>    If set to 1, the menu will “hide” rather than “exit” when the<br />
+    following events occur:<br />
+      - clicking on menu item<br />
+      - clicking outside the menu<br />
+      - pressing escape<br />
+    When in the hidden mode, a USR1 signal will “un-hide” the menu.</p>
+<p>hide_on_startup = <strong>boolean</strong> (default 0)</p>
+<p>    If set to 1, jgmenu start in “hidden” mode. This is useful for<br />
+    starting jgmenu during the boot process and then sending a<br />
+    <code>killall -SIGUSR1 jgmenu</code> to show the menu.</p>
+<p>csv_cmd = <strong>string</strong> (default <code>pmenu</code>)</p>
+<p>    Defines the command to produce the jgmenu flavoured CSV for<br />
+    <code>jgmenu</code>. Accpetable keyword include pmenu, lx and ob.<br />
+    If a value is given other than these keywords, it will be<br />
+    executed in a shell (so be careful!). If left blank, jgmenu<br />
+    will read from <strong>stdin</strong>. Examples:</p>
+<pre><code>csv_cmd = lx
+csv_cmd = jgmenu_run lx --no-dirs  
+csv_cmd = cat ~/mymenu.csv  </code></pre>
+<p>tint2_look = <strong>boolean</strong> (default 0)</p>
+<p>    Reads tint2rc and parses config options for colours, dimensions<br />
+    and alignment. Also reads tint2 button environment variables.<br />
+    These give more accurate alignment along the length of the panel<br />
+    than what parsing the tint2 config file can achieve.</p>
+<p>at_pointer = <strong>boolean</strong> (default 0)</p>
+<p>    If enabled, the menu is launched at the pointer position,<br />
+    ignoring <code>menu_margin_?</code> and <code>menu_?align</code> values.</p>
+<p>edge_snap_x = <strong>integer</strong> (default 30)</p>
+<p>    Specify the distance (in pixles) from the left hand edge, within<br />
+    which the menu will snap to the edge.<br />
+    Note that this only applies in <code>at_pointer</code> mode.</p>
+<p>terminal_exec = <strong>string</strong> (default x-terminal-emulator)<br />
+terminal_args = <strong>string</strong> (default -e)</p>
+<p>    The values of these two variables are used to build a string to<br />
+    launch programs requiring a terminal to run.<br />
+    With the default values, the string would become:</p>
+<p>    x-terminal-emulator -e ‘some_command with arguments’</p>
+<p>    terminal_args must finish with ‘-e’ or equivalent (where ‘-e’<br />
+    refers to the meaning of ‘-e’ in ‘xterm -e’.</p>
+<p>monitor = <strong>integer</strong> (default 0)</p>
+<p>    Specify a particular monitor as an index starting from 1.<br />
+    If 0, the menu will be launched on the monitor where the mouse<br />
+    is.</p>
+<p>hover_delay = <strong>integer</strong> (default 100)</p>
+<p>    The amount of time (in milliseconds) from hovering over an item<br />
+    until a submenu is opened.</p>
+<p>hide_back_items = <strong>boolean</strong> (default 1)</p>
+<p>    If enabled, all ^back() items will be suppressed. As a general<br />
+    rule, it should be set to 1 for a multi-window menu, and 0 when<br />
+    in single-window mode.</p>
+<p>columns = <strong>integer</strong> (default 1)</p>
+<p>    Specify the number of columns in which to show menu items</p>
+<p>tabs = <strong>integer</strong> (default 120)</p>
+<p>    Specify the position is pixels of the first tab</p>
+<p>menu_margin_x = <strong>integer</strong> (default 0)<br />
+menu_margin_y = <strong>integer</strong> (default 0)</p>
+<p>    “margin” refers to space outside an object<br />
+    The <code>menu_margin_*</code> variables refer to the distance between the<br />
+    menu (=X11 window) and the edge of the screen.<br />
+    See note on <code>_NET_WORKAREA</code> under <code>menu_{v,h}align</code> variables</p>
+<p>menu_width = <strong>integer</strong> (default 200)</p>
+<p>    Set the <em>minimum</em> menu width. The menu width will adjust to the<br />
+    longest item in the current (sub)menu. If a filter is applied<br />
+    (e.g. by the user typing) the menu width will NOT adjust.</p>
+<p>menu_height_min = <strong>integer</strong> (default 0)<br />
+menu_height_max = <strong>integer</strong> (default 0)</p>
+<p>    Set the min and max height of the root menu. If these are set to<br />
+    the same value, the menu height will be fixed at that value. If<br />
+    set to zero, they will be ignored.</p>
+<p>menu_height_mode = (static | dynamic) (default static)</p>
+<p>    “static” means that the height of the initial root menu will be<br />
+    used for any subsequent ^root() action.</p>
+<p>    “dynamic” means that the root menu height will be re-calculated<br />
+    every time the root menu is redefined using ^root().</p>
+<p>menu_padding_top = <strong>integer</strong> (default 5)<br />
+menu_padding_right = <strong>integer</strong> (default 5)<br />
+menu_padding_bottom = <strong>integer</strong> (default 5)<br />
+menu_padding_left = <strong>integer</strong> (default 5)</p>
+<p>    “padding” refers to space inside an object (between border and<br />
+    content)</p>
+<p>menu_radius = <strong>integer</strong> (default 1)</p>
+<p>    “radius” refers to the size of rounded corners</p>
+<p>menu_border = <strong>integer</strong> (default 0)</p>
+<p>    “border” refers to the border-thickness</p>
+<p>menu_halign = (left | right | center) (default left)<br />
+menu_valign = (top | bottom | center) (default bottom)</p>
+<p>    Horizontal and vertical alignment respectively.</p>
+<p>    Note: If these variables are not set, jgmenu will try to guess<br />
+    the alignment and margin by reading <code>_NET_WORKAREA</code> and tint2’s<br />
+    config file and environment variables.</p>
+<p>    <code>_NET_WORKAREA</code> is a freedesktop EWMH root window property. Not<br />
+    all Window Managers and Panels respect these.<br />
+    Here follow some example of those that do:<br />
+        openbox, xfwm4, tint2, polybar<br />
+    And some that do not:<br />
+        awesome, i3, bspwm, plank</p>
+<p>sub_spacing = <strong>integer</strong> (default 1)</p>
+<p>    Horizontal space between windows. A negative value results in<br />
+    each submenu window overlapping its parent window.</p>
+<p>sub_padding_top = <strong>integer</strong> (default auto)<br />
+sub_padding_right = <strong>integer</strong> (default auto)<br />
+sub_padding_bottom = <strong>integer</strong> (default auto)<br />
+sub_padding_left = <strong>integer</strong> (default auto)</p>
+<p>    The same as <code>menu_padding_*</code> but applies to submenu windows<br />
+    only. It understands the keyword ‘auto’. If set to ‘auto’, the<br />
+    smallest of the four <code>menu_padding_*</code> will be used.</p>
+<p>sub_hover_action = <strong>integer</strong> (default 1)</p>
+<p>    Open submenu when hovering over item (only works in multi-window<br />
+    mode).</p>
+<p>item_margin_x = <strong>integer</strong> (default 3)<br />
+item_margin_y = <strong>integer</strong> (default 3)<br />
+item_height = <strong>integer</strong> (default 25)<br />
+item_padding_x = <strong>integer</strong> (default 4)<br />
+item_radius = <strong>integer</strong> (default 1)<br />
+item_border = <strong>integer</strong> (default 0)</p>
+<p>    See equivalent <code>menu_</code> variable definitions.</p>
+<p>item_halign = (left | right) (default left)</p>
+<p>    Horizontal alignment of actual menu items. Items are left-aligned<br />
+    by default. If set to right, the option <code>arrow_string</code> should be<br />
+    changed too.</p>
+<p>sep_height = <strong>integer</strong> (default 5)</p>
+<p>    Height of separator without text (defined by ^sep())<br />
+    Note that separators with text use <code>item_height</code></p>
+<p>sep_halign = (left | center | right) (default left)</p>
+<p>    Horizontal alignment of separator text</p>
+<p>sep_markup = <strong>string</strong> (unset by default)</p>
+<p>    If specified, <code>&lt;span $sep_markup&gt;foo&lt;/span&gt;</code> will be passed to pango<br />
+    for ^sep(foo). See the following link for pango <span> attributes:<br />
+    https://developer.gnome.org/pango/stable/PangoMarkupFormat.html</p>
+<p>    Keywords include (but are not limited to):<br />
+        font<br />
+        size (x-small, small, medium, large, x-large)<br />
+        style (normal, oblique, italic)<br />
+        weight (ultralight, light, normal, bold, ultrabold, heavy<br />
+        foreground (using format #rrggbb or a colour name)<br />
+        underline (none, single, double)</p>
+<p>    Example:<br />
+        <code>sep_markup = font=&quot;Sans Italic 12&quot; foreground=&quot;blue&quot;</code></p>
+<p>font = <strong>string</strong> (unset by default)</p>
+<p>    <em>font</em> accepts a string such as <em>Cantarell 10</em> or<br />
+    <em>UbuntuCondensed 11</em>. The font description without a specified<br />
+    size unit is interpreted as “points”. If “px” is added, it will<br />
+    be read as pixels. Using “points” enables consistency with other<br />
+    applications.</p>
+<p>font_fallback = <strong>string</strong> (default xtg)</p>
+<p>    The same as ‘icon_theme_fallback’ (see below), except that<br />
+    the xsettings variable ‘Gtk/FontName’ is read.</p>
+<p>icon_size = <strong>integer</strong> (default 22)</p>
+<p>    If icon_size is set to 0, icons will not be searched for and<br />
+    loaded.</p>
+<p>icon_text_spacing = <strong>integer</strong> (default 10)</p>
+<p>    Distance between icon and text.</p>
+<p>icon_theme = <strong>string</strong> (unset by default)</p>
+<p>    Specify icon theme.</p>
+<p>icon_theme_fallback = <strong>string</strong> (default xtg)</p>
+<p>    Specifies the fallback sources of the icon theme in order of<br />
+    precedence, where the left-most letter designates the source<br />
+    with the highest precedence. The following are acceptable<br />
+    characters:</p>
+<p>    x = xsettings ‘Net/IconThemeName’<br />
+    t = tint2 config file<br />
+    g = gtk3.0 config file</p>
+<p>    ‘icon_theme’ takes priority if set.</p>
+<p>    In order to increase consistency with tint2, xsettings<br />
+    variables will only be read if the tint2rc variable<br />
+    launcher_icon_theme_override is zero.</p>
+<p>arrow_string = <strong>string</strong> (default ▸)</p>
+<p>    The “arrow” indicates that a menu item points a submenu.<br />
+    Suggested styles include:<br />
+    → ▶ ➔ ➙ ➛ ➜ ➝ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ↦ ⇒ ⇝ ⇢ ⇥ ⇨ ⇾ ➭ ➮ ➯ ➱ ➲ ➺ ➼ ➽ ➾</p>
+<p>arrow_width = <strong>integer</strong> (default 15)</p>
+<p>    Width of area allocated for arrow. Set to 0 to hide arrow.</p>
+<p>color_menu_bg = <strong>color</strong> (default #000000 100)</p>
+<p>    Background colour of menu window</p>
+<p>color_menu_border = <strong>color</strong> (default #eeeeee 8)</p>
+<p>    Border colour of menu window</p>
+<p>color_norm_bg = <strong>color</strong> (default #000000 0)<br />
+color_norm_fg = <strong>color</strong> (default #eeeeee 100)</p>
+<p>    Background and foreground (=font) colors of all menu items,<br />
+    except the one currently selected.</p>
+<p>color_sel_bg = <strong>color</strong> (default #ffffff 20)<br />
+color_sel_fg = <strong>color</strong> (default #eeeeee 100)<br />
+color_sel_border = <strong>color</strong> (default #eeeeee 8)</p>
+<p>    Background, foreground (=font) and border colors of the currently<br />
+    selected menu item.</p>
+<p>color_sep_fg = <strong>color</strong> (default #ffffff 20)</p>
+<p>    Colour of seperators without text</p>
+<p>color_title_fg = <strong>color</strong> (default #eeeeee 50)<br />
+color_title_bg = <strong>color</strong> (default #000000 0)<br />
+color_title_border = <strong>color</strong> (default #000000 0)</p>
+<p>    Foreground (=font), background and border colours of separators<br />
+    with text (also known as ‘title’)<br />
+    The font colour can be overriden by ‘sep_markup’</p>
+<p>color_scroll_ind = <strong>color</strong> (default #eeeeee 40)</p>
+<p>    Colour of scroll indicator lines (which show if there are menu<br />
+    items above or below those which are visible).</p>
+<h2 id="csv-generator-variables">CSV generator variables</h2>
+<p>The following variables begin with “csv_” which denotes that they set<br />
+environment variables which are used by the CSV generators.</p>
+<p>csv_name_format = <strong>string</strong> (default <code>%n (%g)</code>)</p>
+<p>    Defines the format of the <em>name</em> field for CSV generators<br />
+    (currently only applicable to lx). It understands the following<br />
+    two fields:<br />
+        %n - application name<br />
+        %g - application generic name<br />
+    If a <em>generic name</em> does not exist or is the same as the <em>name</em>,<br />
+    %n will be used without any formatting.</p>
+<p>csv_single_window = <strong>boolean</strong> (default 0)</p>
+<p>    If set, ^root() will be used instead of ^checkout().<br />
+    This results in a single window menu, where submenus appear in<br />
+    the same window.<br />
+    This is currently only supported by pmenu.</p>
+<p>csv_no_dirs = <strong>boolean</strong> (default 0)</p>
+<p>    If set, applications will be listed without any directory<br />
+    structure. This is currently only supported by pmenu and lx.</p>
+<p>csv_i18n = <strong>string</strong> (no default)</p>
+<p>    If set, the ob module will look for a translation file in the<br />
+    specified file or directory. See <code>jgmenu_run i18n --help</code> for<br />
+    further details.</p>
+<h1 id="diagrams">DIAGRAMS</h1>
+<h2 id="vertical">Vertical</h2>
+<pre><code>menu
+╔════════════════════════╗  1. menu_padding_top
+║            1           ║  2. item_margin_y
+╟────────────────────────╢  3. menu_padding_bottom
+║            2           ║
+╟────────────────────────╢
+║          item          ║
+╟────────────────────────╢
+║            2           ║
+╟────────────────────────╢
+║          item          ║
+╟────────────────────────╢
+║            2           ║
+╟────────────────────────╢
+║            3           ║
+╚════════════════════════╝</code></pre>
+<h2 id="horizontal">Horizontal</h2>
+<pre><code>menu
+╔═╤═╤════════════════╤═╤═╗  1. item_margin_x
+║ │ │                │ │ ║  2. padding_left
+║ │ ├────────────────┤ │ ║  3. padding_right
+║ │ │ @    web      &gt;│ │ ║  4. icon_size
+║ │ ├────────────────┤ │ ║  5. icon_to_text_spacing
+║2│1│                │1│3║  6. arrow_width
+║ │ ├───┬─┬────────┬─┤ │ ║
+║ │ │ 4 │5│        │6│ │ ║
+║ │ ├───┴─┴────────┴─┤ │ ║
+║ │ │                │ │ ║
+║ │ │                │ │ ║
+╚═╧═╧════════════════╧═╧═╝</code></pre>
+<h2 id="external-to-menu">External to menu</h2>
+<pre><code>screen
+╔════════════════════════╗  1. menu_margin_x
+║    2                   ║  2. menu_margin_y
+║ ╭──────┐               ║  3. sub_spacing
+║ │ root │ ╭──────┐      ║
+║1│ menu │ │ sub  │      ║
+║ │      │3│ menu │      ║
+║ └──────┘ │      │      ║
+║          └──────┘      ║
+║                        ║
+║                        ║
+║                        ║
+╚════════════════════════╝</code></pre>
+<h1 id="see-also">SEE ALSO</h1>
+<p><code>jgmenu_run(1)</code><br />
+<code>jgmenututorial(7)</code></p>
+<p>The jgmenu source code and documentation can be downloaded from<br />
+<a href="https://github.com/johanmalm/jgmenu/" class="uri">https://github.com/johanmalm/jgmenu/</a></p>
+</body>
+</html>
