@@ -2,10 +2,14 @@
 
 A simple X11 menu
 
-## Introduction
-
 `jgmenu` is a stand-alone, simple and contemporary-looking menu application for Linux and BSD.  It is designed for customisation, scripting, ricing and tweaking
 
-## Contents
+## Main
 
-[Manual](manual.html)
+- [Manual](manual.html)
+- [Roadmap](roadmap.html)
+
+## Development
+
+- [Source Code](https://github.com/johanmalm/jgmenu.git)
+
