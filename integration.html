@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>jgmenu</title>
+<meta charset="utf-8" />
+<meta name="description" content="jgmenu"/>
+<meta name=viewport content="width=device-width">
+<style>
+body { overflow-y: scroll; font-family: sans-serif; background-color: #fff; }
+img,main,pre>code { display: block; margin: 20px auto; }
+main { padding: 20px; max-width: 600px; line-height: 1.5; word-wrap: break-word; }
+img { max-width: 100%; }
+pre>code { padding: 20px; white-space: pre-wrap; border: 1px dotted gray; }
+code { background: #eee; padding: 2px; }
+table { border-collapse: collapse; }
+table,th,td { border: 1px solid black; }
+th,td { padding: 15px; text-align: left; }
+h1,h2,h3,h4 { line-height: 1.2; }
+hr { border: 2px solid #ddd; }
+</style>
+</head>
+<body>
+<main>
+<h1 id="integration">Integration</h1>
+<p>Panels</p>
+<ul>
+<li><a href="#tint2">tint2</a></li>
+<li><a href="#polybar">polybar</a></li>
+<li><a href="#unity">unity</a></li>
+<li><a href="#cairo">cairo-dock</a></li>
+<li><a href="#polybar">plank</a></li>
+</ul>
+<p>Window Managers</p>
+<ul>
+<li><a href="#openbox">Openbox</a></li>
+<li><a href="#i3">i3</a></li>
+<li><a href="#dwm">dwm</a></li>
+</ul>
+<h2 id="panels">Panels</h2>
+<h3 id="tint2">tint2</h3>
+<p>In jgmenurc, set <code>tint2_look = 1</code> to make jgmenu look like tint2 (i.e. colour, font, margin, padding and position). Other config variables in jgmenurc will overrule any tint2 settings, so start with all other lines commented out.</p>
+<p>There are at least three ways to integrate jgmenu with the tint2 panel:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">tint2 component</th>
+<th style="text-align: left;"><code>panel_item</code> key</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">button</td>
+<td style="text-align: left;">P</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">execp</td>
+<td style="text-align: left;">E</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">launcher</td>
+<td style="text-align: left;">L</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>button</code> plugin was designed for jgmenu, and is therefore the preferred method. Take the following steps to insert a button plugin:</p>
+<p>Add the letter <em>P</em> to <code>panel_items</code> in tint2rc. For example <code>panel_items = PTSBC</code>.</p>
+<p>Add the following to tint2rc:</p>
+<pre><code>button = new
+button_icon = /path/to/favourite_icon.png
+button_lclick_command = jgmenu_run</code></pre>
+<p>An <code>exec plugin</code> can be added as follows:</p>
+<p>Add the letter <em>E</em> to <code>panel_items</code> in tint2rc. For example <code>panel_items = ETBC</code>.</p>
+<p>Add something like this to tint2rc</p>
+<pre><code>execp = new
+execp_command = echo &quot;menu&quot;
+execp_interval = 0
+execp_has_icon = 0
+execp_lclick_command = jgmenu_run
+execp_font = Roboto Condensed, 12
+execp_font_color = #444444 100</code></pre>
+<p>A launcher can be added by using tint2conf or manually by taking the following steps:</p>
+<ul>
+<li>Add the letter <em>L</em> to <code>panel_items</code> in tint2rc</li>
+<li>Add <code>launcher_item_app = jgmenu.desktop</code> in tint2rc</li>
+</ul>
+<p>Note: tint2 launcher are significantly slower than button and exec plugins.</p>
+<h3 id="polybar">polybar</h3>
+<p>Add “jgmenu” to one of “modules-{left,center,right} in the”[bar/foo]&quot; section.</p>
+<p>For example:</p>
+<pre><code>[bar/example]
+modules-left = jgmenu bspwm i3</code></pre>
+<p>Also add:</p>
+<pre><code>[module/jgmenu]
+type = custom/text
+content-padding = 2
+content = menu
+click-left = &quot;jgmenu_run &gt;/dev/null 2&gt;&amp;1 &amp;&quot;</code></pre>
+<h3 id="unity">unity</h3>
+<p>The installation process creates a desktop-file in <code>$prefix/share/applications</code> (or <code>~/.local/share/applications</code> if $prefix is set to $HOME).</p>
+<p>If using default desktop file (which simply executes <code>jgmenu_run</code>) in Ubuntu’s Unity panel, the launcher will flash for 5-7 seconds and you will not be able to click it again during this time.</p>
+<p>To prevent this from happening, prepend the <code>Exec=</code> command with <code>env JGMENU_UNITY=1</code>. For example:</p>
+<pre><code>Exec=env JGMENU_UNITY=1 jgmenu_run</code></pre>
+<h3 id="cairo">cairo-dock</h3>
+<p>Add the jgmenu launcher by dragging to the dock.</p>
+<p>By default, cairo-dock is setup to prevent the user clicking multiple times in quick succession on the same icon. In order to achieve menu-like behaviour, carry out the following steps:</p>
+<ul>
+<li><p>Right-click on the jgmenu launcher.</p></li>
+<li><p>Click “Cairo-Dock” -&gt; “Configure”</p></li>
+<li><p>Select the “Current Items” tab.</p></li>
+<li><p>Select “jgmenu”</p></li>
+<li><p>Under “Extra Parameters”, tick “Don’t link the launcher with its window”</p></li>
+</ul>
+<h3 id="plank">plank</h3>
+<p>In your file manager, navigate to <code>/usr/share/applications/</code> (or similar path depending on where .desktop files are installed on your system).</p>
+<p>Drag the jgmenu launcher onto the panel.</p>
+<p>On early versions of plank, the full icon path name was needed in the .desktop file. Please edit manually if this is the case on your system.</p>
+<h2 id="window-managers">Window Managers</h2>
+<h3 id="openbox">openbox</h3>
+<p>To bind <code>jgmenu_run</code> to a keyboard shortcut (ctrl-escape in this case), add the following to the <code>&lt;keyboard&gt;&lt;/keyboard&gt;</code> section of <code>~/.config/openbox/rc.xml</code></p>
+<pre><code>&lt;keybind key=&quot;C-Escape&quot;&gt;
+  &lt;action name=&quot;Execute&quot;&gt;
+    &lt;command&gt;jgmenu_run&lt;/command&gt;
+  &lt;/action&gt;
+&lt;/keybind&gt;</code></pre>
+<p>To start jgmenu in the background during the boot process, add the following to <code>~/.config/openbox/autostart</code></p>
+<pre><code>(sleep 2s; jgmenu --hide-on-startup) &amp;</code></pre>
+<p>To bind <code>jgmenu_run</code> to a mouse event (right click on root window in this case), add the following to the <code>&lt;mouse&gt;&lt;context name=&quot;Root&quot;&gt;&lt;/context&gt;&lt;/mouse&gt;</code> section of <code>~/.config/openbox/rc.xml</code></p>
+<pre><code>&lt;mousebind button=&quot;Right&quot; action=&quot;Release&quot;&gt;
+  &lt;action name=&quot;Execute&quot;&gt;
+    &lt;command&gt;jgmenu_run&lt;/command&gt;
+  &lt;/action&gt;
+&lt;/mousebind&gt;</code></pre>
+<p>Note: <code>action=&quot;Press&quot;</code> can be used instead of <code>action=&quot;Release&quot;</code></p>
+<h3 id="i3">i3</h3>
+<p>In i3 it would probably seem most natural to bind a key-combination to jgmenu. For example, like this:</p>
+<pre><code>bindsym $mod+z exec jgmenu_run</code></pre>
+<p>i3 provides no way to access the root window, a right-click can be bound on the status bar like this.</p>
+<pre><code>bar {
+        bindsym button3 exec --no-startup-id jgmenu_run
+}</code></pre>
+<h3 id="dwm">dwm</h3>
+<p>To associate jgmenu with a keyboard shortcut (alt-F1 in this case), add the following to the <code>keys[]</code> array in <code>config.h</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb11-1" title="1">{ MODKEY, XK_F1, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<p>In the <code>/* commands */</code> section, add</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb12-1" title="1"><span class="dt">static</span> <span class="dt">const</span> <span class="dt">char</span> *jgmenucmd[]  = { <span class="st">&quot;jgmenu_run&quot;</span>, NULL };</a></code></pre></div>
+<p>Example jgmenurc to suit dwm:</p>
+<pre><code>tint2_look          = 0
+menu_width          = 120
+menu_margin_y       = 17
+menu_margin_x       = 0
+menu_padding_top    = 0
+menu_padding_right  = 0
+menu_padding_bottom = 0
+menu_padding_left   = 0
+menu_radius         = 1
+menu_valign         = top
+sub_spacing         = 0
+item_margin_x       = 1
+item_margin_y       = 1
+item_height         = 17
+sep_height          = 4
+icon_size           = 0
+arrow_width         = 8</code></pre>
+<p>To launch jgmenu on background right click or window title click, add the following to the <code>buttons[]</code> array:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb14-1" title="1">{ ClkWinTitle, <span class="dv">0</span>, Button1, spawn, {.v = jgmenucmd } },</a>
+<a class="sourceLine" id="cb14-2" title="2">{ ClkWinTitle, <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a>
+<a class="sourceLine" id="cb14-3" title="3">{ ClkRootWin,  <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<p>and add the following to jgmenurc</p>
+<pre><code>at_pointer          = 1</code></pre>
+</main>
+</body>
+</html>
