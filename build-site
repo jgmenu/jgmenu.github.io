@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+die () { printf 'fatal: %b\n' "$@" >&2; exit 1; }
+
+build_page () {
+	filename=${1##*/}
+	html="${filename/%.md/.html}"
+	[[ $html -ot $1 ]] || return
+	printf '%s\n' "    GEN         ${html}"
+	printf '%b' "${template/'{{content}}'/$(pandoc "$1")}" >"${html}"
+}
+
+main () {
+	template="$(<"src/template.html")"
+	for md in src/*.md; do build_page "${md}"; done
+	[[ -d ../jgmenu ]] || die "need jgmenu next to jgmenu.github.io/"
+	template="$(sed -e 's/sans-serif/monospace/' src/template.html)"
+	for md in ../jgmenu/docs/manual/*.md; do build_page "${md}"; done
+}
+
+main "$@"
