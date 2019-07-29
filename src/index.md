@@ -1,7 +1,7 @@
 # jgmenu
 
-A simple, independent and contemporary-looking X11 menu, designed for for
-customisation, scripting, ricing and tweaking.
+A simple, independent and contemporary-looking X11 menu, designed for
+scripting, ricing and tweaking.
 
 ## Main
 
