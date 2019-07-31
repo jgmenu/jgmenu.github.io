@@ -99,26 +99,25 @@ dd p {
 <p><code>jgmenu_run</code> - A wrapper for jgmenu</p>
 <h1 id="synopsis">SYNOPSIS</h1>
 <p><code>jgmenu_run</code><br />
-<code>jgmenu_run</code> &lt;<em>command</em>&gt; [&lt;<em>args</em>&gt;]</p>
+<code>jgmenu_run</code> &lt;<em>command</em>&gt; [&lt;<em>args</em>&gt;]<br />
+<code>jgmenu_run</code> &lt;<em>options</em>&gt;</p>
 <h1 id="description">DESCRIPTION</h1>
-<p>jgmenu is a small menu application designed for Linux/BSD. It<br />
-consists of the jgmenu binary and a number of helper modules<br />
-written in C, python and shell. The <code>jgmenu_run</code> command is an<br />
-abstraction layer which hides the plumbing of components and<br />
-creates a simpler user interface.</p>
-<p>If no ‘command’ or argument is specified, <code>jgmenu_run</code> either awakes<br />
-jgmenu or (if not already running) starts jgmenu using the command<br />
-specified by <code>csv_cmd</code> in jgmenurc (pmenu by default).</p>
-<h1 id="commands">COMMANDS</h1>
-<p>Some commands have their own man-pages. These can be opened by<br />
-<code>man jgmenu-&lt;command&gt;</code>. If such a man-page does not exist, use<br />
-the <code>--help</code> option for usage details.</p>
-<p>Valid <code>commands</code> include any programe in $libexecdir/jgmenu (which<br />
-is a directory containing executable programs and shell fragments<br />
-designed to be run by jgmenu rather than directly by users).</p>
+<p>Use without <code>command</code> or <code>argument</code> to launch menu. If an instance of jgmenu is already running, this will be activated, otherwise a new instances will be started.</p>
+<p>Use with <code>command</code> to call any programe in $libexecdir/jgmenu which containis executable programs designed to be run by jgmenu rather than directly by users.</p>
+<h1 id="options">OPTIONS</h1>
+<dl>
+<dt>--help</dt>
+<dd>Print help message
+</dd>
+<dt>--exec-path</dt>
+<dd>Print path to $libexecdir/jgmenu which is where jgmenu commands are installed.
+</dd>
+</dl>
 <h1 id="examples">EXAMPLES</h1>
-<p>To run the menu:</p>
+<p>Launch menu</p>
 <pre><code>jgmenu_run</code></pre>
+<p>Run the following to see all <code>jgmenu_run</code> commands:</p>
+<pre><code>ls $(jgmenu_run --exec-path)</code></pre>
 <h1 id="see-also">SEE ALSO</h1>
 <p><code>jgmenu(1)</code><br />
 <code>jgmenututorial(7)</code></p>
