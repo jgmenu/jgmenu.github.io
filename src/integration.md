@@ -10,9 +10,14 @@ Panels
 
 Window Managers
 
-- [Openbox](#openbox)
+- [openbox](#openbox)
 - [i3](#i3)
 - [dwm](#dwm)
+
+Other
+
+- [start in background](#background)
+- [compton](#compton)
 
 
 ## Panels
@@ -23,50 +28,23 @@ In jgmenurc, set `tint2_look = 1` to make jgmenu look like tint2 (i.e. colour,
 font, margin, padding and position). Other config variables in jgmenurc will
 overrule any tint2 settings, so start with all other lines commented out.
 
-There are at least three ways to integrate jgmenu with the tint2 panel:
-
-| tint2 component | `panel_item` key |
-| :---            | :---             |
-| button          | P                |
-| execp           | E                |
-| launcher        | L                |
-
 The `button` plugin was designed for jgmenu, and is therefore the preferred
 method. Take the following steps to insert a button plugin:
 
-Add the letter *P* to `panel_items` in tint2rc. For example `panel_items = PTSBC`.
+Add the letter `P` to `panel_items` in tint2rc.
+For example `panel_items = PTSBC`.
 
 Add the following to tint2rc:
 
-```
-button = new
-button_icon = /path/to/favourite_icon.png
-button_lclick_command = jgmenu_run
-```
+    button = new
+    button_icon = /path/to/favourite_icon.png
+    button_lclick_command = jgmenu_run
 
-An `exec plugin` can be added as follows:
+An `exec plugin` (`E`) or `launcher plugin` (`L`) can also be used. See
+`man tint2` for implementation details.
 
-Add the letter *E* to `panel_items` in tint2rc. For example `panel_items = ETBC`.
-
-Add something like this to tint2rc
-
-```
-execp = new
-execp_command = echo "menu"
-execp_interval = 0
-execp_has_icon = 0
-execp_lclick_command = jgmenu_run
-execp_font = Roboto Condensed, 12
-execp_font_color = #444444 100
-```
-
-A launcher can be added by using tint2conf or manually by taking the following
-steps:
-
-  - Add the letter *L* to `panel_items` in tint2rc
-  - Add `launcher_item_app = jgmenu.desktop` in tint2rc
-
-Note: tint2 launcher are significantly slower than button and exec plugins.
+Note: The tint2 `launcher plugin` is significantly slower than button and exec
+plugins.
 
 ### polybar {#polybar}
 
@@ -109,13 +87,9 @@ multiple times in quick succession on the same icon. In order to
 achieve menu-like behaviour, carry out the following steps:
 
   - Right-click on the jgmenu launcher.
-
   - Click "Cairo-Dock" -> "Configure"
-
   - Select the "Current Items" tab.
-
   - Select "jgmenu"
-
   - Under "Extra Parameters", tick "Don't link the launcher with its window"
 
 ### plank {#plank}
@@ -144,11 +118,6 @@ the following to the `<keyboard></keyboard>` section of
 </keybind>
 ```
 
-To start jgmenu in the background during the boot process, add the following
-to `~/.config/openbox/autostart`
-
-    (sleep 2s; jgmenu --hide-on-startup) &
-
 To bind `jgmenu_run` to a mouse event (right click on root window in this
 case), add the following to the `<mouse><context
 name="Root"></context></mouse>` section of `~/.config/openbox/rc.xml`
@@ -169,7 +138,6 @@ In i3 it would probably seem most natural to bind a key-combination to jgmenu.
 For example, like this:
 
     bindsym $mod+z exec jgmenu_run
-
 
 i3 provides no way to access the root window, a right-click can be bound on the
 status bar like this.
@@ -228,5 +196,31 @@ and add the following to jgmenurc
 
 ```
 at_pointer          = 1
+```
+
+## Other
+
+### Start in background {#background}
+
+To start jgmenu in the background during the boot process, use the following
+command:
+
+    (sleep 2s; jgmenu --hide-on-startup) &
+
+Note: If started in this way, `_NET_WORKAREA` may not be read correctly
+
+### compton {#compton}
+
+The X11 properties `WM_NAME` and `WM_CLASS` are set for jgmenu windows.
+
+In order to avoid jgmenu shadows, add one of these lines to
+~/.config/compton.conf:
+
+```
+shadow-exclude = [ "name = 'jgmenu'" ];
+```
+
+```
+shadow-exclude = [ "class_g = 'jgmenu'" ];
 ```
 

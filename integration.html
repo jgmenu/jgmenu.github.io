@@ -106,58 +106,26 @@ dd p {
 </ul>
 <p>Window Managers</p>
 <ul>
-<li><a href="#openbox">Openbox</a></li>
+<li><a href="#openbox">openbox</a></li>
 <li><a href="#i3">i3</a></li>
 <li><a href="#dwm">dwm</a></li>
+</ul>
+<p>Other</p>
+<ul>
+<li><a href="#background">start in background</a></li>
+<li><a href="#compton">compton</a></li>
 </ul>
 <h2 id="panels">Panels</h2>
 <h3 id="tint2">tint2</h3>
 <p>In jgmenurc, set <code>tint2_look = 1</code> to make jgmenu look like tint2 (i.e. colour, font, margin, padding and position). Other config variables in jgmenurc will overrule any tint2 settings, so start with all other lines commented out.</p>
-<p>There are at least three ways to integrate jgmenu with the tint2 panel:</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">tint2 component</th>
-<th style="text-align: left;"><code>panel_item</code> key</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">button</td>
-<td style="text-align: left;">P</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">execp</td>
-<td style="text-align: left;">E</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">launcher</td>
-<td style="text-align: left;">L</td>
-</tr>
-</tbody>
-</table>
 <p>The <code>button</code> plugin was designed for jgmenu, and is therefore the preferred method. Take the following steps to insert a button plugin:</p>
-<p>Add the letter <em>P</em> to <code>panel_items</code> in tint2rc. For example <code>panel_items = PTSBC</code>.</p>
+<p>Add the letter <code>P</code> to <code>panel_items</code> in tint2rc. For example <code>panel_items = PTSBC</code>.</p>
 <p>Add the following to tint2rc:</p>
 <pre><code>button = new
 button_icon = /path/to/favourite_icon.png
 button_lclick_command = jgmenu_run</code></pre>
-<p>An <code>exec plugin</code> can be added as follows:</p>
-<p>Add the letter <em>E</em> to <code>panel_items</code> in tint2rc. For example <code>panel_items = ETBC</code>.</p>
-<p>Add something like this to tint2rc</p>
-<pre><code>execp = new
-execp_command = echo &quot;menu&quot;
-execp_interval = 0
-execp_has_icon = 0
-execp_lclick_command = jgmenu_run
-execp_font = Roboto Condensed, 12
-execp_font_color = #444444 100</code></pre>
-<p>A launcher can be added by using tint2conf or manually by taking the following steps:</p>
-<ul>
-<li>Add the letter <em>L</em> to <code>panel_items</code> in tint2rc</li>
-<li>Add <code>launcher_item_app = jgmenu.desktop</code> in tint2rc</li>
-</ul>
-<p>Note: tint2 launcher are significantly slower than button and exec plugins.</p>
+<p>An <code>exec plugin</code> (<code>E</code>) or <code>launcher plugin</code> (<code>L</code>) can also be used. See <code>man tint2</code> for implementation details.</p>
+<p>Note: The tint2 <code>launcher plugin</code> is significantly slower than button and exec plugins.</p>
 <h3 id="polybar">polybar</h3>
 <p>Add “jgmenu” to one of “modules-{left,center,right} in the”[bar/foo]&quot; section.</p>
 <p>For example:</p>
@@ -178,11 +146,11 @@ click-left = &quot;jgmenu_run &gt;/dev/null 2&gt;&amp;1 &amp;&quot;</code></pre>
 <p>Add the jgmenu launcher by dragging to the dock.</p>
 <p>By default, cairo-dock is setup to prevent the user clicking multiple times in quick succession on the same icon. In order to achieve menu-like behaviour, carry out the following steps:</p>
 <ul>
-<li><p>Right-click on the jgmenu launcher.</p></li>
-<li><p>Click “Cairo-Dock” -&gt; “Configure”</p></li>
-<li><p>Select the “Current Items” tab.</p></li>
-<li><p>Select “jgmenu”</p></li>
-<li><p>Under “Extra Parameters”, tick “Don’t link the launcher with its window”</p></li>
+<li>Right-click on the jgmenu launcher.</li>
+<li>Click “Cairo-Dock” -&gt; “Configure”</li>
+<li>Select the “Current Items” tab.</li>
+<li>Select “jgmenu”</li>
+<li>Under “Extra Parameters”, tick “Don’t link the launcher with its window”</li>
 </ul>
 <h3 id="plank">plank</h3>
 <p>In your file manager, navigate to <code>/usr/share/applications/</code> (or similar path depending on where .desktop files are installed on your system).</p>
@@ -196,8 +164,6 @@ click-left = &quot;jgmenu_run &gt;/dev/null 2&gt;&amp;1 &amp;&quot;</code></pre>
     &lt;command&gt;jgmenu_run&lt;/command&gt;
   &lt;/action&gt;
 &lt;/keybind&gt;</code></pre>
-<p>To start jgmenu in the background during the boot process, add the following to <code>~/.config/openbox/autostart</code></p>
-<pre><code>(sleep 2s; jgmenu --hide-on-startup) &amp;</code></pre>
 <p>To bind <code>jgmenu_run</code> to a mouse event (right click on root window in this case), add the following to the <code>&lt;mouse&gt;&lt;context name=&quot;Root&quot;&gt;&lt;/context&gt;&lt;/mouse&gt;</code> section of <code>~/.config/openbox/rc.xml</code></p>
 <pre><code>&lt;mousebind button=&quot;Right&quot; action=&quot;Release&quot;&gt;
   &lt;action name=&quot;Execute&quot;&gt;
@@ -214,9 +180,9 @@ click-left = &quot;jgmenu_run &gt;/dev/null 2&gt;&amp;1 &amp;&quot;</code></pre>
 }</code></pre>
 <h3 id="dwm">dwm</h3>
 <p>To associate jgmenu with a keyboard shortcut (alt-F1 in this case), add the following to the <code>keys[]</code> array in <code>config.h</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb11-1" title="1">{ MODKEY, XK_F1, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb9-1" title="1">{ MODKEY, XK_F1, spawn, {.v = jgmenucmd } },</a></code></pre></div>
 <p>In the <code>/* commands */</code> section, add</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb12-1" title="1"><span class="dt">static</span> <span class="dt">const</span> <span class="dt">char</span> *jgmenucmd[]  = { <span class="st">&quot;jgmenu_run&quot;</span>, NULL };</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb10-1" title="1"><span class="dt">static</span> <span class="dt">const</span> <span class="dt">char</span> *jgmenucmd[]  = { <span class="st">&quot;jgmenu_run&quot;</span>, NULL };</a></code></pre></div>
 <p>Example jgmenurc to suit dwm:</p>
 <pre><code>tint2_look          = 0
 menu_width          = 120
@@ -236,11 +202,21 @@ sep_height          = 4
 icon_size           = 0
 arrow_width         = 8</code></pre>
 <p>To launch jgmenu on background right click or window title click, add the following to the <code>buttons[]</code> array:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb14-1" title="1">{ ClkWinTitle, <span class="dv">0</span>, Button1, spawn, {.v = jgmenucmd } },</a>
-<a class="sourceLine" id="cb14-2" title="2">{ ClkWinTitle, <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a>
-<a class="sourceLine" id="cb14-3" title="3">{ ClkRootWin,  <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb12-1" title="1">{ ClkWinTitle, <span class="dv">0</span>, Button1, spawn, {.v = jgmenucmd } },</a>
+<a class="sourceLine" id="cb12-2" title="2">{ ClkWinTitle, <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a>
+<a class="sourceLine" id="cb12-3" title="3">{ ClkRootWin,  <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a></code></pre></div>
 <p>and add the following to jgmenurc</p>
 <pre><code>at_pointer          = 1</code></pre>
+<h2 id="other">Other</h2>
+<h3 id="background">Start in background</h3>
+<p>To start jgmenu in the background during the boot process, use the following command:</p>
+<pre><code>(sleep 2s; jgmenu --hide-on-startup) &amp;</code></pre>
+<p>Note: If started in this way, <code>_NET_WORKAREA</code> may not be read correctly</p>
+<h3 id="compton">compton</h3>
+<p>The X11 properties <code>WM_NAME</code> and <code>WM_CLASS</code> are set for jgmenu windows.</p>
+<p>In order to avoid jgmenu shadows, add one of these lines to ~/.config/compton.conf:</p>
+<pre><code>shadow-exclude = [ &quot;name = &#39;jgmenu&#39;&quot; ];</code></pre>
+<pre><code>shadow-exclude = [ &quot;class_g = &#39;jgmenu&#39;&quot; ];</code></pre>
 </main>
 </body>
 </html>
