@@ -229,17 +229,14 @@ Firefox,firefox,firefox</code></pre>
 <p><code>color</code>: When a variable takes a color value, only the syntax <code>#rrggbb aaa</code> is recognised, where <code>rr</code>, <code>gg</code> and <code>bb</code> represent hexadecimal values (00-ff) for the colours red, green and blue respectively; and <code>aaa</code> stands for the alpha channel value expressed as a percentage (0-100) (i.e. 100 means no transparency and 0 means fully transparent.) For example <code>#ff0000 100</code> represents red with no transparency, whereas <code>#000088 50</code> means dark blue with 50% transparency.</p>
 <p><code>pathname</code>: When a variable takes a pathname value, it is evaluated as a string. If the first character is tilde (~), it will be replaced by the the environment variable $HOME just as a shell would expand it.</p>
 <h2 id="variables">Variables</h2>
-<p><code>stay_alive</code> = <strong>boolean</strong> (default 1)</p>
-<p>    If set to 1, the menu will “hide” rather than “exit” when the<br />
-    following events occur:<br />
-      - clicking on menu item<br />
-      - clicking outside the menu<br />
-      - pressing escape<br />
-    When in the hidden mode, a USR1 signal will “un-hide” the menu.</p>
-<p><code>hide_on_startup</code> = <strong>boolean</strong> (default 0)</p>
-<p>    If set to 1, jgmenu start in “hidden” mode. This is useful for<br />
-    starting jgmenu during the boot process and then sending a<br />
-    <code>killall -SIGUSR1 jgmenu</code> to show the menu.</p>
+<dl>
+<dt><code>stay_alive</code> = <strong>boolean</strong> (default 1)</dt>
+<dd>If set to 1, the menu will “hide” rather than “exit” when the following events occur: clicking on menu item; clicking outside the menu; pressing escape. When in the hidden mode, a USR1 signal will “un-hide” the menu.
+</dd>
+<dt><code>hide_on_startup</code> = <strong>boolean</strong> (default 0)</dt>
+<dd>If set to 1, jgmenu start in “hidden” mode. This is useful for starting jgmenu during the boot process and then sending a <code>killall -SIGUSR1 jgmenu</code> to show the menu.
+</dd>
+</dl>
 <p><code>csv_cmd</code> = <strong>string</strong> (default <code>pmenu</code>)</p>
 <p>    Defines the command to produce the jgmenu flavoured CSV for<br />
     <code>jgmenu</code>. Accpetable keyword include pmenu, lx and ob.<br />
@@ -450,11 +447,10 @@ environment variables which are used by the CSV generators.</p>
     specified file or directory. See <code>jgmenu_run i18n --help</code> for<br />
     further details.</p>
 <h1 id="diagrams">DIAGRAMS</h1>
-<h2 id="vertical">Vertical</h2>
-<pre><code>menu
-╔════════════════════════╗  1. menu_padding_top
-║            1           ║  2. item_margin_y
-╟────────────────────────╢  3. menu_padding_bottom
+<h2 id="vertical-menu">Vertical Menu</h2>
+<pre><code>╔════════════════════════╗
+║            1           ║
+╟────────────────────────╢
 ║            2           ║
 ╟────────────────────────╢
 ║          item          ║
@@ -466,35 +462,49 @@ environment variables which are used by the CSV generators.</p>
 ║            2           ║
 ╟────────────────────────╢
 ║            3           ║
-╚════════════════════════╝</code></pre>
-<h2 id="horizontal">Horizontal</h2>
-<pre><code>menu
-╔═╤═╤════════════════╤═╤═╗  1. item_margin_x
-║ │ │                │ │ ║  2. padding_left
-║ │ ├────────────────┤ │ ║  3. padding_right
-║ │ │ @    web      &gt;│ │ ║  4. icon_size
-║ │ ├────────────────┤ │ ║  5. icon_to_text_spacing
-║2│1│                │1│3║  6. arrow_width
+╚════════════════════════╝
+
+1. menu_padding_top
+2. item_margin_y
+3. menu_padding_bottom</code></pre>
+<h2 id="horizontal-menu">Horizontal Menu</h2>
+<pre><code>╔═╤═╤════════════════╤═╤═╗
+║ │ │                │ │ ║
+║ │ ├────────────────┤ │ ║
+║ │ │ @    web      &gt;│ │ ║
+║ │ ├────────────────┤ │ ║
+║2│1│                │1│3║
 ║ │ ├───┬─┬────────┬─┤ │ ║
 ║ │ │ 4 │5│        │6│ │ ║
 ║ │ ├───┴─┴────────┴─┤ │ ║
 ║ │ │                │ │ ║
 ║ │ │                │ │ ║
-╚═╧═╧════════════════╧═╧═╝</code></pre>
+╚═╧═╧════════════════╧═╧═╝
+
+1. item_margin_x
+2. padding_left
+3. padding_right
+4. icon_size
+5. icon_to_text_spacing
+6. arrow_width</code></pre>
 <h2 id="external-to-menu">External to menu</h2>
-<pre><code>screen
-╔════════════════════════╗  1. menu_margin_x
-║    2                   ║  2. menu_margin_y
-║ ╭──────┐               ║  3. sub_spacing
-║ │ root │ ╭──────┐      ║
-║1│ menu │ │ sub  │      ║
-║ │      │3│ menu │      ║
-║ └──────┘ │      │      ║
-║          └──────┘      ║
-║                        ║
-║                        ║
-║                        ║
-╚════════════════════════╝</code></pre>
+<pre><code>    screen
+    ╔════════════════════════╗
+    ║    2                   ║
+    ║ ╭──────┐               ║
+    ║ │ root │ ╭──────┐      ║
+    ║1│ menu │ │ sub  │      ║
+    ║ │      │3│ menu │      ║
+    ║ └──────┘ │      │      ║
+    ║          └──────┘      ║
+    ║                        ║
+    ║                        ║
+    ║                        ║
+    ╚════════════════════════╝
+
+1. menu_margin_x
+2. menu_margin_y
+3. sub_spacing</code></pre>
 <h1 id="see-also">SEE ALSO</h1>
 <p><code>jgmenu_run(1)</code><br />
 <code>jgmenututorial(7)</code></p>
