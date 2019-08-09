@@ -99,10 +99,10 @@ dd p {
 <h2 id="section">2019</h2>
 <ul>
 <li>Cut Exec field correctly (i.e. at % but not %%) (issue #68)</li>
+<li>Add strict xdg compliant execl function (i.e. without “sh -c” wrapper)</li>
 <li>Case-insensitive non-ASCII search (issue #91)</li>
 <li><a href="#xfce">xfce-plugin</a></li>
 <li>Extend API whilst remaining backward compatible. Add CSV fields 6 <code>strict_xdg_exec</code> (for no sh -c ’’ etc) and 7 <code>startup_notify</code></li>
-<li>Add strict xdg compliant execl function (i.e. without “sh -c” wrapper)</li>
 <li>Support startup notification (issue #62)</li>
 <li><a href="#columns">Improve columns implementation</a></li>
 <li>Hooks (watch files and exec command on change)
@@ -135,6 +135,8 @@ dd p {
 <h3 id="xfce">xfce-plugin</h3>
 <ul>
 <li><a href="https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867">Remove tint2 config dependency from IPC</a></li>
+<li>Make API clear regarding use of TINT environment variables for IPC</li>
+<li>Update <code>jgmenu_run</code> wrt TINT API</li>
 </ul>
 <h3 id="widgets">widgets</h3>
 <ul>
@@ -155,7 +157,7 @@ dd p {
 <li>Deal with xfce-applications.menu. Currently libmenu-cache can’t read it because the root-item has the wrong name.</li>
 <li>Support <code>JGMENU_SINGLE_WINDOW=1</code></li>
 <li>Check that .desktop files are not Unicode in order to avoid segfault (add unit test)</li>
-<li>Write some unit tests (incl. nested menus)</li>
+<li>Write some unit tests (incl. nested menus)</li>
 <li>Parse %% correctly in ‘Exec=’ field (isuse #68)</li>
 <li>Remove % items ina more sophisticated way</li>
 <li>Cope with desktop-file without exec field</li>
