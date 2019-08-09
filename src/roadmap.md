@@ -3,10 +3,10 @@
 ## 2019
 
 - Cut Exec field correctly (i.e. at % but not %%) (issue #68)
+- Add strict xdg compliant execl function (i.e. without "sh -c" wrapper)
 - Case-insensitive non-ASCII search (issue #91)
 - [xfce-plugin](#xfce)
 - Extend API whilst remaining backward compatible. Add CSV fields 6 `strict_xdg_exec` (for no sh -c '' etc) and 7 `startup_notify`
-- Add strict xdg compliant execl function (i.e. without "sh -c" wrapper)
 - Support startup notification (issue #62)
 - [Improve columns implementation](#columns)
 - Hooks (watch files and exec command on change)
@@ -39,6 +39,8 @@ This category contains features and requests that I am unlikely to implement mys
 ### xfce-plugin {#xfce}
 
 - [Remove tint2 config dependency from IPC](https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867)
+- Make API clear regarding use of TINT environment variables for IPC
+- Update `jgmenu_run` wrt TINT API
 
 ### widgets {#widgets}
 
