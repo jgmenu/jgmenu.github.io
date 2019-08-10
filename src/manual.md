@@ -2,12 +2,12 @@
 
 - [Users](#users)
 - [Devs](#devs)
-- [FAQ](#faq)
+- [Bookmarks](#bookmarks)
 
 
-## Users {#users}
+## For Users {#users}
 
-[`jgmenu_run(1)`](jgmenu_run.1.html) For most users, this is the wrapper to
+[`jgmenu_run(1)`](jgmenu_run.1.html) For most users, this is the command to
 use for launching jgmenu. It is designed to work with launchers, panels and
 keyboard shortcuts.
 
@@ -17,7 +17,7 @@ including all config options.
 [`jgmenututorial(7)`](jgmenututorial.7.html) A step-by-step tutorial to move
 beyond editing a config file and launching with `jgmenu_run`.
 
-## Developers {#devs}
+## For Developers {#devs}
 
 ### CSV generators
 
@@ -30,9 +30,8 @@ libmenu-cache from the LXDE project.
 
 [`jgmenu-pmenu(1)`](jgmenu-pmenu.1.html) Simple applications menu
 
-## FAQ {#faq}
+## Bookmarks {#bookmarks}
 
-- [How do I show all `jgmenu_run` commands](jgmenu_run.1.html#examples)  
-  Find out more with `man jgmenu_run-<command>` or
-  `jgmenu_run-<command> --help`
+- [Show all `jgmenu_run` commands](jgmenu_run.1.html#examples)
+- [Diagram of config variables](jgmenu.1.html#diagrams)
 
