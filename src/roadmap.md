@@ -40,7 +40,8 @@ This category contains features and requests that I am unlikely to implement mys
 
 - [Remove tint2 config dependency from IPC](https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867)
 - Make API clear regarding use of TINT environment variables for IPC
-- Update `jgmenu_run` wrt TINT API
+- Update `jgmenu_run` wrt TINT API [thread1](https://forums.bunsenlabs.org/viewtopic.php?pid=88901#p88901)
+- add `position_mode` config option [thread2](https://forums.bunsenlabs.org/viewtopic.php?pid=88563#p88563)
 
 ### widgets {#widgets}
 
