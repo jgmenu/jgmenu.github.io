@@ -14,6 +14,7 @@
   * Support GTK theme
 - [Finish `apps` module and retire `pmenu`](#apps)
 - [Improve `lx` module](#lx)
+- obtheme: deal with gradients and RGB(rrr, ggg, bbb) format.
 
 ## 2020
 
