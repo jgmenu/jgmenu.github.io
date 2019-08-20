@@ -246,14 +246,18 @@ Firefox,firefox,firefox</code></pre>
 <pre><code>csv_cmd = lx
 csv_cmd = jgmenu_run lx --no-dirs  
 csv_cmd = cat ~/mymenu.csv  </code></pre>
-<p><code>tint2_look</code> = <strong>boolean</strong> (default 0)</p>
-<p>    Reads tint2rc and parses config options for colours, dimensions<br />
-    and alignment. Also reads tint2 button environment variables.<br />
-    These give more accurate alignment along the length of the panel<br />
-    than what parsing the tint2 config file can achieve.</p>
-<p><code>at_pointer</code> = <strong>boolean</strong> (default 0)</p>
-<p>    If enabled, the menu is launched at the pointer position,<br />
-    ignoring <code>menu_margin_?</code> and <code>menu_?align</code> values.</p>
+<dl>
+<dt><code>tint2_look</code> = <strong>boolean</strong> (default 0)</dt>
+<dd>Read tint2rc and parse config options for colours, dimensions and alignment.
+</dd>
+<dt><code>position_mode</code> = (fixed | ipc | pointer | center) (default fixed)</dt>
+<dd><p>Define menu positioning mode</p>
+<p>fixed: Align to margin_{x,y} in jgmenurc. Respect <code>_NET_WORKAREA</code>.</p>
+<p>ipc: Use IPC to read environment variables set by panel.</p>
+<p>pointer: Launch at pointer. Respect <code>_NET_WORKAREA</code> and <code>edge_snap_x</code>.</p>
+<p>center: Launch at center of screen. Ignore <code>_NET_WORKAREA</code>. Takess precedence over <code>menu_valign</code> and <code>menu_halign</code></p>
+</dd>
+</dl>
 <p><code>edge_snap_x</code> = <strong>integer</strong> (default 30)</p>
 <p>    Specify the distance (in pixles) from the left hand edge, within<br />
     which the menu will snap to the edge.<br />
@@ -441,11 +445,22 @@ environment variables which are used by the CSV generators.</p>
     This is currently only supported by pmenu.</p>
 <p>csv_no_dirs = <strong>boolean</strong> (default 0)</p>
 <p>    If set, applications will be listed without any directory<br />
-    structure. This is currently only supported by pmenu and lx.</p>
-<p>csv_i18n = <strong>string</strong> (no default)</p>
+    structure. This is currently only supported by pmenu and lx.<br />
+csv_i18n = <strong>string</strong> (no default)</p>
 <p>    If set, the ob module will look for a translation file in the<br />
     specified file or directory. See <code>jgmenu_run i18n --help</code> for<br />
     further details.</p>
+<h1 id="inter-process-communication-ipc">Inter-process Communication (IPC)</h1>
+<p><code>jgmenu_run</code> reads the environment variables listed below and passes them via a unix socket to the long-running instance of jgmenu. On ‘wake up’ (=show menu), jgmenu aligns the menu to these variables.</p>
+<p><code>TINT2_BUTTON_ALIGNED_X1</code><br />
+<code>TINT2_BUTTON_ALIGNED_X2</code><br />
+<code>TINT2_BUTTON_ALIGNED_Y1</code><br />
+<code>TINT2_BUTTON_ALIGNED_Y2</code><br />
+<code>TINT2_BUTTON_PANEL_X1</code><br />
+<code>TINT2_BUTTON_PANEL_X2</code><br />
+<code>TINT2_BUTTON_PANEL_Y1</code><br />
+<code>TINT2_BUTTON_PANEL_Y2</code></p>
+<p>If thse variables are not set, jgmenurc config variables <code>margin_{x,y}</code> are reverted to.</p>
 <h1 id="diagrams">DIAGRAMS</h1>
 <h2 id="vertical-menu">Vertical Menu</h2>
 <pre><code>╔════════════════════════╗

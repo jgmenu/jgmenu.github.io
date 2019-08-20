@@ -1,23 +1,24 @@
 # Roadmap
 
-## 2019
+## 2019 - simplify, tidy, correct
 
+- Create website and tidy up manual
 - Cut Exec field correctly (i.e. at % but not %%) (issue #68)
-- Add strict xdg compliant execl function (i.e. without "sh -c" wrapper)
-- Case-insensitive non-ASCII search (issue #91)
-- [xfce-plugin](#xfce)
-- Extend API whilst remaining backward compatible. Add CSV fields 6 `strict_xdg_exec` (for no sh -c '' etc) and 7 `startup_notify`
-- Support startup notification (issue #62)
-- [Improve columns implementation](#columns)
+- Add strict xdg compliant execl function (i.e. without "sh -c" wrapper). Add CSV fields 6 for `strict_xdg_exec`
+- Support [xfce-plugin](#xfce)
+- Tidy up [widgets](#widgets)
+- Finish off [columns implementation](#columns)
 - Hooks (watch files and exec command on change)
-  * Split t2conf.c code into separate module and call using hooks
+  * Split t2conf.c code into separate module and call using hooks. This will simplify the code base.
   * Support GTK theme
 - [Finish `apps` module and retire `pmenu`](#apps)
 - [Improve `lx` module](#lx)
-- obtheme: deal with gradients and RGB(rrr, ggg, bbb) format.
+- obtheme: deal with gradients and RGB(rrr, ggg, bbb) format
 
-## 2020
+## 2020 - add new features
 
+- Case-insensitive non-ASCII search (issue #91)
+- Support startup notification (issue #62) and add CSV fields 7 for `startup_notify`
 - Add better timer support
 - ^rootpipe()
 - HiDPI support (issue #37)
