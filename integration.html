@@ -124,6 +124,8 @@ dd p {
 <pre><code>button = new
 button_icon = /path/to/favourite_icon.png
 button_lclick_command = jgmenu_run</code></pre>
+<p>In order to avoid <code>startup notification</code> (spinning hour-glass after clicking button or launcher), set the following in ~/.config/tint2/tint2rc:</p>
+<pre><code>startup_notifications = 0</code></pre>
 <p>An <code>exec plugin</code> (<code>E</code>) or <code>launcher plugin</code> (<code>L</code>) can also be used. See <code>man tint2</code> for implementation details.</p>
 <p>Note: The tint2 <code>launcher plugin</code> is significantly slower than button and exec plugins.</p>
 <h3 id="polybar">polybar</h3>
@@ -180,9 +182,9 @@ click-left = &quot;jgmenu_run &gt;/dev/null 2&gt;&amp;1 &amp;&quot;</code></pre>
 }</code></pre>
 <h3 id="dwm">dwm</h3>
 <p>To associate jgmenu with a keyboard shortcut (alt-F1 in this case), add the following to the <code>keys[]</code> array in <code>config.h</code></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb9-1" title="1">{ MODKEY, XK_F1, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb10-1" title="1">{ MODKEY, XK_F1, spawn, {.v = jgmenucmd } },</a></code></pre></div>
 <p>In the <code>/* commands */</code> section, add</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb10-1" title="1"><span class="dt">static</span> <span class="dt">const</span> <span class="dt">char</span> *jgmenucmd[]  = { <span class="st">&quot;jgmenu_run&quot;</span>, NULL };</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb11-1" title="1"><span class="dt">static</span> <span class="dt">const</span> <span class="dt">char</span> *jgmenucmd[]  = { <span class="st">&quot;jgmenu_run&quot;</span>, NULL };</a></code></pre></div>
 <p>Example jgmenurc to suit dwm:</p>
 <pre><code>tint2_look          = 0
 menu_width          = 120
@@ -202,9 +204,9 @@ sep_height          = 4
 icon_size           = 0
 arrow_width         = 8</code></pre>
 <p>To launch jgmenu on background right click or window title click, add the following to the <code>buttons[]</code> array:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb12-1" title="1">{ ClkWinTitle, <span class="dv">0</span>, Button1, spawn, {.v = jgmenucmd } },</a>
-<a class="sourceLine" id="cb12-2" title="2">{ ClkWinTitle, <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a>
-<a class="sourceLine" id="cb12-3" title="3">{ ClkRootWin,  <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb13-1" title="1">{ ClkWinTitle, <span class="dv">0</span>, Button1, spawn, {.v = jgmenucmd } },</a>
+<a class="sourceLine" id="cb13-2" title="2">{ ClkWinTitle, <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a>
+<a class="sourceLine" id="cb13-3" title="3">{ ClkRootWin,  <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a></code></pre></div>
 <p>and add the following to jgmenurc</p>
 <pre><code>at_pointer          = 1</code></pre>
 <h2 id="other">Other</h2>

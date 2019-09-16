@@ -40,11 +40,18 @@ Add the following to tint2rc:
     button_icon = /path/to/favourite_icon.png
     button_lclick_command = jgmenu_run
 
+In order to avoid `startup notification` (spinning hour-glass after clicking button or launcher), set the following in ~/.config/tint2/tint2rc:
+
+```
+startup_notifications = 0
+```
+
 An `exec plugin` (`E`) or `launcher plugin` (`L`) can also be used. See
 `man tint2` for implementation details.
 
 Note: The tint2 `launcher plugin` is significantly slower than button and exec
 plugins.
+
 
 ### polybar {#polybar}
 
