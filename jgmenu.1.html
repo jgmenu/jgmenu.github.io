@@ -106,28 +106,54 @@ dd p {
 <p>jgmenu init [--help | &lt;<em>options</em>&gt;]</p>
 <p>Use these commands to get started</p>
 <ul>
-<li><code>jgmenu_run</code> to launch menu</li>
-<li><code>jgmenu init</code> to create config file ~/.config/jgmenu/jgmenurc</li>
-<li><code>jgmenu init -i</code> to enter interactive setup</li>
+<li><code>jgmenu_run</code> to launch menu<br />
+</li>
+<li><code>jgmenu init</code> to create config file ~/.config/jgmenu/jgmenurc<br />
+</li>
+<li><code>jgmenu init -i</code> to enter interactive setup<br />
+</li>
 <li><code>man jgmenututorial</code> to read step-by-step guide</li>
 </ul>
 <h1 id="description">DESCRIPTION</h1>
 <p><code>jgmenu</code> is a simple menu for Linux/BSD. It reads CSV menu data from a file and generates a graphical menu on an X11 window.</p>
+<h2 id="fields">Fields</h2>
 <p>Each line of CSV menu data is parsed into the following fields using comma as a field separator:</p>
 <ol type="1">
-<li>description</li>
-<li>command</li>
-<li>icon</li>
-<li>working directory</li>
+<li>description<br />
+</li>
+<li>command<br />
+</li>
+<li>icon<br />
+</li>
+<li>working directory<br />
+</li>
 <li>metadata</li>
 </ol>
-<p>Empty lines and lines beginning with <code>#</code> are ignored. When the user selects an item by left-clicking or pressing enter), the <code>command</code> of that selection is executed as a new process.</p>
 <p>For example:</p>
-<pre><code>printf &quot;Terminal,xterm
-Web Browser,firefox&quot; | jgmenu --vsimple</code></pre>
-<p>A field can be triple quotes in order to allow commas within that field. For example:</p>
-<pre><code>foo,&quot;&quot;&quot;^pipe(find . -printf &#39;%f,display %p,%p
-&#39;)&quot;&quot;&quot;</code></pre>
+<pre><code>printf &quot;Terminal,xterm\nWeb Browser,firefox&quot; | jgmenu --vsimple</code></pre>
+<h2 id="special-characters-at-beginning-of-line">Special Characters at beginning of line</h2>
+<dl>
+<dt><code>#</code></dt>
+<dd>Ignore line
+</dd>
+<dt><code>.</code></dt>
+<dd>Source file specified by string following the <code>.</code>
+</dd>
+<dt><code>@</code></dt>
+<dd>Treat as widget
+</dd>
+</dl>
+<h2 id="special-characters-in-fields">Special Characters in fields</h2>
+<dl>
+<dt><code>,</code></dt>
+<dd><p>As commas are used as field separators, individual fields can only contain commas if they are triple quoted. For example:</p>
+<p>foo,&quot;&quot;“^pipe(find . -printf ‘%f,display %p,%p
+’)”&quot;&quot;</p>
+</dd>
+<dt><code>&lt;</code>, <code>&gt;</code>, <code>'</code>, <code>&amp;</code></dt>
+<dd>The description field is parsed as pango markup, so <code>&lt;</code>, <code>&gt;</code>, <code>'</code> and <code>&amp;</code> need to be escaped as <code>&amp;lt;</code>, <code>&amp;gt;</code>, <code>&amp;39;</code> and <code>&amp;38;</code> respectively.
+</dd>
+</dl>
 <h2 id="markup">Markup</h2>
 <p>The syntax ^foo(bar) is used to carry out action <code>foo</code> with argument <code>bar</code>.</p>
 <p>The following markup is supported in the <em>description</em> field:</p>
@@ -190,36 +216,49 @@ Firefox,firefox,firefox</code></pre>
 </dl>
 <h1 id="user-interface">USER INTERFACE</h1>
 <ul>
-<li>Up/Down - select previous/next item</li>
-<li>Left/Right - move to parent/sub menu</li>
-<li>PgUp/PgDn - scroll up/down by one menu’s worth of items</li>
-<li>Home/End - select first/last item</li>
-<li>Enter - select an item or open a submenu</li>
-<li>F5 - restart</li>
-<li>F8 - print node tree to stderr</li>
-<li>F9 - exit(1)</li>
-<li>F10 - exit(0)</li>
+<li>Up/Down - select previous/next item<br />
+</li>
+<li>Left/Right - move to parent/sub menu<br />
+</li>
+<li>PgUp/PgDn - scroll up/down by one menu’s worth of items<br />
+</li>
+<li>Home/End - select first/last item<br />
+</li>
+<li>Enter - select an item or open a submenu<br />
+</li>
+<li>F5 - restart<br />
+</li>
+<li>F8 - print node tree to stderr<br />
+</li>
+<li>F9 - exit(1)<br />
+</li>
+<li>F10 - exit(0)<br />
+</li>
 <li>Backspace - return to parent menu</li>
 </ul>
 <p>Type any string to invoke a search. Words separated by space will be searched for using OR logic (i.e. the match of either word is sufficient to display an item).</p>
 <h1 id="configuration-file">CONFIGURATION FILE</h1>
 <p>If no file is specified using the –config-file= option, the XDG Base Directory Specification is adhered to. I.e:</p>
 <ul>
-<li>Global config in <code>${XDG_CONFIG_DIRS:-/etc/xdg}</code></li>
+<li>Global config in <code>${XDG_CONFIG_DIRS:-/etc/xdg}</code><br />
+</li>
 <li>User config override in <code>${XDG_CONFIG_HOME:-$HOME/.config}</code></li>
 </ul>
 <p>For most users ~/.config/jgmenu/jgmenurc is appropriate.</p>
 <p>Global config variables are set in the following order (i.e. bottom of list has higher precedence):</p>
 <ul>
-<li>built-in defaults (config.c)</li>
-<li>tint2rc config file (can be specified by <code>TINT2_CONFIG</code> environment variable</li>
-<li>jgmenurc config file (can be specified by –config-file=)</li>
+<li>built-in defaults (config.c)<br />
+</li>
+<li>tint2rc config file (can be specified by <code>TINT2_CONFIG</code> environment variable<br />
+</li>
+<li>jgmenurc config file (can be specified by –config-file=)<br />
+</li>
 <li>command line arguments</li>
 </ul>
 <h2 id="syntax">Syntax</h2>
 <p>Lines beginning with <code>#</code> are ignored.</p>
 <p>All other lines are recognised as setting variables in the format</p>
-<pre><code>*key* = *value*</code></pre>
+<pre><code>key = value</code></pre>
 <p>White spaces are mostly ignored.</p>
 <h3 id="values">Values</h3>
 <p>Unless otherwise specified, values as treated as simple strings.</p>
@@ -230,23 +269,23 @@ Firefox,firefox,firefox</code></pre>
 <p><code>pathname</code>: When a variable takes a pathname value, it is evaluated as a string. If the first character is tilde (~), it will be replaced by the the environment variable $HOME just as a shell would expand it.</p>
 <h2 id="variables">Variables</h2>
 <dl>
+<dt><code>verbosity</code> = <strong>integer</strong> (default 0)</dt>
+<dd><p>General verbosity: (0) warnings only; (1) basic info; (2) more info; (3) max info</p>
+<p>Additional specific topics: (4) IPC</p>
+<p>Note: Some IPC messages need environment variable <code>JGMENU_VERBOSE=4</code> too</p>
+</dd>
 <dt><code>stay_alive</code> = <strong>boolean</strong> (default 1)</dt>
 <dd>If set to 1, the menu will “hide” rather than “exit” when the following events occur: clicking on menu item; clicking outside the menu; pressing escape. When in the hidden mode, a USR1 signal will “un-hide” the menu.
 </dd>
 <dt><code>hide_on_startup</code> = <strong>boolean</strong> (default 0)</dt>
 <dd>If set to 1, jgmenu start in “hidden” mode. This is useful for starting jgmenu during the boot process and then sending a <code>killall -SIGUSR1 jgmenu</code> to show the menu.
 </dd>
-</dl>
-<p><code>csv_cmd</code> = <strong>string</strong> (default <code>pmenu</code>)</p>
-<p>    Defines the command to produce the jgmenu flavoured CSV for<br />
-    <code>jgmenu</code>. Accpetable keyword include pmenu, lx and ob.<br />
-    If a value is given other than these keywords, it will be<br />
-    executed in a shell (so be careful!). If left blank, jgmenu<br />
-    will read from <strong>stdin</strong>. Examples:</p>
-<pre><code>csv_cmd = lx
-csv_cmd = jgmenu_run lx --no-dirs  
-csv_cmd = cat ~/mymenu.csv  </code></pre>
-<dl>
+<dt><code>csv_cmd</code> = <strong>string</strong> (default <code>pmenu</code>)</dt>
+<dd><p>Defines the command to produce the jgmenu flavoured CSV for <code>jgmenu</code>. Accpetable keyword include pmenu, lx, apps and ob. If a value is given other than these keywords, it will be executed in a shell (so be careful!). If left blank, jgmenu will read from <strong>stdin</strong>. Examples:</p>
+<p>csv_cmd = lx<br />
+csv_cmd = jgmenu_run lx –no-dirs<br />
+csv_cmd = cat ~/mymenu.csv</p>
+</dd>
 <dt><code>tint2_look</code> = <strong>boolean</strong> (default 0)</dt>
 <dd>Read tint2rc and parse config options for colours, dimensions and alignment.
 </dd>
@@ -257,60 +296,59 @@ csv_cmd = cat ~/mymenu.csv  </code></pre>
 <p>pointer: Launch at pointer. Respect <code>_NET_WORKAREA</code> and <code>edge_snap_x</code>.</p>
 <p>center: Launch at center of screen. Ignore <code>_NET_WORKAREA</code>. Takess precedence over <code>menu_valign</code> and <code>menu_halign</code></p>
 </dd>
+<dt><code>edge_snap_x</code> = <strong>integer</strong> (default 30)</dt>
+<dd>Specify the distance (in pixles) from the left hand edge, within which the menu will snap to the edge. Note that this only applies in <code>at_pointer</code> mode.
+</dd>
 </dl>
-<p><code>edge_snap_x</code> = <strong>integer</strong> (default 30)</p>
-<p>    Specify the distance (in pixles) from the left hand edge, within<br />
-    which the menu will snap to the edge.<br />
-    Note that this only applies in <code>at_pointer</code> mode.</p>
-<p><code>terminal_exec</code> = <strong>string</strong> (default x-terminal-emulator)<br />
-<code>terminal_args</code> = <strong>string</strong> (default -e)</p>
-<p>    The values of these two variables are used to build a string to<br />
-    launch programs requiring a terminal to run.<br />
-    With the default values, the string would become:</p>
-<p>    x-terminal-emulator -e ‘some_command with arguments’</p>
-<p>    terminal_args must finish with ‘-e’ or equivalent (where ‘-e’<br />
-    refers to the meaning of ‘-e’ in ‘xterm -e’.</p>
-<p><code>monitor</code> = <strong>integer</strong> (default 0)</p>
-<p>    Specify a particular monitor as an index starting from 1.<br />
-    If 0, the menu will be launched on the monitor where the mouse<br />
-    is.</p>
-<p><code>hover_delay</code> = <strong>integer</strong> (default 100)</p>
-<p>    The amount of time (in milliseconds) from hovering over an item<br />
-    until a submenu is opened.</p>
-<p><code>hide_back_items</code> = <strong>boolean</strong> (default 1)</p>
-<p>    If enabled, all ^back() items will be suppressed. As a general<br />
-    rule, it should be set to 1 for a multi-window menu, and 0 when<br />
-    in single-window mode.</p>
-<p><code>columns</code> = <strong>integer</strong> (default 1)</p>
-<p>    Specify the number of columns in which to show menu items</p>
-<p><code>tabs</code> = <strong>integer</strong> (default 120)</p>
-<p>    Specify the position is pixels of the first tab</p>
-<p><code>menu_margin_x</code> = <strong>integer</strong> (default 0)<br />
-<code>menu_margin_y</code> = <strong>integer</strong> (default 0)</p>
-<p>    “margin” refers to space outside an object<br />
-    The <code>menu_margin_*</code> variables refer to the distance between the<br />
-    menu (=X11 window) and the edge of the screen.<br />
-    See note on <code>_NET_WORKAREA</code> under <code>menu_{v,h}align</code> variables</p>
-<p><code>menu_width</code> = <strong>integer</strong> (default 200)</p>
-<p>    Set the <em>minimum</em> menu width. The menu width will adjust to the<br />
-    longest item in the current (sub)menu. If a filter is applied<br />
-    (e.g. by the user typing) the menu width will NOT adjust.</p>
-<p><code>menu_height_min</code> = <strong>integer</strong> (default 0)<br />
-menu_height_max = <strong>integer</strong> (default 0)</p>
-<p>    Set the min and max height of the root menu. If these are set to<br />
-    the same value, the menu height will be fixed at that value. If<br />
-    set to zero, they will be ignored.</p>
-<p>menu_height_mode = (static | dynamic) (default static)</p>
-<p>    “static” means that the height of the initial root menu will be<br />
-    used for any subsequent ^root() action.</p>
-<p>    “dynamic” means that the root menu height will be re-calculated<br />
-    every time the root menu is redefined using ^root().</p>
-<p>menu_padding_top = <strong>integer</strong> (default 5)<br />
-menu_padding_right = <strong>integer</strong> (default 5)<br />
-menu_padding_bottom = <strong>integer</strong> (default 5)<br />
-menu_padding_left = <strong>integer</strong> (default 5)</p>
-<p>    “padding” refers to space inside an object (between border and<br />
-    content)</p>
+<p><code>terminal_exec</code> = <strong>string</strong> (default x-terminal-emulator)</p>
+<dl>
+<dt><code>terminal_args</code> = <strong>string</strong> (default -e)</dt>
+<dd><p>The values of these two variables are used to build a string to launch programs requiring a terminal to run. With the default values, the string would become:</p>
+<p><code>x-terminal-emulator -e 'some_command with arguments'</code></p>
+<p><code>terminal_args</code> must finish with ‘-e’ or equivalent (where ‘-e’ refers to the meaning of ‘-e’ in ‘xterm -e’.</p>
+</dd>
+<dt><code>monitor</code> = <strong>integer</strong> (default 0)</dt>
+<dd>Specify a particular monitor as an index starting from 1. If 0, the menu will be launched on the monitor where the mouse is.
+</dd>
+<dt><code>hover_delay</code> = <strong>integer</strong> (default 100)</dt>
+<dd>The amount of time (in milliseconds) from hovering over an item until a submenu is opened.
+</dd>
+<dt><code>hide_back_items</code> = <strong>boolean</strong> (default 1)</dt>
+<dd>If enabled, all ^back() items will be suppressed. As a general rule, it should be set to 1 for a multi-window menu, and 0 when in single-window mode.
+</dd>
+<dt><code>columns</code> = <strong>integer</strong> (default 1)</dt>
+<dd>Specify the number of columns in which to show menu items
+</dd>
+<dt><code>tabs</code> = <strong>integer</strong> (default 120)</dt>
+<dd>Specify the position is pixels of the first tab
+</dd>
+</dl>
+<p><code>menu_margin_x</code> = <strong>integer</strong> (default 0)</p>
+<dl>
+<dt><code>menu_margin_y</code> = <strong>integer</strong> (default 0)</dt>
+<dd>“margin” refers to space outside an object The <code>menu_margin_*</code> variables refer to the distance between the menu (=X11 window) and the edge of the screen. See note on <code>_NET_WORKAREA</code> under <code>menu_{v,h}align</code> variables.
+</dd>
+<dt><code>menu_width</code> = <strong>integer</strong> (default 200)</dt>
+<dd>Set the <em>minimum</em> menu width. The menu width will adjust to the longest item in the current (sub)menu. If a filter is applied (e.g. by the user typing) the menu width will NOT adjust.
+</dd>
+</dl>
+<p><code>menu_height_min</code> = <strong>integer</strong> (default 0)</p>
+<dl>
+<dt><code>menu_height_max</code> = <strong>integer</strong> (default 0)</dt>
+<dd>Set the min and max height of the root menu. If these are set to the same value, the menu height will be fixed at that value. If set to zero, they will be ignored.
+</dd>
+<dt><code>menu_height_mode</code> = (static | dynamic) (default static)</dt>
+<dd><code>static</code> means that the height of the initial root menu will be used for any subsequent ^root() action, whereas <code>dynamic</code>means that the root menu height will be re-calculated every time the root menu is redefined using ^root().
+</dd>
+</dl>
+<p><code>menu_padding_top</code> = <strong>integer</strong> (default 5)</p>
+<p><code>menu_padding_right</code> = <strong>integer</strong> (default 5)</p>
+<p><code>menu_padding_bottom</code> = <strong>integer</strong> (default 5)</p>
+<dl>
+<dt><code>menu_padding_left</code> = <strong>integer</strong> (default 5)</dt>
+<dd><code>padding</code> refers to space inside an object (between border and content)
+</dd>
+</dl>
 <p>menu_radius = <strong>integer</strong> (default 1)</p>
 <p>    “radius” refers to the size of rounded corners</p>
 <p>menu_border = <strong>integer</strong> (default 0)</p>
@@ -399,8 +437,7 @@ item_border = <strong>integer</strong> (default 0)</p>
     launcher_icon_theme_override is zero.</p>
 <p>arrow_string = <strong>string</strong> (default ▸)</p>
 <p>    The “arrow” indicates that a menu item points a submenu.<br />
-    Suggested styles include:<br />
-    → ▶ ➔ ➙ ➛ ➜ ➝ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ↦ ⇒ ⇝ ⇢ ⇥ ⇨ ⇾ ➭ ➮ ➯ ➱ ➲ ➺ ➼ ➽ ➾</p>
+    jgmenuunicode(7) contains arrow suggestions</p>
 <p>arrow_width = <strong>integer</strong> (default 15)</p>
 <p>    Width of area allocated for arrow. Set to 0 to hide arrow.</p>
 <p>color_menu_bg = <strong>color</strong> (default #000000 100)</p>

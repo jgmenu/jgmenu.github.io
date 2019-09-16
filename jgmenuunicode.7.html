@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>jgmenu</title>
+<meta charset="utf-8" />
+<meta name="description" content="jgmenu"/>
+<meta name="viewport" content="width=device-width">
+<style>
+body {
+	overflow-y: scroll;
+	font-family: monospace;
+	background-color: #fff;
+	color: black;
+	max-width: 600px;
+	padding: 20px;
+	line-height: 1.5;
+	word-wrap: break-word;
+	margin: auto;
+}
+
+pre {
+	padding: 20px;
+	white-space: pre-wrap;
+	border: 1px dotted gray;
+	display: block;
+	margin: 20px auto;
+	background-color: #eee;
+	color: #111;
+}
+
+code {
+	font-family: monospace;
+	background-color: #eee;
+	color: #111;
+}
+
+img {
+	display: block;
+	margin: 20px auto;
+	max-width: 100%;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table,th,td {
+	border: 1px solid black;
+}
+
+th,td {
+	padding: 15px;
+	text-align: left;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
+	text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: monospace;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 130%;
+}
+
+h2 {
+	font-size: 110%;
+}
+
+h3 {
+	font-size: 95%;
+}
+
+h4 {
+	font-size: 90%;
+	font-style: italic;
+}
+
+h5 {
+	font-size: 90%;
+	font-style: italic;
+}
+
+dt code {
+	font-weight: bold;
+}
+
+dd p {
+	margin-top: 0;
+}
+</style>
+</head>
+<body>
+<main>
+<h1 id="name">NAME</h1>
+<p>An overview of jgmenu unicode usage.</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>Unicode characters can be displayed by jgmenu. They can be used in:</p>
+<ul>
+<li>CSV data<br />
+</li>
+<li>Widgets<br />
+</li>
+<li>Config file</li>
+</ul>
+<h1 id="unicode-characters-in-terminal">UNICODE CHARACTERS IN TERMINAL</h1>
+<p>Terminals handle unicode differently. For full support, avoid xterm and urxvt, and opt for something libvte based such as sakura or gnome-terminal. In a terminal, you can produce a unicode character by issuing</p>
+<pre><code>printf &#39;%b&#39; &#39;\u1234&#39;</code></pre>
+<p>In libvte terminals, you can press ctrl+shift+u and then enter the hex sequence.</p>
+<h1 id="unicode-characters-in-vim">UNICODE CHARACTERS IN VIM</h1>
+<p>Whilst in insert mode, press ctrl+V and then type u1234.</p>
+<p>Use the command <code>ga</code> to show the hex value of the character under the cursor.</p>
+<h1 id="variation-selectors">VARIATION SELECTORS</h1>
+<p>Some unicode can be rendered as either emoji or text. Special invisible unicode characters called variation selectors can be used to force either presentation. Append with the text presentation selector (u-fe0e) or emoji presentation selector (u-fe0f), to force text or emoji respectively. For example:</p>
+<p>u-263a u-fe0e ☺︎<br />
+u-263a u-fe0f ☺️</p>
+<h1 id="useful-characters-for-building-menus">USEFUL CHARACTERS FOR BUILDING MENUS</h1>
+<h2 id="search">SEARCH</h2>
+<p>u-1f50d u-fe0f 🔍<br />
+u-1f50d u-fe0e 🔍︎</p>
+<p>u-2315 ⌕<br />
+u-26b2 ⚲<br />
+u-1c04 ᰄ</p>
+<h2 id="arrows">ARROWS</h2>
+<p>u-2192 →<br />
+u-203a ›<br />
+u-25b6 ▶<br />
+u-2794 ➔<br />
+u-2799 ➙<br />
+u-279b ➛<br />
+u-279c ➜<br />
+u-279d ➝<br />
+u-279e ➞<br />
+u-279f ➟<br />
+u-27a0 ➠<br />
+u-27a1 ➡<br />
+u-27a2 ➢<br />
+u-27a3 ➣<br />
+u-27a4 ➤<br />
+u-27a5 ➥<br />
+u-27a6 ➦<br />
+u-21a6 ↦<br />
+u-21d2 ⇒<br />
+u-21dd ⇝<br />
+u-21e2 ⇢<br />
+u-21e5 ⇥<br />
+u-21e8 ⇨<br />
+u-21fe ⇾<br />
+u-27ad ➭<br />
+u-27ae ➮<br />
+u-27af ➯<br />
+u-27b1 ➱<br />
+u-27b2 ➲<br />
+u-27ba ➺<br />
+u-27bc ➼<br />
+u-27bd ➽<br />
+u-27be ➾</p>
+</main>
+</body>
+</html>
