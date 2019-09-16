@@ -1,21 +1,36 @@
 # Roadmap
 
-## 2019 - simplify, tidy, correct
+## Before Next Release
+
+- Support xfce-plugin
+   * ~~[Remove tint2 config dependency from IPC](https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867)~~
+   * Make API clear regarding use of TINT environment variables for IPC
+   * Add TINT variables to jgmenu(1)
+   * ~~Update `jgmenu_run` wrt TINT API [thread1](https://forums.bunsenlabs.org/viewtopic.php?pid=88901#p88901)~~
+   * ~~add `position_mode` config option [thread2](https://forums.bunsenlabs.org/viewtopic.php?pid=88563#p88563)~~
+
+## 2019
 
 - Create website and tidy up manual
 - Cut Exec field correctly (i.e. at % but not %%) (issue #68)
 - Add strict xdg compliant execl function (i.e. without "sh -c" wrapper). Add CSV fields 6 for `strict_xdg_exec`
-- Support [xfce-plugin](#xfce)
-- Tidy up [widgets](#widgets)
-- Finish off [columns implementation](#columns)
+- Tidy up widgets
+    * Parse align field
+    * Strip space from widget action (trim argv-buf fields on parse)
+    * add to jgmenu(1) man page
+- Finish off columns implementation
+    * Support moving left/right between columns
+    * Deal with `menu_width` more intelligently
+    * Deal with `menu_height` (incl dyamic mode) more intelligently
 - Hooks (watch files and exec command on change)
   * Split t2conf.c code into separate module and call using hooks. This will simplify the code base.
   * Support GTK theme
+  * Support parsing compton.conf menu-opacity value
 - [Finish `apps` module and retire `pmenu`](#apps)
 - [Improve `lx` module](#lx)
 - obtheme: deal with gradients and RGB(rrr, ggg, bbb) format
 
-## 2020 - add new features
+## 2020
 
 - Case-insensitive non-ASCII search (issue #91)
 - Support startup notification (issue #62) and add CSV fields 7 for `startup_notify`
@@ -38,21 +53,11 @@ This category contains features and requests that I am unlikely to implement mys
 
 <hr />
 
-### xfce-plugin {#xfce}
-
-- [Remove tint2 config dependency from IPC](https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867)
-- Make API clear regarding use of TINT environment variables for IPC
-- Update `jgmenu_run` wrt TINT API [thread1](https://forums.bunsenlabs.org/viewtopic.php?pid=88901#p88901)
-- add `position_mode` config option [thread2](https://forums.bunsenlabs.org/viewtopic.php?pid=88563#p88563)
-
-### widgets {#widgets}
-
-- Parse align field
-- Strip space from widget action (trim argv-buf fields on parse)
-- add to jgmenu(1) man page
+# Further breakdown of specific items
 
 ### lx {#lx}
 
+- Use unique(ish) tag names to avoid clashes
 - Support i18n for prepend.csv and append.csv
 - Use desktop specific flags
 - Add 'comment' to `csv_name_format` (%c)
@@ -69,11 +74,6 @@ This category contains features and requests that I am unlikely to implement mys
 - Remove % items ina more sophisticated way
 - Cope with desktop-file without exec field
 
-### columns {#columns}
-
-- Support moving left/right between columns
-- Deal with `menu_width` correctly
-- Deal with `menu_height` (incl dyamic mode) correctly
 
 ### `apps` {#apps}
 
@@ -83,3 +83,4 @@ This category contains features and requests that I am unlikely to implement mys
   * support built-in l10n for directory names
   * add categories based on greeneye
 - add man page
+
