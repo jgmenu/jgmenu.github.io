@@ -124,10 +124,11 @@ dd p {
 <pre><code>button = new
 button_icon = /path/to/favourite_icon.png
 button_lclick_command = jgmenu_run</code></pre>
-<p>In order to avoid <code>startup notification</code> (spinning hour-glass after clicking button or launcher), set the following in ~/.config/tint2/tint2rc:</p>
-<pre><code>startup_notifications = 0</code></pre>
 <p>An <code>exec plugin</code> (<code>E</code>) or <code>launcher plugin</code> (<code>L</code>) can also be used. See <code>man tint2</code> for implementation details.</p>
 <p>Note: The tint2 <code>launcher plugin</code> is significantly slower than button and exec plugins.</p>
+<p>In order to avoid <code>startup notification</code> (spinning hour-glass after clicking button or launcher), set the following in ~/.config/tint2/tint2rc:</p>
+<pre><code>startup_notifications = 0</code></pre>
+<p>tint2 respects the <code>StartupNotify=</code> key in the .desktop files, so if you want to have a menu button wihtout SN and other launchers with SN, you would have to set <code>startup_notification = 1</code> in tint2rc and use a launcher plugin for your jgmenu button.</p>
 <h3 id="polybar">polybar</h3>
 <p>Add “jgmenu” to one of “modules-{left,center,right} in the”[bar/foo]&quot; section.</p>
 <p>For example:</p>

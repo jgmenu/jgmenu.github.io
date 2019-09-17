@@ -24,15 +24,11 @@ Other
 
 ### tint2 {#tint2}
 
-In jgmenurc, set `tint2_look = 1` to make jgmenu look like tint2 (i.e. colour,
-font, margin, padding and position). Other config variables in jgmenurc will
-overrule any tint2 settings, so start with all other lines commented out.
+In jgmenurc, set `tint2_look = 1` to make jgmenu look like tint2 (i.e. colour, font, margin, padding and position). Other config variables in jgmenurc will overrule any tint2 settings, so start with all other lines commented out.
 
-The `button` plugin was designed for jgmenu, and is therefore the preferred
-method. Take the following steps to insert a button plugin:
+The `button` plugin was designed for jgmenu, and is therefore the preferred method. Take the following steps to insert a button plugin:
 
-Add the letter `P` to `panel_items` in tint2rc.
-For example `panel_items = PTSBC`.
+Add the letter `P` to `panel_items` in tint2rc.  For example `panel_items = PTSBC`.
 
 Add the following to tint2rc:
 
@@ -40,18 +36,18 @@ Add the following to tint2rc:
     button_icon = /path/to/favourite_icon.png
     button_lclick_command = jgmenu_run
 
+
+An `exec plugin` (`E`) or `launcher plugin` (`L`) can also be used. See `man tint2` for implementation details.
+
+Note: The tint2 `launcher plugin` is significantly slower than button and exec plugins.
+
 In order to avoid `startup notification` (spinning hour-glass after clicking button or launcher), set the following in ~/.config/tint2/tint2rc:
 
 ```
 startup_notifications = 0
 ```
 
-An `exec plugin` (`E`) or `launcher plugin` (`L`) can also be used. See
-`man tint2` for implementation details.
-
-Note: The tint2 `launcher plugin` is significantly slower than button and exec
-plugins.
-
+tint2 respects the `StartupNotify=` key in the .desktop files, so if you want to have a menu button wihtout SN and other launchers with SN, you would have to set `startup_notification = 1` in tint2rc and use a launcher plugin for your jgmenu button.
 
 ### polybar {#polybar}
 
