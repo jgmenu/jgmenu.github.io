@@ -106,6 +106,7 @@ dd p {
 </li>
 <li>Config file</li>
 </ul>
+<p>Throughout this document, unicode code points will be referred to by writing <code>u+</code> folled by their hexadecimal number. In examples, u+1234 will be used.</p>
 <h1 id="unicode-characters-in-terminal">UNICODE CHARACTERS IN TERMINAL</h1>
 <p>Terminals handle unicode differently. For full support, avoid xterm and urxvt, and opt for something libvte based such as sakura or gnome-terminal. In a terminal, you can produce a unicode character by issuing</p>
 <pre><code>printf &#39;%b&#39; &#39;\u1234&#39;</code></pre>
@@ -114,50 +115,48 @@ dd p {
 <p>Whilst in insert mode, press ctrl+V and then type u1234.</p>
 <p>Use the command <code>ga</code> to show the hex value of the character under the cursor.</p>
 <h1 id="variation-selectors">VARIATION SELECTORS</h1>
-<p>Some unicode can be rendered as either emoji or text. Special invisible unicode characters called variation selectors can be used to force either presentation. Append with the text presentation selector (u-fe0e) or emoji presentation selector (u-fe0f), to force text or emoji respectively. For example:</p>
-<p>u-263a u-fe0e ☺︎<br />
-u-263a u-fe0f ☺️</p>
+<p>Some unicode characters can be rendered as either emoji or text. Special invisible unicode characters called variation selectors can be used to force either presentation. Append with the text presentation selector (u+fe0e) or emoji presentation selector (u+fe0f), to force text or emoji respectively. For example:</p>
+<p>u+1f50d u+fe0f 🔍<br />
+u+1f50d u+fe0e 🔍︎</p>
 <h1 id="useful-characters-for-building-menus">USEFUL CHARACTERS FOR BUILDING MENUS</h1>
 <h2 id="search">SEARCH</h2>
-<p>u-1f50d u-fe0f 🔍<br />
-u-1f50d u-fe0e 🔍︎</p>
-<p>u-2315 ⌕<br />
-u-26b2 ⚲<br />
-u-1c04 ᰄ</p>
+<p>u+2315 ⌕<br />
+u+26b2 ⚲<br />
+u+1c04 ᰄ</p>
 <h2 id="arrows">ARROWS</h2>
-<p>u-2192 →<br />
-u-203a ›<br />
-u-25b6 ▶<br />
-u-2794 ➔<br />
-u-2799 ➙<br />
-u-279b ➛<br />
-u-279c ➜<br />
-u-279d ➝<br />
-u-279e ➞<br />
-u-279f ➟<br />
-u-27a0 ➠<br />
-u-27a1 ➡<br />
-u-27a2 ➢<br />
-u-27a3 ➣<br />
-u-27a4 ➤<br />
-u-27a5 ➥<br />
-u-27a6 ➦<br />
-u-21a6 ↦<br />
-u-21d2 ⇒<br />
-u-21dd ⇝<br />
-u-21e2 ⇢<br />
-u-21e5 ⇥<br />
-u-21e8 ⇨<br />
-u-21fe ⇾<br />
-u-27ad ➭<br />
-u-27ae ➮<br />
-u-27af ➯<br />
-u-27b1 ➱<br />
-u-27b2 ➲<br />
-u-27ba ➺<br />
-u-27bc ➼<br />
-u-27bd ➽<br />
-u-27be ➾</p>
+<p>u+2192 →<br />
+u+203a ›<br />
+u+25b6 ▶<br />
+u+2794 ➔<br />
+u+2799 ➙<br />
+u+279b ➛<br />
+u+279c ➜<br />
+u+279d ➝<br />
+u+279e ➞<br />
+u+279f ➟<br />
+u+27a0 ➠<br />
+u+27a1 ➡<br />
+u+27a2 ➢<br />
+u+27a3 ➣<br />
+u+27a4 ➤<br />
+u+27a5 ➥<br />
+u+27a6 ➦<br />
+u+21a6 ↦<br />
+u+21d2 ⇒<br />
+u+21dd ⇝<br />
+u+21e2 ⇢<br />
+u+21e5 ⇥<br />
+u+21e8 ⇨<br />
+u+21fe ⇾<br />
+u+27ad ➭<br />
+u+27ae ➮<br />
+u+27af ➯<br />
+u+27b1 ➱<br />
+u+27b2 ➲<br />
+u+27ba ➺<br />
+u+27bc ➼<br />
+u+27bd ➽<br />
+u+27be ➾</p>
 </main>
 </body>
 </html>
