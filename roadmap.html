@@ -117,6 +117,7 @@ dd p {
 <li>Parse align field</li>
 <li>Strip space from widget action (trim argv-buf fields on parse)</li>
 <li>add to jgmenu(1) man page</li>
+<li>Add widget which refreshes each time menu is awoken (for conky type data)</li>
 </ul></li>
 <li>Finish off columns implementation
 <ul>
@@ -138,7 +139,11 @@ dd p {
 <ul>
 <li>Case-insensitive non-ASCII search (issue #91)</li>
 <li>Support startup notification (issue #62) and add CSV fields 7 for <code>startup_notify</code></li>
-<li>Add better timer support</li>
+<li>Add better timer support
+<ul>
+<li>Add blinking cursor to search field</li>
+<li>Support widgets which refresh in real time</li>
+</ul></li>
 <li>^rootpipe()</li>
 <li>HiDPI support (issue #37)</li>
 </ul>
@@ -158,7 +163,7 @@ dd p {
 <h1 id="further-breakdown-of-specific-items">Further breakdown of specific items</h1>
 <h3 id="lx">lx</h3>
 <ul>
-<li>Use unique(ish) tag names to avoid clashes</li>
+<li><del>Use unique(ish) tag names to avoid clashes</del></li>
 <li>Support i18n for prepend.csv and append.csv</li>
 <li>Use desktop specific flags</li>
 <li>Add ‘comment’ to <code>csv_name_format</code> (%c)</li>

@@ -18,6 +18,7 @@
     * Parse align field
     * Strip space from widget action (trim argv-buf fields on parse)
     * add to jgmenu(1) man page
+    * Add widget which refreshes each time menu is awoken (for conky type data)
 - Finish off columns implementation
     * Support moving left/right between columns
     * Deal with `menu_width` more intelligently
@@ -35,6 +36,8 @@
 - Case-insensitive non-ASCII search (issue #91)
 - Support startup notification (issue #62) and add CSV fields 7 for `startup_notify`
 - Add better timer support
+  * Add blinking cursor to search field
+  * Support widgets which refresh in real time
 - ^rootpipe()
 - HiDPI support (issue #37)
 
@@ -57,7 +60,7 @@ This category contains features and requests that I am unlikely to implement mys
 
 ### lx {#lx}
 
-- Use unique(ish) tag names to avoid clashes
+- ~~Use unique(ish) tag names to avoid clashes~~
 - Support i18n for prepend.csv and append.csv
 - Use desktop specific flags
 - Add 'comment' to `csv_name_format` (%c)
