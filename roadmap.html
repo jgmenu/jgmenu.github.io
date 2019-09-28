@@ -101,8 +101,8 @@ dd p {
 <li>Support xfce-plugin
 <ul>
 <li><del><a href="https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867">Remove tint2 config dependency from IPC</a></del></li>
-<li>Make API clear regarding use of TINT environment variables for IPC</li>
-<li>Add TINT variables to jgmenu(1)</li>
+<li><del>Make API clear regarding use of TINT environment variables for IPC</del></li>
+<li><del>Add TINT variables to jgmenu(1)</del></li>
 <li><del>Update <code>jgmenu_run</code> wrt TINT API <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=88901#p88901">thread1</a></del></li>
 <li><del>add <code>position_mode</code> config option <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=88563#p88563">thread2</a></del></li>
 </ul></li>
@@ -112,12 +112,12 @@ dd p {
 <li>Create website and tidy up manual</li>
 <li>Cut Exec field correctly (i.e. at % but not %%) (issue #68)</li>
 <li>Add strict xdg compliant execl function (i.e. without “sh -c” wrapper). Add CSV fields 6 for <code>strict_xdg_exec</code></li>
-<li>Tidy up widgets
+<li>Widgets
 <ul>
 <li>Parse align field</li>
 <li>Strip space from widget action (trim argv-buf fields on parse)</li>
 <li>add to jgmenu(1) man page</li>
-<li>Add widget which refreshes each time menu is awoken (for conky type data)</li>
+<li>Add widget which refreshes each time menu is awoken (if mtime changed - possibly ‘file’ and ‘exec’) <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333" class="uri">https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333</a></li>
 </ul></li>
 <li>Finish off columns implementation
 <ul>

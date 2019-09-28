@@ -4,8 +4,8 @@
 
 - Support xfce-plugin
    * ~~[Remove tint2 config dependency from IPC](https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867)~~
-   * Make API clear regarding use of TINT environment variables for IPC
-   * Add TINT variables to jgmenu(1)
+   * ~~Make API clear regarding use of TINT environment variables for IPC~~
+   * ~~Add TINT variables to jgmenu(1)~~
    * ~~Update `jgmenu_run` wrt TINT API [thread1](https://forums.bunsenlabs.org/viewtopic.php?pid=88901#p88901)~~
    * ~~add `position_mode` config option [thread2](https://forums.bunsenlabs.org/viewtopic.php?pid=88563#p88563)~~
 
@@ -14,11 +14,11 @@
 - Create website and tidy up manual
 - Cut Exec field correctly (i.e. at % but not %%) (issue #68)
 - Add strict xdg compliant execl function (i.e. without "sh -c" wrapper). Add CSV fields 6 for `strict_xdg_exec`
-- Tidy up widgets
+- Widgets
     * Parse align field
     * Strip space from widget action (trim argv-buf fields on parse)
     * add to jgmenu(1) man page
-    * Add widget which refreshes each time menu is awoken (for conky type data)
+    * Add widget which refreshes each time menu is awoken (if mtime changed - possibly 'file' and 'exec') [https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333](https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333)
 - Finish off columns implementation
     * Support moving left/right between columns
     * Deal with `menu_width` more intelligently
