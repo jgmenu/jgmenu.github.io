@@ -80,10 +80,9 @@ This category contains features and requests that I am unlikely to implement mys
 
 ### `apps` {#apps}
 
-- keep track of filename and thereby remove duplicates (e.g. in ~/.local/share/applications/)
+- ~~keep track of filename and thereby remove duplicates (e.g. in ~/.local/share/applications/)~~
 - apps: add `csv_name_format` support
 - support directories
   * support built-in l10n for directory names
   * add categories based on greeneye
-- add man page
 

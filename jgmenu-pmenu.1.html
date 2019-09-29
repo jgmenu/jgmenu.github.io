@@ -96,58 +96,41 @@ dd p {
 <body>
 <main>
 <h1 id="name">NAME</h1>
-<p>jgmenu-pmenu.py - generate jgmenu flavoured CSV menu data based on<br />
-                  .desktop and .directory files found on the system</p>
+<p>jgmenu-pmenu - generate jgmenu flavoured CSV menu data</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p><code>jgmenu_run pmenu</code> [-h | –help] [–append-file &lt;<em>FILE</em>&gt;]<br />
-                 [–prepend-file &lt;<em>FILE</em>&gt;] [–locale &lt;<em>LOCALE</em>&gt;]</p>
+<p><code>jgmenu_run pmenu</code> [-h | –help] [–append-file <FILE>]<br />
+                 [–prepend-file <FILE>] [–locale <LOCALE>]</p>
 <h1 id="description">DESCRIPTION</h1>
-<p>Generates jgmenu flavoured CSV menu data based on .desktop and<br />
-.directory files found on the system, but ignores any .menu files.<br />
-Instead of the structure specified in the .menu file, it simply maps<br />
-each “.desktop” application onto one of the “.directory” categories.<br />
-If a matching “.directory” category does not exist, it tries to<br />
-cross-reference “additional categories” to “related categories” in<br />
-accordance with the XDG menu-spec. This is a generic approach which<br />
-avoids Desktop Environment specific rules defined in the .menu file.<br />
-It ensures that all .desktop files are included in the menu.</p>
-<p>The root menu is appended/prepended by the contents of the following<br />
-files if they exist:</p>
-<pre><code>~/.config/jgmenu/append.csv  
-~/.config/jgmenu/prepend.csv  </code></pre>
+<p>Generates jgmenu flavoured CSV menu data based on .desktop and .directory files found on the system, but ignores any .menu files. Instead of the structure specified in the .menu file, it simply maps each “.desktop” application onto one of the “.directory” categories. If a matching “.directory” category does not exist, it tries to cross-reference “additional categories” to “related categories” in accordance with the XDG menu-spec. This is a generic approach which avoids Desktop Environment specific rules defined in the .menu file. It ensures that all .desktop files are included in the menu.</p>
+<p>The root menu is appended/prepended by the contents of the following files if they exist:</p>
+<ul>
+<li><code>~/.config/jgmenu/append.csv</code></li>
+<li><code>~/.config/jgmenu/prepend.csv</code></li>
+</ul>
 <h1 id="options">OPTIONS</h1>
 <dl>
-<dt>-h, –help</dt>
-<dd>show this help message and exit
+<dt><code>-h</code>, <code>--help</code></dt>
+<dd><p>Show this help message and exit</p>
 </dd>
-<dt>--append-file FILE</dt>
-<dd>Path to menu file to append to the root menu
+<dt><code>--append-file FILE</code></dt>
+<dd><p>Path to menu file to append to the root menu</p>
 </dd>
-<dt>--prepend-file FILE</dt>
-<dd>Path to menu file to prepend to the root menu
+<dt><code>--prepend-file FILE</code></dt>
+<dd><p>Path to menu file to prepend to the root menu</p>
 </dd>
-<dt>--locale LOCALE</dt>
-<dd>Use a custom locale (e.g. <code>en_US.UTF-8</code>)<br />
-       Available locales can be shown by running ‘locale -a’.
+<dt><code>--locale LOCALE</code></dt>
+<dd><p>Use a custom locale (e.g. <code>en_US.UTF-8</code>). Available locales can be shown by running <code>locale -a</code>.</p>
 </dd>
 </dl>
 <h1 id="environment-variables">ENVIRONMENT VARIABLES</h1>
 <dl>
-<dt>JGMENU_SINGLE_WINDOW</dt>
-<dd>If set, ^checkout() items will be replaced by ^root()
+<dt><code>JGMENU_SINGLE_WINDOW</code></dt>
+<dd><p>If set, <code>^checkout()</code> items will be replaced by <code>^root()</code></p>
 </dd>
-<dt>JGMENU_NO_DIRS</dt>
-<dd>If set, applications will be listed without a directory<br />
-       structure
+<dt><code>JGMENU_NO_DIRS</code></dt>
+<dd><p>If set, applications will be listed without a directory structure</p>
 </dd>
 </dl>
-<h1 id="examples">EXAMPLES</h1>
-<p>This program is designed to be run from jgmenu by settings<br />
-<code>csv_cmd = pmenu</code> in the configuration file (jgmenurc).</p>
-<p>It can also be run directly from the command line like this:</p>
-<pre><code>jgmenu_run pmenu | jgmenu --simple
-
-jgmenu --csv-cmd=&quot;jgmenu_run pmenu&quot;</code></pre>
 </main>
 </body>
 </html>

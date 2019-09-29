@@ -98,35 +98,22 @@ dd p {
 <h1 id="name">NAME</h1>
 <p>jgmenu-ob - convert openbox menu data to jgmenu flavoured CSV</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p><code>jgmenu_run ob</code> [--tag=&lt;<em>tag</em>&gt;] [--cmd=&lt;<em>cmd</em>&gt; | &lt;<em>file</em>&gt;]</p>
+<p><code>jgmenu_run ob</code> [--tag=<tag>] [--cmd=<cmd> | <file>]</p>
 <h1 id="description">DESCRIPTION</h1>
-<p><code>jgmenu_run ob</code> coverts openbox XML menu data to jgmenu flavoured<br />
-CSV. If no &lt;<em>file</em>&gt; or –cmd=&lt;<em>cmd</em>&gt; is specified,<br />
-~/.config/openbox/menu.xml or /etc/xdg/openbox/menu.xml will be used<br />
-if they exist (giving higher precedence to the former).</p>
-<p>If environment variable <code>JGMENU_I18N</code> or config variable <code>csv_i18n</code><br />
-are set, a translation file will be searched for in the specified<br />
-file or directory. See <code>jgmenu_run i18n --help</code> for further details.</p>
+<p><code>jgmenu_run ob</code> coverts openbox XML menu data to jgmenu flavoured CSV. If no <code>&lt;file&gt;</code> or <code>--cmd=&lt;cmd&gt;</code> is specified, <code>~/.config/openbox/menu.xml</code> or <code>/etc/xdg/openbox/menu.xml</code> will be used if they exist, giving higher precedence to the former.</p>
+<p>If environment variable <code>JGMENU_I18N</code> or config variable <code>csv_i18n</code> are set, a translation file will be searched for in the specified file or directory. See <code>jgmenu_run i18n --help</code> for further details.</p>
 <h1 id="options">OPTIONS</h1>
 <dl>
-<dt>&lt;<em>file</em>&gt;</dt>
-<dd>Specify openbox XML file.
+<dt><code>&lt;file&gt;</code></dt>
+<dd><p>Specify openbox XML file.</p>
 </dd>
-<dt>--cmd=&lt;<em>cmd</em>&gt;</dt>
-<dd>Specify command to produce openbox XML menu data.
+<dt><code>--cmd=&lt;cmd&gt;</code></dt>
+<dd><p>Specify command to produce openbox XML menu data.</p>
 </dd>
-<dt>--tag=&lt;<em>tag</em>&gt;</dt>
-<dd>Specify value of root ^tag(). This can be useful for pipemenus<br />
-       to avoid clashing tag-names
+<dt><code>--tag=&lt;tag&gt;</code></dt>
+<dd><p>Specify value of root <code>^tag()</code>. This can be useful for pipemenus to avoid clashing tag-names</p>
 </dd>
 </dl>
-<h1 id="examples">EXAMPLES</h1>
-<p>This program is designed to be run from jgmenu by settings<br />
-<code>csv_cmd = ob</code> in the configuration file (jgmenurc).</p>
-<p>It can also be run directly from the command line like this:</p>
-<pre><code>jgmenu_run ob | jgmenu --simple
-
-jgmenu --csv-cmd=&quot;jgmenu_run ob&quot;</code></pre>
 </main>
 </body>
 </html>
