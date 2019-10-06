@@ -98,8 +98,8 @@ dd p {
 <h1 id="name">NAME</h1>
 <p>jgmenu-pmenu - generate jgmenu flavoured CSV menu data</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p><code>jgmenu_run pmenu</code> [-h | –help] [–append-file <FILE>]<br />
-                 [–prepend-file <FILE>] [–locale <LOCALE>]</p>
+<p><code>jgmenu_run pmenu</code> [-h | –help] [–append-file &lt;<em>FILE</em>&gt;]<br />
+                 [–prepend-file &lt;<em>FILE</em>&gt;] [–locale &lt;<em>LOCALE</em>&gt;]</p>
 <h1 id="description">DESCRIPTION</h1>
 <p>Generates jgmenu flavoured CSV menu data based on .desktop and .directory files found on the system, but ignores any .menu files. Instead of the structure specified in the .menu file, it simply maps each “.desktop” application onto one of the “.directory” categories. If a matching “.directory” category does not exist, it tries to cross-reference “additional categories” to “related categories” in accordance with the XDG menu-spec. This is a generic approach which avoids Desktop Environment specific rules defined in the .menu file. It ensures that all .desktop files are included in the menu.</p>
 <p>The root menu is appended/prepended by the contents of the following files if they exist:</p>

@@ -287,6 +287,46 @@ Firefox,firefox,firefox</code></pre>
 </dd>
 </dl>
 <p>Type any string to invoke a search. Words separated by space will be searched for using <code>OR</code> logic (i.e. the match of either word is sufficient to display an item).</p>
+<h1 id="widgets">WIDGETS</h1>
+<p>Lines beginning with ‘@’ in jgmenu flavoured CSV files are parsed in accordance with the following syntax:</p>
+<pre><code>@type,action,x,y,w,h,r,halign,valign,fgcol,bgcol,content</code></pre>
+<dl>
+<dt><code>type</code></dt>
+<dd><p>The widget type, which can be one of the following:</p>
+<dl>
+<dt><code>rect</code></dt>
+<dd><p>Rectangle with a 1px thick border drawn using <code>fgcol</code></p>
+</dd>
+<dt><code>search</code></dt>
+<dd><p>Search box showing the current filter (what the user has typed) or the specifed <code>text</code> if no filter has been invoked.</p>
+</dd>
+<dt><code>icon</code></dt>
+<dd><p>Icon</p>
+</dd>
+</dl>
+</dd>
+<dt><code>action</code></dt>
+<dd><p>The action to take when selected. This can either be a shell command or a menu action such <code>^root()</code>.</p>
+</dd>
+<dt><code>x</code>, <code>y</code></dt>
+<dd><p>Horizontal and vertical margin of widget</p>
+</dd>
+<dt><code>w</code>, <code>h</code></dt>
+<dd><p>Width and height of widget</p>
+</dd>
+<dt><code>r</code></dt>
+<dd><p>Corner radius</p>
+</dd>
+<dt><code>fgcol</code>, <code>bgcol</code></dt>
+<dd><p>Foreground and background colours using syntax <code>rrggbb #aa</code> <code>fgcol</code> accepts <code>auto</code> to use the jgmenurc’s <code>color_norm_fg</code></p>
+</dd>
+<dt><code>content</code></dt>
+<dd><p><code>icon_path</code> for <code>icon</code> widgets <code>text</code> for all other widget types</p>
+</dd>
+<dt><code>halign</code>, <code>valign</code></dt>
+<dd><p>Horizontal and vertical alignment of widget. This has not yet been implemented, but defaults to <code>top</code> and <code>left</code></p>
+</dd>
+</dl>
 <h1 id="configuration-file">CONFIGURATION FILE</h1>
 <p>If no file is specified using the –config-file= option, the XDG Base Directory Specification is adhered to. I.e:</p>
 <ul>

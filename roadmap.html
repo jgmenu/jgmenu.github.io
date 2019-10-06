@@ -96,20 +96,8 @@ dd p {
 <body>
 <main>
 <h1 id="roadmap">Roadmap</h1>
-<h2 id="before-next-release">Before Next Release</h2>
-<ul>
-<li>Support xfce-plugin
-<ul>
-<li><del><a href="https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867">Remove tint2 config dependency from IPC</a></del></li>
-<li><del>Make API clear regarding use of TINT environment variables for IPC</del></li>
-<li><del>Add TINT variables to jgmenu(1)</del></li>
-<li><del>Update <code>jgmenu_run</code> wrt TINT API <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=88901#p88901">thread1</a></del></li>
-<li><del>add <code>position_mode</code> config option <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=88563#p88563">thread2</a></del></li>
-</ul></li>
-</ul>
 <h2 id="section">2019</h2>
 <ul>
-<li>Create website and tidy up manual</li>
 <li>Cut Exec field correctly (i.e. at % but not %%) (issue #68)</li>
 <li>Add strict xdg compliant execl function (i.e. without “sh -c” wrapper). Add CSV fields 6 for <code>strict_xdg_exec</code></li>
 <li>Widgets
@@ -131,8 +119,8 @@ dd p {
 <li>Support GTK theme</li>
 <li>Support parsing compton.conf menu-opacity value</li>
 </ul></li>
-<li><a href="#apps">Finish <code>apps</code> module and retire <code>pmenu</code></a></li>
-<li><a href="#lx">Improve <code>lx</code> module</a></li>
+<li><a href="#apps">Finish apps module and retire pmenu</a></li>
+<li><a href="#lx">Improve lx module</a></li>
 <li>obtheme: deal with gradients and RGB(rrr, ggg, bbb) format</li>
 </ul>
 <h2 id="section-1">2020</h2>
@@ -163,7 +151,6 @@ dd p {
 <h1 id="further-breakdown-of-specific-items">Further breakdown of specific items</h1>
 <h3 id="lx">lx</h3>
 <ul>
-<li><del>Use unique(ish) tag names to avoid clashes</del></li>
 <li>Support i18n for prepend.csv and append.csv</li>
 <li>Use desktop specific flags</li>
 <li>Add ‘comment’ to <code>csv_name_format</code> (%c)</li>
@@ -182,7 +169,6 @@ dd p {
 </ul>
 <h3 id="apps"><code>apps</code></h3>
 <ul>
-<li>~~keep track of filename and thereby remove duplicates (e.g. in <sub>/.local/share/applications/)</sub>~</li>
 <li>apps: add <code>csv_name_format</code> support</li>
 <li>support directories
 <ul>

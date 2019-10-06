@@ -1,17 +1,7 @@
 # Roadmap
 
-## Before Next Release
-
-- Support xfce-plugin
-   * ~~[Remove tint2 config dependency from IPC](https://forums.bunsenlabs.org/viewtopic.php?pid=88867#p88867)~~
-   * ~~Make API clear regarding use of TINT environment variables for IPC~~
-   * ~~Add TINT variables to jgmenu(1)~~
-   * ~~Update `jgmenu_run` wrt TINT API [thread1](https://forums.bunsenlabs.org/viewtopic.php?pid=88901#p88901)~~
-   * ~~add `position_mode` config option [thread2](https://forums.bunsenlabs.org/viewtopic.php?pid=88563#p88563)~~
-
 ## 2019
 
-- Create website and tidy up manual
 - Cut Exec field correctly (i.e. at % but not %%) (issue #68)
 - Add strict xdg compliant execl function (i.e. without "sh -c" wrapper). Add CSV fields 6 for `strict_xdg_exec`
 - Widgets
@@ -27,8 +17,8 @@
   * Split t2conf.c code into separate module and call using hooks. This will simplify the code base.
   * Support GTK theme
   * Support parsing compton.conf menu-opacity value
-- [Finish `apps` module and retire `pmenu`](#apps)
-- [Improve `lx` module](#lx)
+- [Finish apps module and retire pmenu](#apps)
+- [Improve lx module](#lx)
 - obtheme: deal with gradients and RGB(rrr, ggg, bbb) format
 
 ## 2020
@@ -60,7 +50,6 @@ This category contains features and requests that I am unlikely to implement mys
 
 ### lx {#lx}
 
-- ~~Use unique(ish) tag names to avoid clashes~~
 - Support i18n for prepend.csv and append.csv
 - Use desktop specific flags
 - Add 'comment' to `csv_name_format` (%c)
@@ -80,7 +69,6 @@ This category contains features and requests that I am unlikely to implement mys
 
 ### `apps` {#apps}
 
-- ~~keep track of filename and thereby remove duplicates (e.g. in ~/.local/share/applications/)~~
 - apps: add `csv_name_format` support
 - support directories
   * support built-in l10n for directory names
