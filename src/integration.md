@@ -18,7 +18,8 @@ Other
 
 - [start in background](#background)
 - [compton](#compton)
-
+- [obmenu-generator](#obmenu)
+- [superkey](#superkey)
 
 ## Panels
 
@@ -226,4 +227,33 @@ shadow-exclude = [ "name = 'jgmenu'" ];
 ```
 shadow-exclude = [ "class_g = 'jgmenu'" ];
 ```
+
+### obmenu-generator {#obmenu}
+
+`obmenu-generator` (by @trizen) produces menu data in openbox XML format.
+It can be with with jgmenu in at least two ways:
+
+1. Run this from a terminal:
+
+    jgmenu --csv-cmd="jgmenu_run ob --cmd='obmenu-generator -i'"
+
+2. Set the following in your ~/.config/jgmenu/jgmenurc:
+
+    csv_cmd = jgmenu_run ob --cmd='obmenu-generator -i'
+
+For installation of obmenu-generator, see [obmenu-generator/INSTALL.md](https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md)  
+
+    git clone https://github.com/trizen/obmenu-generator.git
+
+### superkey {#superkey}
+
+In order to bind jgmenu to the super-key, take the following steps:
+
+  1. Bind `jgmenu_run` to a key combination.
+     `Control + Escape` will be used in this example.
+
+  2. Install `xcape` and run the following:
+     `xcape -e 'Super_L=Control_L|Escape'`
+
+`ksuperkey` is a very similar package and can be used instead of `xcape`
 
