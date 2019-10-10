@@ -230,30 +230,34 @@ shadow-exclude = [ "class_g = 'jgmenu'" ];
 
 ### obmenu-generator {#obmenu}
 
-`obmenu-generator` (by @trizen) produces menu data in openbox XML format.
-It can be with with jgmenu in at least two ways:
+[obmenu-generator](https://github.com/trizen/obmenu-generator) produces
+menu data in openbox XML format. It can be integrated with with jgmenu in a
+number of ways.
 
-1. Run this from a terminal:
+For a short-lived menu, run this from a terminal:
 
-    jgmenu --csv-cmd="jgmenu_run ob --cmd='obmenu-generator -i'"
+    jgmenu --csv-cmd="jgmenu_run ob --cmd='obmenu-generator -i'" --simple
 
-2. Set the following in your ~/.config/jgmenu/jgmenurc:
+To run jgmenu as a long-running application, set the following in your
+~/.config/jgmenu/jgmenurc:
 
     csv_cmd = jgmenu_run ob --cmd='obmenu-generator -i'
 
-For installation of obmenu-generator, see [obmenu-generator/INSTALL.md](https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md)  
+For installation of obmenu-generator, see  
+[https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md](https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md)  
 
-    git clone https://github.com/trizen/obmenu-generator.git
+
 
 ### superkey {#superkey}
 
 In order to bind jgmenu to the super-key, take the following steps:
 
-  1. Bind `jgmenu_run` to a key combination.
-     `Control + Escape` will be used in this example.
+1. Bind `jgmenu_run` to a key combination. The method for doing this depends on
+   your system and is outside the scope of this guide. For the next step, let's
+   assume that you have bound `Control + Escape` to `jgmenu_run`
 
-  2. Install `xcape` and run the following:
-     `xcape -e 'Super_L=Control_L|Escape'`
+2. Install `xcape` and run the following:
+   `xcape -e 'Super_L=Control_L|Escape'`
 
 `ksuperkey` is a very similar package and can be used instead of `xcape`
 
