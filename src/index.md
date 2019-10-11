@@ -5,6 +5,7 @@ scripting, ricing and tweaking.
 
 ## Main
 
+- [Screenshots](screenshots.html)
 - [Manual](manual.html)
 - [Integration](integration.html)
 - [Roadmap](roadmap.html)
