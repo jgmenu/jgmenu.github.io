@@ -7,15 +7,32 @@ build_page () {
 	html="${filename/%.md/.html}"
 	[[ $html -ot $1 ]] || return
 	printf '%s\n' "    GEN         ${html}"
-	printf '%b' "${template/'{{content}}'/$(pandoc "$1")}" >"${html}"
+	[[ $html != index.html ]] && home="<a href='index.html'>Home</a>"
+	printf '%b' "${template/'{{content}}'/$home$(pandoc "$1")}" >"${html}"
+	home=
+}
+
+build_src_pages () {
+	template="$(<"src/template.html")"
+	for md in src/*.md; do
+		build_page "${md}"
+	done
+}
+
+build_man_pages () {
+	if ! [[ -d ../jgmenu ]]; then
+		printf 'warn: %b\n' "Need jgmenu next to jgmenu.github.io to build man pages" >&2
+		return
+	fi
+	template="$(sed -e 's/sans-serif/monospace/' src/template.html)"
+	for md in ../jgmenu/docs/manual/*.md; do
+		build_page "${md}"
+	done
 }
 
 main () {
-	template="$(<"src/template.html")"
-	for md in src/*.md; do build_page "${md}"; done
-	[[ -d ../jgmenu ]] || die "need jgmenu next to jgmenu.github.io/"
-	template="$(sed -e 's/sans-serif/monospace/' src/template.html)"
-	for md in ../jgmenu/docs/manual/*.md; do build_page "${md}"; done
+	build_src_pages
+	build_man_pages
 }
 
 main "$@"

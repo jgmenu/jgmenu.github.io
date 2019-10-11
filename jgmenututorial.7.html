@@ -35,7 +35,6 @@ code {
 }
 
 img {
-	display: block;
 	margin: 20px auto;
 	max-width: 100%;
 }
@@ -95,7 +94,7 @@ dd p {
 </head>
 <body>
 <main>
-<h1 id="name">NAME</h1>
+<a href='index.html'>Home</a><h1 id="name">NAME</h1>
 <p>The jgmenu tutorial</p>
 <h1 id="introduction">INTRODUCTION</h1>
 <p>This tutorial aims to explain the usage of jgmenu through a set of lessons.</p>
@@ -126,7 +125,7 @@ dd p {
 <h1 id="lesson1">Lesson 1 - Get started</h1>
 <p>After installing jgmenu, you can get going quickly by running</p>
 <pre><code>jgmenu_run</code></pre>
-<p>You should see a Linux/BSD system menu showing installed applications. We call this menu “pmenu” (see <a href="#lesson7">lesson 7</a> for further details).</p>
+<p>You should see a Linux/BSD system menu showing installed applications. We call this menu &quot;pmenu&quot; (see <a href="#lesson7">lesson 7</a> for further details).</p>
 <p>Create a config file (<code>~/.config/jgmenu/jgmenurc</code>) by running</p>
 <pre><code>jgmenu init</code></pre>
 <p>Full details of config options are covered in <a href="jgmenu.1.html">jgmenu(1)</a></p>
@@ -160,17 +159,17 @@ foo
 bar
 EOF</code></pre>
 <p>There are many ways to run jgmenu. In lesson 1, you saw jgmenu as a long-running application. As we go through the next few lessons we will run jgmenu as a short-lived applications. This means that it starts from scratch every time it is called.</p>
-<p>So let’s get back to basics. Try the following:</p>
+<p>So let's get back to basics. Try the following:</p>
 <pre><code>echo &gt;foo.txt &lt;&lt;EOF
 xterm
 firefox
 EOF</code></pre>
-<p>If you have not got used to the here-document syntax yet, it just means that you put the words “xterm” and “firefox” in a text file (which you can of course do using a text editor). Then either of the following</p>
+<p>If you have not got used to the here-document syntax yet, it just means that you put the words &quot;xterm&quot; and &quot;firefox&quot; in a text file (which you can of course do using a text editor). Then either of the following</p>
 <pre><code>cat foo.txt | jgmenu --simple --icon-size=0
 
 jgmenu --vsimple --csv-file=&quot;foo.txt&quot;</code></pre>
 <p>The option <code>--simple</code> make jgmenu short-lived, disables all syncing with tint2 and reads menu items from <code>stdin</code>.</p>
-<p>The option <code>--icon-size=0</code>, disables icons (i.e. it does not just display them at zero size, it actually does not load them)</p>
+<p>The option <code>--icon-size=0</code>, disables icons (i.e. it does not just display them at zero size, it actually does not load them)</p>
 <p>The command line argument <code>--vsimple</code> is the same as <code>--simple</code>, but also disables icons and ignores jgmenurc (if it exists).</p>
 <p>If you want a menu to be launched by a single script, you could construct it like this:</p>
 <pre><code>cat &lt;&lt;EOF &gt;menu.sh
@@ -188,7 +187,7 @@ chmod +x menu.sh
 File Manager,pcmanfm</code></pre>
 <p>This lets you give a more meaningful description to each menu item.</p>
 <h1 id="lesson5">Lesson 5 - Icons</h1>
-<p>To display icons, you need to populate the third field. By default, jgmenu will obtain the icon theme from xsettings (if it is running) or tint2rc (if it exists). When running with the –simple argument, make sure that <code>icon_theme</code> is set to something sensible in your $HOME/.config/jgmenu/jgmenurc. Consider the following CSV menu data:</p>
+<p>To display icons, you need to populate the third field. By default, jgmenu will obtain the icon theme from xsettings (if it is running) or tint2rc (if it exists). When running with the --simple argument, make sure that <code>icon_theme</code> is set to something sensible in your $HOME/.config/jgmenu/jgmenurc. Consider the following CSV menu data:</p>
 <pre><code>Browser,firefox,firefox
 File manager,pcmanfm,system-file-manager
 Terminal,xterm,utilities-terminal
@@ -198,7 +197,7 @@ Reboot,systemctl -i reboot,system-reboot
 Poweroff,systemctl -i poweroff,system-shutdown</code></pre>
 <p>In the third field you can also specify the full path if you wish.</p>
 <h1 id="lesson6">Lesson 6 - Submenus</h1>
-<p>So far we have looked at producing a single “root” menu only. jgmenu understands a small amount of markup and enables submenus by ^tag() and ^checkout(). Try this:</p>
+<p>So far we have looked at producing a single &quot;root&quot; menu only. jgmenu understands a small amount of markup and enables submenus by ^tag() and ^checkout(). Try this:</p>
 <pre><code>Terminal,xterm
 File Manager,pcmanfm
 Settings,^checkout(settings)
@@ -225,7 +224,7 @@ item2.1</code></pre>
 <h1 id="lesson7">Lesson 7 - XDG Application Menus</h1>
 <p>freedesktop.org have developed a menu standard which is adhered to by the big Desktop Environments. We will refer to this type of menu as XDG. jgmenu can run two types of XDG(ish) menus: pmenu and lx.</p>
 <p>To understand the subtleties between them, you need a basic appreciataion of the XDG menu-spec and desktop-entry-spec. See: http://standards.freedesktop.org/ for further information.</p>
-<p>To keep things simple, when discussing XDG paths, only one location will be referred to rather than XDG variables and every possible location. So for example, if “/usr/share” is quoted, it may refer to “/usr/local/share”, “$HOME/.local/share”, etc on your system.</p>
+<p>To keep things simple, when discussing XDG paths, only one location will be referred to rather than XDG variables and every possible location. So for example, if &quot;/usr/share&quot; is quoted, it may refer to &quot;/usr/local/share&quot;, &quot;$HOME/.local/share&quot;, etc on your system.</p>
 <p>In brief, there are three types of files which define the Linux/BSD system menu:</p>
 <dl>
 <dt><code>.menu</code></dt>
@@ -238,8 +237,8 @@ item2.1</code></pre>
 <dd><p>On many systems, these will be found at<code>/usr/share/applications</code>. Each application has a .desktop file associated with it. These files contain most of the information needed to build a menu (e.g. <code>Name</code>, <code>Exec command</code>, <code>Icon</code> and <code>Category</code>)</p>
 </dd>
 </dl>
-<p><code>pmenu</code> is written in python by <span class="citation" data-cites="o9000">@o9000</span>. It uses .directory and .desktop files to build a menu, but ignores any .menu files. Instead of the structure specified in the .menu file, it simply maps each “.desktop” application onto one of the “.directory” categories. If a matching “.directory” category does not exist, it tries to cross-reference “additional categories” to “related categories” in accordance with the XDG menu-spec. This is a generic approach which avoids Desktop Environment specific rules defined in the .menu file. It ensures that all .desktop files are included in the menu.</p>
-<p><code>lx</code> uses LXDE’s libmenu-cache to generate an XDG compliant menu including separators and internationalization. It requires a recent version of libmenu-cache, so may not be included in your build.</p>
+<p><code>pmenu</code> is written in python by <span class="citation">@o9000</span>. It uses .directory and .desktop files to build a menu, but ignores any .menu files. Instead of the structure specified in the .menu file, it simply maps each &quot;.desktop&quot; application onto one of the &quot;.directory&quot; categories. If a matching &quot;.directory&quot; category does not exist, it tries to cross-reference &quot;additional categories&quot; to &quot;related categories&quot; in accordance with the XDG menu-spec. This is a generic approach which avoids Desktop Environment specific rules defined in the .menu file. It ensures that all .desktop files are included in the menu.</p>
+<p><code>lx</code> uses LXDE's libmenu-cache to generate an XDG compliant menu including separators and internationalization. It requires a recent version of libmenu-cache, so may not be included in your build.</p>
 <p>Set <code>csv_cmd</code> in jgmenurc to specify which of these csv-commands you wish to run.</p>
 <h2 id="comparison-of-application-menu-modules">Comparison of application menu modules</h2>
 <p>This table summarise the key features of each module:</p>
@@ -275,17 +274,17 @@ Terminal,xterm,utilities-terminal
 Suspend,systemctl -i suspend,system-log-out
 Reboot,systemctl -i reboot,system-reboot
 Poweroff,systemctl -i poweroff,system-shutdown</code></pre>
-<p>In these example we have used the markup ^sep(), which inserts a horizontal separator line. Similarly, ^sep(foo) inserts a text separator displaying “foo”</p>
+<p>In these example we have used the markup ^sep(), which inserts a horizontal separator line. Similarly, ^sep(foo) inserts a text separator displaying &quot;foo&quot;</p>
 <h1 id="lesson10">Lesson 10 - CSV generators</h1>
-<p>In lesson 7, we introduced pmenu and lx. These commands are referred to as “CSV generators” and are invoked as follows:</p>
+<p>In lesson 7, we introduced pmenu and lx. These commands are referred to as &quot;CSV generators&quot; and are invoked as follows:</p>
 <pre><code>jgmenu_run &lt;command&gt;</code></pre>
-<p>This is the full list of built-in “CSV generators”:</p>
+<p>This is the full list of built-in &quot;CSV generators&quot;:</p>
 <ul>
 <li>pmenu</li>
 <li>lx</li>
 <li>ob</li>
 </ul>
-<p>They are documented by a man page or a simple –help message.</p>
+<p>They are documented by a man page or a simple --help message.</p>
 <pre><code>man jgmenu-&lt;command&gt;
 jgmenu_run &lt;command&gt; --help</code></pre>
 <p>Here follow some examples of how they can be used.</p>
