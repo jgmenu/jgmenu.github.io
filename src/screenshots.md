@@ -1,49 +1,35 @@
 # Screenshots
 
-[![2019-01-31-212814_1024x600_scrot.th.png](https://cdn.scrot.moe/images/2019/01/31/2019-01-31-212814_1024x600_scrot.th.png)](https://cdn.scrot.moe/images/2019/01/31/2019-01-31-212814_1024x600_scrot.png)
+[![](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/col3-th.png)](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/col3.png)
 
-    jgmenu init --theme=greeneye
-
----
-
-[![2018-09-15-215839_1024x600_scrot.th.png](https://cdn.scrot.moe/images/2018/09/15/2018-09-15-215839_1024x600_scrot.th.png)](https://cdn.scrot.moe/images/2018/09/15/2018-09-15-215839_1024x600_scrot.png)
-
-    jgmenu init --theme=col2
+    jgmenu_run init --theme=col3
 
 ---
 
-[![2018-08-04-231251_1024x600_scrot.th.png](https://cdn.scrot.moe/images/2018/08/05/2018-08-04-231251_1024x600_scrot.th.png)](https://cdn.scrot.moe/images/2018/08/05/2018-08-04-231251_1024x600_scrot.png)
+[![](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/col2-th.png)](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/col2.png)
 
-    jgmenu init --theme=neon
+    jgmenu_run init --theme=col2
 
 ---
 
-[![2017-12-16-211922_1024x600_scrot.th.png](https://cdn.scrot.moe/images/2017/12/16/2017-12-16-211922_1024x600_scrot.th.png)](https://cdn.scrot.moe/images/2017/12/16/2017-12-16-211922_1024x600_scrot.png)
+[![](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/greeneeye-th.png)](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/greeneeye.png)
+
+    jgmenu_run init --theme=greeneye
+
+---
+
+[![archlabs_1803](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/archlabs_1803-th.png)](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/archlabs_1803.png)
+
+    jgmenu_run init --theme=archlabs_1803
+
+---
+
+[![lithium](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/lithium-th.png)](https://raw.githubusercontent.com/wiki/johanmalm/jgmenu/img/lithium.png)
+
+    jgmenu_run init --theme=bunsenlabs_lithium
+
+---
 
 [redeyepike](redeyepike.html)
-
----
-
-[![2017-10-03-210641_1024x600_scrot.th.png](https://cdn.scrot.moe/images/2017/10/03/2017-10-03-210641_1024x600_scrot.th.png)](https://cdn.scrot.moe/images/2017/10/03/2017-10-03-210641_1024x600_scrot.png)
-
-BunsenLabs Linux; dwm
-
----
-
-[![awesome_void_jgmenu.th.png](https://cdn.scrot.moe/images/2018/01/03/awesome_void_jgmenu.th.png)](https://cdn.scrot.moe/images/2018/01/03/awesome_void_jgmenu.png)
-
-Void Linux; awesome
-
----
-
-[![2017-09-27-203351_1024x768_scrot.th.png](https://cdn.scrot.moe/images/2017/09/27/2017-09-27-203351_1024x768_scrot.th.png)](https://cdn.scrot.moe/images/2017/09/27/2017-09-27-203351_1024x768_scrot.png)
-
-dwmXS; dwm
-
----
-
-[![2017-09-28-21-25-22_scrot.md.png](https://cdn.scrot.moe/images/2017/09/28/2017-09-28-21-25-22_scrot.th.png)](https://scrot.moe/image/6Lw7n)
-
-    jgmenu init --theme=bunsenlabs_hydrogen
 
 ---
