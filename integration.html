@@ -218,9 +218,11 @@ arrow_width         = 8</code></pre>
 <p>Note: If started in this way, <code>_NET_WORKAREA</code> may not be read correctly</p>
 <h3 id="compton">compton</h3>
 <p>The X11 properties <code>WM_NAME</code> and <code>WM_CLASS</code> are set for jgmenu windows.</p>
-<p>In order to avoid jgmenu shadows, add one of these lines to ~/.config/compton.conf:</p>
+<p>For example, in order to avoid jgmenu shadows, add one of these lines to ~/.config/compton.conf:</p>
 <pre><code>shadow-exclude = [ &quot;name = &#39;jgmenu&#39;&quot; ];</code></pre>
 <pre><code>shadow-exclude = [ &quot;class_g = &#39;jgmenu&#39;&quot; ];</code></pre>
+<p>For a snappier experience, avoid fade by adding:</p>
+<pre><code>fade-exclude = [ &quot;name = &#39;jgmenu&#39;&quot; ];</code></pre>
 <h3 id="obmenu">obmenu-generator</h3>
 <p><a href="https://github.com/trizen/obmenu-generator">obmenu-generator</a> produces menu data in openbox XML format. It can be integrated with with jgmenu in a number of ways.</p>
 <p>For a short-lived menu, run this from a terminal:</p>

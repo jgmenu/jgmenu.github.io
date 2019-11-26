@@ -94,7 +94,7 @@ dd p {
 </head>
 <body>
 <main>
-<a href='index.html'>Home</a><h1 id="name">NAME</h1>
+<a href='index.html'>Home</a><br> JGMENU(1)<h1 id="name">NAME</h1>
 <p>jgmenu - A simple X11 menu</p>
 <h1 id="synopsis">SYNOPSIS</h1>
 <p>jgmenu [--no-spawn] [--checkout=&lt;<em>tag</em>&gt;] [--config-file=&lt;<em>file</em>&gt;]<br />
@@ -122,7 +122,7 @@ dd p {
 <p><code>jgmenu</code> is a simple menu for Linux/BSD. It reads CSV menu data from a file and generates a graphical menu on an X11 window.</p>
 <h2 id="fields">Fields</h2>
 <p>Each line of CSV menu data is parsed into the following fields using comma as a field separator:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>description<br />
 </li>
 <li>command<br />
@@ -151,8 +151,8 @@ dd p {
 <dl>
 <dt><code>,</code></dt>
 <dd><p>As commas are used as field separators, individual fields can only contain commas if they are triple quoted. For example:</p>
-<p>foo,&quot;&quot;&quot;^pipe(find . -printf '%f,display %p,%p
-')&quot;&quot;&quot;</p>
+<p>foo,&quot;&quot;“^pipe(find . -printf ‘%f,display %p,%p
+’)”&quot;&quot;</p>
 </dd>
 <dt><code>&lt; &gt; &amp;</code></dt>
 <dd><p>The description field is parsed as pango markup, so <code>&lt;</code>, <code>&gt;</code>, and <code>&amp;</code> need to be escaped as <code>&amp;lt;</code>, <code>&amp;gt;</code>, and <code>&amp;amp;</code> respectively.</p>
@@ -234,7 +234,7 @@ Firefox,firefox,firefox</code></pre>
 <dd><p>Start menu is hidden state.</p>
 </dd>
 <dt><code>--simple</code></dt>
-<dd><p>Ignore tint2 settings; Run in short-lived mode (i.e. exit after mouse click or enter/escape); read menu items from <code>stdin</code>.</p>
+<dd><p>Ignore tint2 settings; Run in short-lived mode (i.e. exit after mouse click or enter/escape); read menu items from <code>stdin</code>.</p>
 </dd>
 <dt><code>--vsimple</code></dt>
 <dd><p>Same as <code>--simple</code>, but also disables icons and ignores jgmenurc.</p>
@@ -285,9 +285,9 @@ Firefox,firefox,firefox</code></pre>
 <dd><p>Return to parent menu</p>
 </dd>
 </dl>
-<p>Type any string to invoke a search. Words separated by space will be searched for using <code>OR</code> logic (i.e. the match of either word is sufficient to display an item).</p>
+<p>Type any string to invoke a search. Words separated by space will be searched for using <code>OR</code> logic (i.e. the match of either word is sufficient to display an item).</p>
 <h1 id="widgets">WIDGETS</h1>
-<p>Lines beginning with '@' in jgmenu flavoured CSV files are parsed in accordance with the following syntax:</p>
+<p>Lines beginning with ‘@’ in jgmenu flavoured CSV files are parsed in accordance with the following syntax:</p>
 <pre><code>@type,action,x,y,w,h,r,halign,valign,fgcol,bgcol,content</code></pre>
 <dl>
 <dt><code>type</code></dt>
@@ -317,7 +317,7 @@ Firefox,firefox,firefox</code></pre>
 <dd><p>Corner radius</p>
 </dd>
 <dt><code>fgcol</code>, <code>bgcol</code></dt>
-<dd><p>Foreground and background colours using syntax <code>rrggbb #aa</code> <code>fgcol</code> accepts <code>auto</code> to use the jgmenurc's <code>color_norm_fg</code></p>
+<dd><p>Foreground and background colours using syntax <code>rrggbb #aa</code> <code>fgcol</code> accepts <code>auto</code> to use the jgmenurc’s <code>color_norm_fg</code></p>
 </dd>
 <dt><code>content</code></dt>
 <dd><p><code>icon_path</code> for <code>icon</code> widgets <code>text</code> for all other widget types</p>
@@ -327,20 +327,20 @@ Firefox,firefox,firefox</code></pre>
 </dd>
 </dl>
 <h1 id="configuration-file">CONFIGURATION FILE</h1>
-<p>If no file is specified using the --config-file= option, the XDG Base Directory Specification is adhered to. I.e:</p>
+<p>If no file is specified using the –config-file= option, the XDG Base Directory Specification is adhered to. I.e:</p>
 <ul>
 <li>Global config in <code>${XDG_CONFIG_DIRS:-/etc/xdg}</code><br />
 </li>
 <li>User config override in <code>${XDG_CONFIG_HOME:-$HOME/.config}</code></li>
 </ul>
 <p>For most users ~/.config/jgmenu/jgmenurc is appropriate.</p>
-<p>Global config variables are set in the following order (i.e. bottom of list has higher precedence):</p>
+<p>Global config variables are set in the following order (i.e. bottom of list has higher precedence):</p>
 <ul>
 <li>built-in defaults (config.c)<br />
 </li>
 <li>tint2rc config file (can be specified by <code>TINT2_CONFIG</code> environment variable<br />
 </li>
-<li>jgmenurc config file (can be specified by --config-file=)<br />
+<li>jgmenurc config file (can be specified by –config-file=)<br />
 </li>
 <li>command line arguments</li>
 </ul>
@@ -360,7 +360,7 @@ Firefox,firefox,firefox</code></pre>
 <dd><p>When a variable takes an integer value, only numerical values are accepted. The only valid characters are digits (0-9) and minus-sign. All integer variables relating to geometry and position are interpreted as pixel values unless otherwise specified.</p>
 </dd>
 <dt><code>color</code></dt>
-<dd><p>When a variable takes a color value, only the syntax <code>#rrggbb aaa</code> is recognised, where <code>rr</code>, <code>gg</code> and <code>bb</code> represent hexadecimal values (00-ff) for the colours red, green and blue respectively; and <code>aaa</code> stands for the alpha channel value expressed as a percentage (0-100) (i.e. 100 means no transparency and 0 means fully transparent.) For example <code>#ff0000 100</code> represents red with no transparency, whereas <code>#000088 50</code> means dark blue with 50% transparency.</p>
+<dd><p>When a variable takes a color value, only the syntax <code>#rrggbb aaa</code> is recognised, where <code>rr</code>, <code>gg</code> and <code>bb</code> represent hexadecimal values (00-ff) for the colours red, green and blue respectively; and <code>aaa</code> stands for the alpha channel value expressed as a percentage (0-100) (i.e. 100 means no transparency and 0 means fully transparent.) For example <code>#ff0000 100</code> represents red with no transparency, whereas <code>#000088 50</code> means dark blue with 50% transparency.</p>
 </dd>
 <dt><code>pathname</code></dt>
 <dd><p>When a variable takes a pathname value, it is evaluated as a string. If the first character is tilde (~), it will be replaced by the the environment variable $HOME just as a shell would expand it.</p>
@@ -374,10 +374,10 @@ Firefox,firefox,firefox</code></pre>
 <p>Note: Some IPC messages need environment variable <code>JGMENU_VERBOSE=4</code> too</p>
 </dd>
 <dt><code>stay_alive</code> = <strong>boolean</strong> (default 1)</dt>
-<dd><p>If set to 1, the menu will &quot;hide&quot; rather than &quot;exit&quot; when the following events occur: clicking on menu item; clicking outside the menu; pressing escape. When in the hidden mode, a USR1 signal will &quot;un-hide&quot; the menu.</p>
+<dd><p>If set to 1, the menu will “hide” rather than “exit” when the following events occur: clicking on menu item; clicking outside the menu; pressing escape. When in the hidden mode, a USR1 signal will “un-hide” the menu.</p>
 </dd>
 <dt><code>hide_on_startup</code> = <strong>boolean</strong> (default 0)</dt>
-<dd><p>If set to 1, jgmenu start in &quot;hidden&quot; mode. This is useful for starting jgmenu during the boot process and then sending a <code>killall -SIGUSR1 jgmenu</code> to show the menu.</p>
+<dd><p>If set to 1, jgmenu start in “hidden” mode. This is useful for starting jgmenu during the boot process and then sending a <code>killall -SIGUSR1 jgmenu</code> to show the menu.</p>
 </dd>
 <dt><code>csv_cmd</code> = <strong>string</strong> (default <code>pmenu</code>)</dt>
 <dd><p>Defines the command to produce the jgmenu flavoured CSV for <code>jgmenu</code>. Accpetable keyword include pmenu, lx, apps and ob. If a value is given other than these keywords, it will be executed in a shell (so be careful!). If left blank, jgmenu will read from <code>stdin</code>. Examples:</p>
@@ -436,7 +436,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <dd><p>Vertical equilvalent of <code>menu_margin_x</code></p>
 </dd>
 <dt><code>menu_width</code> = <strong>integer</strong> (default 200)</dt>
-<dd><p>Minimum menu width of the menu. The menu width will adjust to the longest item in the current (sub)menu. If a filter is applied (e.g. by the user typing) the menu width will not adjust.</p>
+<dd><p>Minimum menu width of the menu. The menu width will adjust to the longest item in the current (sub)menu. If a filter is applied (e.g. by the user typing) the menu width will not adjust.</p>
 </dd>
 <dt><code>menu_height_min</code> = <strong>integer</strong> (default 0)</dt>
 <dd><p>Set the minimum height of the root menu. If <code>menu_height_min</code> and <code>menu_height_max</code> these are set to the same value, the menu height will be fixed at that value. If set to zero, they will be ignored.</p>
@@ -506,7 +506,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <dd><p>Height of menu items.</p>
 </dd>
 <dt><code>item_padding_x</code> = <strong>integer</strong> (default 4)</dt>
-<dd><p>Horizontal distance between item edge and its content (e.g. text or icon)</p>
+<dd><p>Horizontal distance between item edge and its content (e.g. text or icon)</p>
 </dd>
 <dt><code>item_radius</code> = <strong>integer</strong> (default 1)</dt>
 <dd><p>Radius of rounded corners of items</p>
@@ -538,7 +538,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <pre><code>sep_markup = font=&quot;Sans Italic 12&quot; foreground=&quot;blue&quot;</code></pre>
 </dd>
 <dt><code>font</code> = <strong>string</strong> (unset by default)</dt>
-<dd><p>Font description for menu items. <code>font</code> accepts a string such as <code>Cantarell 10</code> or <code>UbuntuCondensed 11</code>. The font description without a specified size unit is interpreted as <code>points</code>. If <code>px</code> is added, it will be read as pixels. Using &quot;points&quot; enables consistency with other applications.</p>
+<dd><p>Font description for menu items. <code>font</code> accepts a string such as <code>Cantarell 10</code> or <code>UbuntuCondensed 11</code>. The font description without a specified size unit is interpreted as <code>points</code>. If <code>px</code> is added, it will be read as pixels. Using “points” enables consistency with other applications.</p>
 </dd>
 <dt><code>font_fallback</code> = <strong>string</strong> (default xtg)</dt>
 <dd><p>Same as <code>icon_theme_fallback</code>, except that the xsettings variable <code>Gtk/FontName</code> is read.</p>
@@ -635,7 +635,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <p>The following environment variables define the position of the launcher. These are interpreted differently depending on panel alignment.</p>
 <p>In the case of a horizontal panel:</p>
 <ul>
-<li><p><code>TINT2_BUTTON_ALIGNED_X1</code> and <code>TINT2_BUTTON_ALIGNED_X2</code> define the launcher button's horizontal extremities to align to.</p></li>
+<li><p><code>TINT2_BUTTON_ALIGNED_X1</code> and <code>TINT2_BUTTON_ALIGNED_X2</code> define the launcher button’s horizontal extremities to align to.</p></li>
 <li><p><code>TINT2_BUTTON_ALIGNED_Y1</code> and <code>TINT2_BUTTON_ALIGNED_Y2</code> define the edge of the panel to align to. These shall be the same.</p></li>
 </ul>
 <p>In the case or a vertical panel, the same rules apply with X and Y reversed.</p>
