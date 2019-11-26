@@ -2,14 +2,27 @@
 
 die () { printf 'fatal: %b\n' "$@" >&2; exit 1; }
 
+first_line_of_file () {
+	mapfile -tn 1 line < "$1"
+	printf '%s\n' "${line[@]}"
+}
+
 build_page () {
 	filename=${1##*/}
 	html="${filename/%.md/.html}"
 	[[ $html -ot $1 ]] || return
 	printf '%s\n' "    GEN         ${html}"
-	[[ $html != index.html ]] && home="<a href='index.html'>Home</a>"
-	printf '%b' "${template/'{{content}}'/$home$(pandoc "$1")}" >"${html}"
-	home=
+
+	if [[ $html != index.html ]]; then
+		header="<a href='index.html'>Home</a>"
+	fi
+
+	first_line="$(first_line_of_file $1)"
+	# The first line of a man page in markdown starts with a % character
+	[[ $first_line == *%* ]] && header="${header}<br>${first_line#%}"
+
+	printf '%b' "${template/'{{content}}'/$header$(pandoc "$1")}" >"${html}"
+	header=
 }
 
 build_src_pages () {
