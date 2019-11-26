@@ -217,7 +217,7 @@ Note: If started in this way, `_NET_WORKAREA` may not be read correctly
 
 The X11 properties `WM_NAME` and `WM_CLASS` are set for jgmenu windows.
 
-In order to avoid jgmenu shadows, add one of these lines to
+For example, in order to avoid jgmenu shadows, add one of these lines to
 ~/.config/compton.conf:
 
 ```
@@ -226,6 +226,12 @@ shadow-exclude = [ "name = 'jgmenu'" ];
 
 ```
 shadow-exclude = [ "class_g = 'jgmenu'" ];
+```
+
+For a snappier experience, avoid fade by adding:
+
+```
+fade-exclude = [ "name = 'jgmenu'" ];
 ```
 
 ### obmenu-generator {#obmenu}
