@@ -9,10 +9,13 @@
     * Strip space from widget action (trim argv-buf fields on parse)
     * Add widget which refreshes each time menu is awoken (if mtime changed - possibly 'file' and 'exec') [https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333](https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333)
 - apps module
-  * add `csv_name_format` support
-  * support directories
-  * support built-in l10n for directory names
-  * add categories based on greeneye
+  * Support `JGMENU_NO_DIRS`
+  * Support `JGMENU_NAME_FORMAT`
+- jgmenu: add --border=<color>
+- Refactor code in `key_event()`
+- Create jgmenupango(7)
+- Create jgmenu-black-and-white.sh to produce simple scrots
+- jgmenu(1): add TOC
 
 ## 2020 Q1
 
