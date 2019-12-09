@@ -69,6 +69,8 @@ myself. I don't want to dampen anyone's enthusiams, but am trying to be
 realistic about it.
 
 - Icons in pipe-menus (issue #75)
+- Open submenu when navigating up/down with keyboard (issue #74)
+
 
 <hr />
 
