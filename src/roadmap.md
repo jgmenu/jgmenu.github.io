@@ -62,13 +62,13 @@
   menu-item onto the root menu - or similar)
 - Inline expansion of menus
 
-## Unlikely
+## Unlikely {#unlikely}
 
 This category contains features and requests that I am unlikely to implement
 myself. I don't want to dampen anyone's enthusiams, but am trying to be
 realistic about it.
 
-- Icons in pipe-menus
+- Icons in pipe-menus (issue #75)
 
 <hr />
 
