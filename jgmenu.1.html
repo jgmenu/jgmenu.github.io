@@ -601,7 +601,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <p>The following variables begin with <code>csv_</code> which denotes that they set environment variables which are used by the CSV generators.</p>
 <dl>
 <dt><code>csv_name_format</code> = <strong>string</strong> (default <code>%n (%g)</code>)</dt>
-<dd><p>Defines the format of the <code>name</code> field for CSV generators (currently only supported by lx). It understands the following two fields:</p>
+<dd><p>Defines the format of the <code>name</code> field for CSV generators. Supported by apps and lx. It understands the following two fields:</p>
 <dl>
 <dt><code>%n</code></dt>
 <dd><p>Application name</p>
@@ -612,10 +612,10 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 </dl>
 </dd>
 <dt><code>csv_single_window</code> = <strong>boolean</strong> (default 0)</dt>
-<dd><p>If set, csv-generators will output ^root() instead of ^checkout(). This results in a single window menu, where submenus appear in the same window. This is currently only supported by pmenu.</p>
+<dd><p>If set, csv-generators will output ^root() instead of ^checkout(). This results in a single window menu, where submenus appear in the same window. This is supported by apps and pmenu.</p>
 </dd>
 <dt><code>csv_no_dirs</code> = <strong>boolean</strong> (default 0)</dt>
-<dd><p>If set, csv-generators will output applications without any director structure. This is currently only supported by pmenu and lx.</p>
+<dd><p>If set, csv-generators will output applications without any director structure. This is supported by apps, pmenu and lx.</p>
 </dd>
 <dt><code>csv_i18n</code> = <strong>string</strong> (no default)</dt>
 <dd><p>If set, the ob module will look for a translation file in the specified file or directory. See <code>jgmenu_run i18n --help</code> and <code>jgmenu-ob(1)</code> for further details.</p>

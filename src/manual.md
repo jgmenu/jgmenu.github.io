@@ -22,19 +22,28 @@
 
 :   An overview of jgmenu unicode usage.
 
-## Modules {#modules}
+## Core Modules {#core-modules}
 
-[`lx`](jgmenu-lx.1.html)
+[`apps`](jgmenu-apps.1.html)
 
-:   XDG compliant menu based on libmenu-cache from the LXDE project.
+:   Simple applications menu
 
 [`ob`](jgmenu-ob.1.html)
 
 :   Openbox menu based on XML file
 
+## Contrib Modules {#contrib-modules}
+
+These may not be installed on your system - it depends on what ./configure
+options the package maintainer provided.
+
+[`lx`](jgmenu-lx.1.html)
+
+:   XDG compliant menu based on libmenu-cache from the LXDE project.
+
 [`pmenu`](jgmenu-pmenu.1.html)
 
-:   Simple applications menu
+:   Simple applications menu - the original
 
 ## Bookmarks {#bookmarks}
 

@@ -1,6 +1,6 @@
 # Roadmap
 
-## 2019 Q4
+## 2020 Q1
 
 - Cut Exec field correctly (i.e. at % but not %%) (issue #68)
 - Add strict xdg compliant execl function (i.e. without "sh -c" wrapper). Add CSV fields 6 for `strict_xdg_exec`
@@ -8,16 +8,12 @@
     * Parse align field
     * Strip space from widget action (trim argv-buf fields on parse)
     * Add widget which refreshes each time menu is awoken (if mtime changed - possibly 'file' and 'exec') [https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333](https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333)
-- apps module
-  * Support `JGMENU_NO_DIRS`
-  * Support `JGMENU_NAME_FORMAT`
-- jgmenu: add --border=<color>
 - Refactor code in `key_event()`
 - Create jgmenupango(7)
 - Create jgmenu-black-and-white.sh to produce simple scrots
 - jgmenu(1): add TOC
 
-## 2020 Q1
+## 2020 Q2
 
 - Finish off columns implementation
     * Support moving left/right between columns
@@ -45,7 +41,7 @@
   * Remove % items ina more sophisticated way
   * Cope with desktop-file without exec field
 
-## 2020 Q2-4
+## 2020 Q3-4
 
 - Support startup notification (issue #62) and add CSV fields 7 for `startup_notify`
 - Add better timer support
