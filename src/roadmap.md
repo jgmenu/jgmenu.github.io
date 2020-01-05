@@ -10,7 +10,6 @@
     * Add widget which refreshes each time menu is awoken (if mtime changed - possibly 'file' and 'exec') [https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333](https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333)
 - Refactor code in `key_event()`
 - Create jgmenupango(7)
-- Create jgmenu-black-and-white.sh to produce simple scrots
 - jgmenu(1): add TOC
 
 ## 2020 Q2
