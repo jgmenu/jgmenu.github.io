@@ -9,6 +9,7 @@ scripting, ricing and tweaking.
 - [Manual](manual.html)
 - [Integration](integration.html)
 - [Roadmap](roadmap.html)
+- [Links](links.html)
 
 ## Development
 
