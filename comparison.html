@@ -94,21 +94,64 @@ dd p {
 </head>
 <body>
 <main>
-<h1 id="jgmenu">jgmenu</h1>
-<p>A simple, independent and contemporary-looking X11 menu, designed for scripting, ricing and tweaking.</p>
-<h2 id="main">Main</h2>
+<a href='index.html'>Home</a><h1 id="comparison-of-application-menu-modules">Comparison of Application Menu Modules</h1>
+<p>All modules have the following features:</p>
 <ul>
-<li><a href="screenshots.html">Screenshots</a></li>
-<li><a href="manual.html">Manual</a></li>
-<li><a href="integration.html">Integration</a></li>
-<li><a href="roadmap.html">Roadmap</a></li>
-<li><a href="links.html">Links</a></li>
-<li><a href="comparison.html">Comparison of Application Menu Modules</a></li>
+<li>Localisation of .desktop files and directory names<br />
+</li>
+<li>Inclusion of append.csv and prepend.csv in root menu<br />
+</li>
+<li>Support config option <code>csv_no_dirs</code></li>
 </ul>
-<h2 id="development">Development</h2>
-<ul>
-<li><a href="https://github.com/johanmalm/jgmenu.git">Source Code</a></li>
-</ul>
+<p>The table below describes features which vary between modules:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>apps</th>
+<th>lx</th>
+<th>pmenu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>speed</td>
+<td>fast</td>
+<td>fast</td>
+<td>slow</td>
+</tr>
+<tr class="even">
+<td>language</td>
+<td>C</td>
+<td>C</td>
+<td>python</td>
+</tr>
+<tr class="odd">
+<td>XDG compliance</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td>Config option <code>csv_single_window</code></td>
+<td>fast</td>
+<td>fast</td>
+<td>slow</td>
+</tr>
+<tr class="odd">
+<td>Config option <code>csv_name_format</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td>i18n of append.csv and prepend.csv</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
 </main>
 </body>
 </html>

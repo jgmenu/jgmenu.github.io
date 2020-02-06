@@ -10,6 +10,7 @@ scripting, ricing and tweaking.
 - [Integration](integration.html)
 - [Roadmap](roadmap.html)
 - [Links](links.html)
+- [Comparison of Application Menu Modules](comparison.html)
 
 ## Development
 

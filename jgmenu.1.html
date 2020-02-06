@@ -337,7 +337,7 @@ Firefox,firefox,firefox</code></pre>
 <ul>
 <li>built-in defaults (config.c)<br />
 </li>
-<li>tint2rc config file (can be specified by <code>TINT2_CONFIG</code> environment variable<br />
+<li>tint2rc config file (can be specified by <code>TINT2_CONFIG</code> environment variable)<br />
 </li>
 <li>jgmenurc config file (can be specified by –config-file=)<br />
 </li>
@@ -370,7 +370,7 @@ Firefox,firefox,firefox</code></pre>
 <dt><code>verbosity</code> = <strong>integer</strong> (default 0)</dt>
 <dd><p>General verbosity: (0) warnings only; (1) basic info; (2) more info; (3) max info</p>
 <p>Additional specific topics: (4) IPC</p>
-<p>Note: Some IPC messages need environment variable <code>JGMENU_VERBOSE=4</code> too</p>
+<p>Note: Some IPC messages need environment variable <code>JGMENU_VERBOSITY=4</code> too</p>
 </dd>
 <dt><code>stay_alive</code> = <strong>boolean</strong> (default 1)</dt>
 <dd><p>If set to 1, the menu will “hide” rather than “exit” when the following events occur: clicking on menu item; clicking outside the menu; pressing escape. When in the hidden mode, a USR1 signal will “un-hide” the menu.</p>
@@ -378,8 +378,8 @@ Firefox,firefox,firefox</code></pre>
 <dt><code>hide_on_startup</code> = <strong>boolean</strong> (default 0)</dt>
 <dd><p>If set to 1, jgmenu start in “hidden” mode. This is useful for starting jgmenu during the boot process and then sending a <code>killall -SIGUSR1 jgmenu</code> to show the menu.</p>
 </dd>
-<dt><code>csv_cmd</code> = <strong>string</strong> (default <code>pmenu</code>)</dt>
-<dd><p>Defines the command to produce the jgmenu flavoured CSV for <code>jgmenu</code>. Accpetable keyword include pmenu, lx, apps and ob. If a value is given other than these keywords, it will be executed in a shell (so be careful!). If left blank, jgmenu will read from <code>stdin</code>. Examples:</p>
+<dt><code>csv_cmd</code> = <strong>string</strong> (default <code>apps</code>)</dt>
+<dd><p>Defines the command to produce the jgmenu flavoured CSV for <code>jgmenu</code>. Accpetable keyword include apps, pmenu, lx, and ob. If a value is given other than these keywords, it will be executed in a shell (so be careful!). If left blank, jgmenu will read from <code>stdin</code>. Examples:</p>
 <pre><code>csv_cmd = lx
 csv_cmd = jgmenu_run lx --no-dirs
 csv_cmd = cat ~/mymenu.csv</code></pre>
@@ -444,9 +444,10 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <dd><p>Minimum height of the root menu. See <code>menu_height_min</code></p>
 </dd>
 <dt><code>menu_height_mode</code> = (static | dynamic) (default static)</dt>
-<dd><dl>
+<dd><p>Mode of menu height</p>
+<dl>
 <dt><code>static</code></dt>
-<dd><p>Height of the initial root menu will be used for any subsequent <code>^root()</code> action</p>
+<dd>Height of the initial root menu will be used for any subsequent <code>^root()</code> action
 </dd>
 <dt><code>dynamic</code></dt>
 <dd><p>Root menu height will be re-calculated every time a new tag is opened using <code>^root()</code>.</p>
@@ -673,12 +674,12 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <pre><code>╔═╤═╤════════════════╤═╤═╗
 ║ │ │                │ │ ║
 ║ │ ├────────────────┤ │ ║
-║ │ │ @    web      &gt;│ │ ║
+║ │ │icon   text    &gt;│ │ ║
 ║ │ ├────────────────┤ │ ║
 ║2│1│                │1│3║
-║ │ ├───┬─┬────────┬─┤ │ ║
-║ │ │ 4 │5│        │6│ │ ║
-║ │ ├───┴─┴────────┴─┤ │ ║
+║ │ ├────┬─┬───────┬─┤ │ ║
+║ │ │ 4  │5│       │6│ │ ║
+║ │ ├────┴─┴───────┴─┤ │ ║
 ║ │ │                │ │ ║
 ║ │ │                │ │ ║
 ╚═╧═╧════════════════╧═╧═╝
