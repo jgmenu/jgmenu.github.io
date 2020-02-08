@@ -95,7 +95,15 @@ dd p {
 <body>
 <main>
 <a href='index.html'>Home</a><h1 id="comparison-of-application-menu-modules">Comparison of Application Menu Modules</h1>
-<p>All modules have the following features:</p>
+<p>Comparison of:</p>
+<ul>
+<li><a href="jgmenu-apps.1.html">jgmenu-apps(1)</a><br />
+</li>
+<li><a href="jgmenu-lx.1.html">jgmenu-lx(1)</a><br />
+</li>
+<li><a href="jgmenu-pmenu.1.html">jgmenu-pmenu(1)</a></li>
+</ul>
+<p>The modules have the following features in common:</p>
 <ul>
 <li>Localisation of .desktop files and directory names<br />
 </li>
@@ -134,9 +142,9 @@ dd p {
 </tr>
 <tr class="even">
 <td>Config option <code>csv_single_window</code></td>
-<td>fast</td>
-<td>fast</td>
-<td>slow</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
 </tr>
 <tr class="odd">
 <td>Config option <code>csv_name_format</code></td>
@@ -146,6 +154,18 @@ dd p {
 </tr>
 <tr class="even">
 <td>i18n of append.csv and prepend.csv</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<td>gracefully handle non-utf8 encodings</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td>provide directory schema without menu package</td>
 <td>yes</td>
 <td>no</td>
 <td>no</td>

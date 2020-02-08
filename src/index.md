@@ -1,17 +1,13 @@
-# jgmenu
+<h1><img src="img/jgmenu.png" alt="jgmenu" height="64px"><br />jgmenu</h1>
 
-A simple, independent and contemporary-looking X11 menu, designed for
+A simple, independent, contemporary-looking X11 menu, designed for
 scripting, ricing and tweaking.
-
-## Main
 
 - [Screenshots](screenshots.html)
 - [Manual](manual.html)
 - [Integration](integration.html)
 - [Roadmap](roadmap.html)
 - [Links](links.html)
-- [Comparison of Application Menu Modules](comparison.html)
+- [Module Comparison](comparison.html)
+- [Source Code](https://github.com/johanmalm/jgmenu)
 
-## Development
-
-- [Source Code](https://github.com/johanmalm/jgmenu.git)
