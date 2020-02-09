@@ -2,8 +2,8 @@
 
 ## 2020 Q1
 
-- Cut Exec field correctly (i.e. at % but not %%) (issue #68)
-- Add strict xdg compliant execl function (i.e. without "sh -c" wrapper). Add CSV fields 6 for `strict_xdg_exec`
+- Add strict xdg compliant execl function (i.e. without "sh -c" wrapper).
+- Add CSV fields 6 for `strict_xdg_exec`
 - Widgets
     * Parse align field
     * Strip space from widget action (trim argv-buf fields on parse)
