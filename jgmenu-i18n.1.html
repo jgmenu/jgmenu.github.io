@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>jgmenu</title>
+<meta charset="utf-8" />
+<meta name="description" content="jgmenu"/>
+<meta name="viewport" content="width=device-width">
+<style>
+body {
+	overflow-y: scroll;
+	font-family: monospace;
+	background-color: #fff;
+	color: black;
+	max-width: 600px;
+	padding: 20px;
+	line-height: 1.5;
+	word-wrap: break-word;
+	margin: auto;
+}
+
+pre {
+	padding: 20px;
+	white-space: pre-wrap;
+	border: 1px dotted gray;
+	display: block;
+	margin: 20px auto;
+	background-color: #eee;
+	color: #111;
+}
+
+code {
+	font-family: monospace;
+	background-color: #eee;
+	color: #111;
+}
+
+img {
+	margin: 20px auto;
+	max-width: 100%;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table,th,td {
+	border: 1px solid black;
+}
+
+th,td {
+	padding: 15px;
+	text-align: left;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
+	text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: monospace;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 130%;
+}
+
+h2 {
+	font-size: 110%;
+}
+
+h3 {
+	font-size: 95%;
+}
+
+h4 {
+	font-size: 90%;
+	font-style: italic;
+}
+
+h5 {
+	font-size: 90%;
+	font-style: italic;
+}
+
+dt code {
+	font-weight: bold;
+}
+
+dd p {
+	margin-top: 0;
+}
+</style>
+</head>
+<body>
+<main>
+<a href='index.html'>Home</a><br> JGMENU-APPS(1)<h1 id="name">NAME</h1>
+<p>jgmenu-i18n - support translation of jgmenu flavoured CSV menu data</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>jgmenu_run i18n &lt;<em>translation-file</em>&gt;</p>
+<p>jgmenu_run i18n --init [&lt;<em>translation-file</em>&gt;]</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><code>jgmenu_run i18n</code> reads jgmenu flavoured CSV menu data from stdin and either translates it, or creates a po style translation file</p>
+<p>The &lt;<em>translation-file</em>&gt; argument can be a file or directory. If it is the latter, translation files will be searched for in this directory based on the environment variable $LANG, which will be assumed to be in the format <code>ll_CC.UTF8</code> where <code>ll</code> is an ISO 639 two-letter language code and <code>CC</code> is an ISO 3166 two-letter country code. Files named <code>ll_CC</code> and <code>ll</code> will be used in said order.</p>
+<h1 id="options">OPTIONS</h1>
+<dl>
+<dt><code>--init</code></dt>
+<dd><p>Create a template po style translation file with blank msgid entries</p>
+</dd>
+</dl>
+<h1 id="examples">EXAMPLES</h1>
+<h2 id="create-translation-file-template-for-manual-translation">Create translation file template for manual translation</h2>
+<p>Modules jgmenu-apps(1) and jgmenu-ob(1) have built-in i18n support. In order to use this features, a translation file is required. Here follow examples of how a translation file can be created:</p>
+<p>Example 1.</p>
+<pre><code>jgmenu_run ob | jgmenu_run i18n --init &gt;sv</code></pre>
+<p>Example 2.</p>
+<pre><code>jgmenu_run i18n --init &lt;prepend.csv &gt;sv</code></pre>
+<p>The result of the above commands would be a skeleton translation file (<code>sv</code> in this case) containing entries like this:</p>
+<pre><code>msgid &quot;Web Browser&quot;
+msgstr &quot;&quot;</code></pre>
+<p>Manually translate the empty msgstr fields.</p>
+<h2 id="use-translation-file">Use translation file</h2>
+<p>If using modules jgmenu-apps(1) or jgmenu-ob(1), just set <code>csv_i18n</code> in jgmenurc to directly point to a translation-file or a directory containing translation files.</p>
+<p>In special circumstances, you may wish to include i18n in command plumbing. Here follow an example of how this could be constructed:</p>
+<pre><code>&lt;csv-generating-command&gt; \
+    | jgmenu_run i18n &lt;translation-file&gt; \
+    | jgmenu --vsimple</code></pre>
+</main>
+</body>
+</html>
