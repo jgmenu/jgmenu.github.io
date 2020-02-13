@@ -32,3 +32,7 @@ from the LXDE project.
 
 [jgmenu-pmenu(1)](jgmenu-pmenu.1.html) - The original applications menu.
 
+## Other Commands
+
+[jgmenu-i18n(1)](jgmenu-i18n.1.html) - translation support
+
