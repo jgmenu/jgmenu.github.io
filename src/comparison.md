@@ -21,6 +21,7 @@ The table below describes features which vary between modules:
 | XDG compliance                                | no     | yes    | no     |
 | Config option `csv_single_window`             | yes    | yes    | no     |
 | Config option `csv_name_format`               | yes    | yes    | no     |
+| Config option `csv_one_cat_per_app`           | yes    | no     | no     |
 | i18n of append.csv and prepend.csv            | yes    | no     | no     |
 | gracefully handle non-utf8 encodings          | yes    | no     | yes    |
 | provide directory schema without menu package | yes    | no     | no     |
