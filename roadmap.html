@@ -99,12 +99,7 @@ dd p {
 <ul>
 <li>Add strict xdg compliant execl function (i.e. without “sh -c” wrapper).</li>
 <li>Add CSV fields 6 for <code>strict_xdg_exec</code></li>
-<li>Widgets
-<ul>
-<li>Parse align field</li>
-<li>Strip space from widget action (trim argv-buf fields on parse)</li>
-<li>Add widget which refreshes each time menu is awoken (if mtime changed - possibly ‘file’ and ‘exec’) <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333" class="uri">https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333</a></li>
-</ul></li>
+<li>Widgets: Parse align field</li>
 <li>Refactor code in <code>key_event()</code></li>
 <li>Create jgmenupango(7)</li>
 <li>jgmenu(1): add TOC</li>
@@ -123,25 +118,7 @@ dd p {
 <li>Support GTK theme</li>
 <li>Support parsing compton.conf menu-opacity value</li>
 </ul></li>
-<li>obtheme: deal with gradients and RGB(rrr, ggg, bbb) format</li>
-<li>Improve lx module
-<ul>
-<li>Support i18n for prepend.csv and append.csv</li>
-<li>Use desktop specific flags</li>
-<li>Add ‘comment’ to <code>csv_name_format</code> (%c)</li>
-<li>Triple quote all variables if they contain commas (not just name and exec)</li>
-<li>Apply <code>csv_name_format</code> to directories too</li>
-<li>Fix bug: <code>JGMENU_NO_DIRS=1</code> with append and prepend doesn’t work</li>
-<li>If no menu file or no root dir, write tempfile with &lt;All /&gt;. This allows lx to run even if no menu package exists (albeit without directories).</li>
-<li>Read the above temp file if “–no-dir” specified (puts item in alphabetical order without having to do a qsort)</li>
-<li>Deal with xfce-applications.menu. Currently libmenu-cache can’t read it because the root-item has the wrong name.</li>
-<li>Support <code>JGMENU_SINGLE_WINDOW=1</code></li>
-<li>Check that .desktop files are not Unicode in order to avoid segfault (add unit test)</li>
-<li>Write some unit tests (incl. nested menus)</li>
-<li>Parse %% correctly in ‘Exec=’ field (isuse #68)</li>
-<li>Remove % items ina more sophisticated way</li>
-<li>Cope with desktop-file without exec field</li>
-</ul></li>
+<li>Widgets: Add widget which refreshes each time menu is awoken (if mtime changed - possibly ‘file’ and ‘exec’) <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333" class="uri">https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333</a></li>
 </ul>
 <h2 id="q3-4">2020 Q3-4</h2>
 <ul>
@@ -166,6 +143,23 @@ dd p {
 <ul>
 <li>Icons in pipe-menus (issue #75)</li>
 <li>Open submenu when navigating up/down with keyboard (issue #74)</li>
+<li>obtheme: deal with gradients and RGB(rrr, ggg, bbb) format</li>
+</ul>
+<h2 id="lx-module">lx module</h2>
+<ul>
+<li>Support i18n for prepend.csv and append.csv</li>
+<li>Use desktop specific flags</li>
+<li>Add ‘comment’ to <code>csv_name_format</code> (%c)</li>
+<li>Triple quote all variables if they contain commas (not just name and exec)</li>
+<li>Apply <code>csv_name_format</code> to directories too</li>
+<li>Fix bug: <code>JGMENU_NO_DIRS=1</code> with append and prepend doesn’t work</li>
+<li>If no menu file or no root dir, write tempfile with &lt;All /&gt;. This allows lx to run even if no menu package exists (albeit without directories).</li>
+<li>Read the above temp file if “–no-dir” specified (puts item in alphabetical order without having to do a qsort)</li>
+<li>Deal with xfce-applications.menu. Currently libmenu-cache can’t read it because the root-item has the wrong name.</li>
+<li>Support <code>JGMENU_SINGLE_WINDOW=1</code></li>
+<li>Check that .desktop files are not Unicode in order to avoid segfault (add unit test)</li>
+<li>Write some unit tests (incl. nested menus)</li>
+<li>Cope with desktop-file without exec field</li>
 </ul>
 <hr />
 </main>
