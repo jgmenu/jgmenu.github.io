@@ -198,13 +198,13 @@ File Manager,pcmanfm</code></pre>
 <p>This lets you give a more meaningful description to each menu item.</p>
 <h1 id="lesson5">Lesson 5 - Icons</h1>
 <p>To display icons, you need to populate the third field. By default, jgmenu will obtain the icon theme from xsettings (if it is running) or tint2rc (if it exists). When running with the –simple argument, make sure that <code>icon_theme</code> is set to something sensible in your $HOME/.config/jgmenu/jgmenurc. Consider the following CSV menu data:</p>
-<pre><code>Browser,firefox,firefox
-File manager,pcmanfm,system-file-manager
-Terminal,xterm,utilities-terminal
-Lock,i3lock -c 000000,system-lock-screen
-Exit to prompt,openbox --exit,system-log-out
-Reboot,systemctl -i reboot,system-reboot
-Poweroff,systemctl -i poweroff,system-shutdown</code></pre>
+<pre><code>Browser,        firefox,               firefox
+File manager,   pcmanfm,               system-file-manager
+Terminal,       xterm,                 utilities-terminal
+Lock,           i3lock -c 000000,      system-lock-screen
+Exit to prompt, openbox --exit,        system-log-out
+Reboot,         systemctl -i reboot,   system-reboot
+Poweroff,       systemctl -i poweroff, system-shutdown</code></pre>
 <p>In the third field you can also specify the full path if you wish.</p>
 <h1 id="lesson6">Lesson 6 - Submenus</h1>
 <p>So far we have looked at producing a single “root” menu only. jgmenu understands a small amount of markup and enables submenus by ^tag() and ^checkout(). Try this:</p>
@@ -263,15 +263,15 @@ menu_halign=center</code></pre>
 <h1 id="lesson9">Lesson 9 - Apprend/Prepend and Separators</h1>
 <p>When using <code>apps</code>, <code>pmenu</code> or <code>lx</code>, you can add menu items to the top and bottom of the root menu by editing append.csv and/or prepend.csv in ~/.config/jgmenu. For example, try the following:</p>
 <p>prepend.csv</p>
-<pre><code>Browser,firefox,firefox
-File manager,pcmanfm,system-file-manager
-Terminal,xterm,utilities-terminal
+<pre><code>Browser,      firefox,               firefox
+File manager, pcmanfm,               system-file-manager
+Terminal,     xterm,                 utilities-terminal
 ^sep()</code></pre>
 <p>append.csv</p>
 <pre><code>^sep()
-Suspend,systemctl -i suspend,system-log-out
-Reboot,systemctl -i reboot,system-reboot
-Poweroff,systemctl -i poweroff,system-shutdown</code></pre>
+Suspend,      systemctl -i suspend,  system-log-out
+Reboot,       systemctl -i reboot,   system-reboot
+Poweroff,     systemctl -i poweroff, system-shutdown</code></pre>
 <p>In these example we have used the markup ^sep(), which inserts a horizontal separator line. Similarly, ^sep(foo) inserts a text separator displaying “foo”</p>
 <h1 id="lesson10">Lesson 10 - CSV generators</h1>
 <p>In previous lessons, we introduced the <code>apps</code>, <code>lx</code> and <code>pmenu</code>. These modules are referred to as “CSV generators” and are invoked as follows:</p>
