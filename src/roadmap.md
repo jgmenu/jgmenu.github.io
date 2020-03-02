@@ -3,7 +3,7 @@
 ## 2020 Q1
 
 - Add strict xdg compliant execl function (i.e. without "sh -c" wrapper).
-- Add CSV fields 6 for `strict_xdg_exec`
+- Add CSV field for `strict_xdg_exec`
 - Widgets: Parse align field
 - Refactor code in `key_event()`
 - Create jgmenupango(7)

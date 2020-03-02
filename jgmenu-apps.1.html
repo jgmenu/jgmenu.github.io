@@ -97,7 +97,7 @@ dd p {
 <a href='index.html'>Home</a><br> JGMENU-APPS(1)<h1 id="name">NAME</h1>
 <p>jgmenu-apps - generate jgmenu flavoured CSV menu data</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p><code>jgmenu_run apps</code></p>
+<p><code>jgmenu_run apps</code> [--help] [--no-append] [--no-prepend]</p>
 <h1 id="description">DESCRIPTION</h1>
 <p><code>jgmenu_run apps</code> generates jgmenu flavoured CSV menu data for system applications using built-in schema data or a specified schema file to map categories to directories, rather than system .directory files.</p>
 <p>A schema is searched for in the following locations and order:</p>
@@ -169,7 +169,13 @@ Categories=Emulator;System;</code></pre>
 <h1 id="options">OPTIONS</h1>
 <dl>
 <dt><code>--help</code></dt>
-<dd><p>Show help message and exit</p>
+<dd>Show help message and exit
+</dd>
+<dt><code>--no-prepend</code></dt>
+<dd>Do not output ~/.config/jgmenu/prepend.csv before root menu
+</dd>
+<dt><code>--no-append</code></dt>
+<dd>Do not output ~/.config/jgmenu/append.csv after root menu
 </dd>
 </dl>
 <h1 id="environment-variables">ENVIRONMENT VARIABLES</h1>
