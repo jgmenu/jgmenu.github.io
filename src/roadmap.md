@@ -1,15 +1,14 @@
 # Roadmap
 
-## 2020 Q1
+## 2020 Q2
 
 - Add strict xdg compliant execl function (i.e. without "sh -c" wrapper).
 - Add CSV field for `strict_xdg_exec`
 - Widgets: Parse align field
-- Refactor code in `key_event()`
 - Create jgmenupango(7)
 - jgmenu(1): add TOC
 
-## 2020 Q2
+## 2020 Q3
 
 - Finish off columns implementation
     * Support moving left/right between columns
@@ -21,7 +20,7 @@
   * Support parsing compton.conf menu-opacity value
 - Widgets: Add widget which refreshes each time menu is awoken (if mtime changed - possibly 'file' and 'exec') [https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333](https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333)
 
-## 2020 Q3-4
+## 2020 Q4
 
 - Support startup notification (issue #62) and add CSV fields 7 for `startup_notify`
 - Add better timer support
