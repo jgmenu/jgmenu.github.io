@@ -91,6 +91,14 @@ dd p {
 	margin-top: 0;
 }
 </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162822348-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162822348-1');
+</script>
 </head>
 <body>
 <main>
@@ -111,12 +119,8 @@ dd p {
 <li>Deal with <code>menu_width</code> more intelligently</li>
 <li>Deal with <code>menu_height</code> (incl dyamic mode) more intelligently</li>
 </ul></li>
-<li>Hooks (watch files and exec command on change)
-<ul>
 <li>Split t2conf.c code into separate module and call using hooks. This will simplify the code base.</li>
-<li>Support GTK theme</li>
 <li>Support parsing compton.conf menu-opacity value</li>
-</ul></li>
 <li>Widgets: Add widget which refreshes each time menu is awoken (if mtime changed - possibly ‘file’ and ‘exec’) <a href="https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333" class="uri">https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333</a></li>
 </ul>
 <h2 id="q4">2020 Q4</h2>

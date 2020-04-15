@@ -14,10 +14,8 @@
     * Support moving left/right between columns
     * Deal with `menu_width` more intelligently
     * Deal with `menu_height` (incl dyamic mode) more intelligently
-- Hooks (watch files and exec command on change)
-  * Split t2conf.c code into separate module and call using hooks. This will simplify the code base.
-  * Support GTK theme
-  * Support parsing compton.conf menu-opacity value
+- Split t2conf.c code into separate module and call using hooks. This will simplify the code base.
+- Support parsing compton.conf menu-opacity value
 - Widgets: Add widget which refreshes each time menu is awoken (if mtime changed - possibly 'file' and 'exec') [https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333](https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333)
 
 ## 2020 Q4
