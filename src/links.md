@@ -17,6 +17,11 @@
 [gmake directory variables](https://www.gnu.org/software/make/manual/html_node/Directory-Variables.html)  
 [gettext](https://www.gnu.org/software/gettext/manual/gettext.html)  
 
+## Debian References
+
+[file system structue](https://www.debian.org/doc/debian-policy/ch-opersys.html#file-system-structure)
+[file system hierarchy](https://www.debian.org/doc/packaging-manuals/fhs/fhs-3.0.html)
+
 ## TLPI
 
 [stat.c](http://man7.org/tlpi/code/online/dist/files/t_stat.c.html)  

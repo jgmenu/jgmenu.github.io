@@ -38,28 +38,12 @@
 ## Unlikely {#unlikely}
 
 This category contains features and requests that I am unlikely to implement
-myself. I don't want to dampen anyone's enthusiams, but am trying to be
+myself. I don't want to dampen anyone's enthusiasm, but am trying to be
 realistic about it.
 
 - Icons in pipe-menus (issue #75)
 - Open submenu when navigating up/down with keyboard (issue #74)
 - obtheme: deal with gradients and RGB(rrr, ggg, bbb) format
-
-## lx module
-
-  * Support i18n for prepend.csv and append.csv
-  * Use desktop specific flags
-  * Add 'comment' to `csv_name_format` (%c)
-  * Triple quote all variables if they contain commas (not just name and exec)
-  * Apply `csv_name_format` to directories too
-  * Fix bug: `JGMENU_NO_DIRS=1` with append and prepend doesn't work
-  * If no menu file or no root dir, write tempfile with &lt;All /&gt;. This allows lx to run even if no menu package exists (albeit without directories).
-  * Read the above temp file if "--no-dir" specified (puts item in alphabetical order without having to do a qsort)
-  * Deal with xfce-applications.menu. Currently libmenu-cache can't read it because the root-item has the wrong name.
-  * Support `JGMENU_SINGLE_WINDOW=1`
-  * Check that .desktop files are not Unicode in order to avoid segfault (add unit test)
-  * Write some unit tests (incl. nested menus)
-  * Cope with desktop-file without exec field
 
 <hr />
 
