@@ -138,7 +138,9 @@ dd p {
 </li>
 <li>working directory<br />
 </li>
-<li>metadata</li>
+<li>metadata<br />
+</li>
+<li>execute without “sh -c” wrapper</li>
 </ol>
 <p>For example:</p>
 <pre><code>printf &quot;Terminal,xterm\nWeb Browser,firefox&quot; | jgmenu --vsimple</code></pre>
@@ -725,6 +727,17 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 1. menu_margin_x
 2. menu_margin_y
 3. sub_spacing</code></pre>
+<h1 id="hooks">HOOKS</h1>
+<p>A hook in jgmenu is a rule which optionally triggers a command and then performs a restart if a file or directory has has changed since the last time the instance of jgmenu was mapped (=made visible - normally by running jgmenu_run).</p>
+<p>Hooks are specified in the file $HOME/.config/jgmenu/hooks are take the format</p>
+<pre><code>&lt;file&gt;,&lt;command&gt;</code></pre>
+<p>For example, to syncronise with the GTK theme, use this hook:</p>
+<pre><code>~/.config/gtk-3.0/settings.ini,jgmenu_run gtktheme</code></pre>
+<p>Leave the <code>&lt;command&gt;</code> empty to just restart.</p>
+<p>A number of restart-hooks are built-in by default, for example ~/.config/jgmenu/{jgmenurc,append.csv,prepend.csv} and /usr/share/applications.</p>
+<p>To list all the built-in hooks, use the keyword <code>print</code> in the hook file (on a line on its own). In order to remove all the built-in hooks, use the keyword <code>clear</code>.</p>
+<h1 id="startup-script">STARTUP SCRIPT</h1>
+<p>Unless the <code>--vsimple</code> argument is used, the file ~/.config/jgmenu/startup is executed on initial startup.</p>
 <h1 id="see-also">SEE ALSO</h1>
 <ul>
 <li><code>jgmenu_run(1)</code></li>
