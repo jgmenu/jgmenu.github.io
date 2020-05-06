@@ -123,6 +123,7 @@ dd p {
 <li><a href="#compton">compton</a></li>
 <li><a href="#obmenu">obmenu-generator</a></li>
 <li><a href="#superkey">superkey</a></li>
+<li><a href="#gtktheme">gtk theme</a></li>
 </ul>
 <h2 id="panels">Panels</h2>
 <h3 id="tint2">tint2</h3>
@@ -246,6 +247,29 @@ arrow_width         = 8</code></pre>
 <li><p>Install <code>xcape</code> and run the following: <code>xcape -e 'Super_L=Control_L|Escape'</code></p></li>
 </ol>
 <p><code>ksuperkey</code> is a very similar package and can be used instead of <code>xcape</code></p>
+<h3 id="gtktheme">GTK theme</h3>
+<p>Add the code below to ~/.config/jgmenu/startup and make the file executable:</p>
+<pre><code>#!/bin/sh
+
+gtktheme () {
+    while IFS=&#39;=&#39; read -r key value; do
+        if [ &quot;${key}&quot; = &quot;gtk-theme-name&quot; ]; then
+            printf &#39;%s&#39; &quot;${value}&quot;
+            return 0
+        fi
+    done &lt; &quot;$HOME/.config/gtk-3.0/settings.ini&quot;
+}
+
+old=$(cat ~/.cache/jgmenu/.last-gtktheme)
+new=$(gtktheme)
+
+if ! [ &quot;${old}&quot; = &quot;${new}&quot; ]; then
+    printf &#39;%b
+&#39; &quot;info: change gtk theme from ${old} to ${new}&quot;
+    jgmenu_run gtktheme
+fi</code></pre>
+<p>Add the following to ~/.config/jgmenu/hooks:</p>
+<pre><code>~/.config/gtk-3.0/settings.ini,jgmenu_run gtktheme</code></pre>
 </main>
 </body>
 </html>

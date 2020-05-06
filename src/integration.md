@@ -20,6 +20,7 @@ Other
 - [compton](#compton)
 - [obmenu-generator](#obmenu)
 - [superkey](#superkey)
+- [gtk theme](#gtktheme)
 
 ## Panels
 
@@ -267,3 +268,33 @@ In order to bind jgmenu to the super-key, take the following steps:
 
 `ksuperkey` is a very similar package and can be used instead of `xcape`
 
+### GTK theme {#gtktheme}
+
+Add the code below to ~/.config/jgmenu/startup and make the file executable:
+
+```
+#!/bin/sh
+
+gtktheme () {
+	while IFS='=' read -r key value; do
+		if [ "${key}" = "gtk-theme-name" ]; then
+			printf '%s' "${value}"
+			return 0
+		fi
+	done < "$HOME/.config/gtk-3.0/settings.ini"
+}
+
+old=$(cat ~/.cache/jgmenu/.last-gtktheme)
+new=$(gtktheme)
+
+if ! [ "${old}" = "${new}" ]; then
+	printf '%b\n' "info: change gtk theme from ${old} to ${new}"
+	jgmenu_run gtktheme
+fi
+```
+
+Add the following to ~/.config/jgmenu/hooks:
+
+```
+~/.config/gtk-3.0/settings.ini,jgmenu_run gtktheme
+```
