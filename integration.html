@@ -140,7 +140,7 @@ button_lclick_command = jgmenu_run</code></pre>
 <pre><code>startup_notifications = 0</code></pre>
 <p>tint2 respects the <code>StartupNotify=</code> key in the .desktop files, so if you want to have a menu button wihtout SN and other launchers with SN, you would have to set <code>startup_notification = 1</code> in tint2rc and use a launcher plugin for your jgmenu button.</p>
 <h3 id="polybar">polybar</h3>
-<p>Add “jgmenu” to one of “modules-{left,center,right} in the”[bar/foo]&quot; section.</p>
+<p>Add “jgmenu” to one of “modules-{left,center,right} in the”[bar/foo]" section.</p>
 <p>For example:</p>
 <pre><code>[bar/example]
 modules-left = jgmenu bspwm i3</code></pre>
@@ -177,13 +177,13 @@ click-left = &quot;jgmenu_run &gt;/dev/null 2&gt;&amp;1 &amp;&quot;</code></pre>
     &lt;command&gt;jgmenu_run&lt;/command&gt;
   &lt;/action&gt;
 &lt;/keybind&gt;</code></pre>
-<p>To bind <code>jgmenu_run</code> to a mouse event (right click on root window in this case), add the following to the <code>&lt;mouse&gt;&lt;context name=&quot;Root&quot;&gt;&lt;/context&gt;&lt;/mouse&gt;</code> section of <code>~/.config/openbox/rc.xml</code></p>
+<p>To bind <code>jgmenu_run</code> to a mouse event (right click on root window in this case), add the following to the <code>&lt;mouse&gt;&lt;context name="Root"&gt;&lt;/context&gt;&lt;/mouse&gt;</code> section of <code>~/.config/openbox/rc.xml</code></p>
 <pre><code>&lt;mousebind button=&quot;Right&quot; action=&quot;Release&quot;&gt;
   &lt;action name=&quot;Execute&quot;&gt;
     &lt;command&gt;jgmenu_run&lt;/command&gt;
   &lt;/action&gt;
 &lt;/mousebind&gt;</code></pre>
-<p>Note: <code>action=&quot;Press&quot;</code> can be used instead of <code>action=&quot;Release&quot;</code></p>
+<p>Note: <code>action="Press"</code> can be used instead of <code>action="Release"</code></p>
 <h3 id="i3">i3</h3>
 <p>In i3 it would probably seem most natural to bind a key-combination to jgmenu. For example, like this:</p>
 <pre><code>bindsym $mod+z exec jgmenu_run</code></pre>
@@ -193,9 +193,9 @@ click-left = &quot;jgmenu_run &gt;/dev/null 2&gt;&amp;1 &amp;&quot;</code></pre>
 }</code></pre>
 <h3 id="dwm">dwm</h3>
 <p>To associate jgmenu with a keyboard shortcut (alt-F1 in this case), add the following to the <code>keys[]</code> array in <code>config.h</code></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb10-1" title="1">{ MODKEY, XK_F1, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>{ MODKEY, XK_F1, spawn, {.v = jgmenucmd } },</span></code></pre></div>
 <p>In the <code>/* commands */</code> section, add</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb11-1" title="1"><span class="dt">static</span> <span class="dt">const</span> <span class="dt">char</span> *jgmenucmd[]  = { <span class="st">&quot;jgmenu_run&quot;</span>, NULL };</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="dt">static</span> <span class="dt">const</span> <span class="dt">char</span> *jgmenucmd[]  = { <span class="st">&quot;jgmenu_run&quot;</span>, NULL };</span></code></pre></div>
 <p>Example jgmenurc to suit dwm:</p>
 <pre><code>tint2_look          = 0
 menu_width          = 120
@@ -215,9 +215,9 @@ sep_height          = 4
 icon_size           = 0
 arrow_width         = 8</code></pre>
 <p>To launch jgmenu on background right click or window title click, add the following to the <code>buttons[]</code> array:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb13-1" title="1">{ ClkWinTitle, <span class="dv">0</span>, Button1, spawn, {.v = jgmenucmd } },</a>
-<a class="sourceLine" id="cb13-2" title="2">{ ClkWinTitle, <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a>
-<a class="sourceLine" id="cb13-3" title="3">{ ClkRootWin,  <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>{ ClkWinTitle, <span class="dv">0</span>, Button1, spawn, {.v = jgmenucmd } },</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>{ ClkWinTitle, <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>{ ClkRootWin,  <span class="dv">0</span>, Button3, spawn, {.v = jgmenucmd } },</span></code></pre></div>
 <p>and add the following to jgmenurc</p>
 <pre><code>at_pointer          = 1</code></pre>
 <h2 id="other">Other</h2>
@@ -239,7 +239,7 @@ arrow_width         = 8</code></pre>
 <p>To run jgmenu as a long-running application, set the following in your ~/.config/jgmenu/jgmenurc:</p>
 <pre><code>csv_cmd = jgmenu_run ob --cmd=&#39;obmenu-generator -i&#39;</code></pre>
 <p>For installation of obmenu-generator, see<br />
-<a href="https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md" class="uri">https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md</a></p>
+<a href="https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md">https://github.com/trizen/obmenu-generator/blob/master/INSTALL.md</a></p>
 <h3 id="superkey">superkey</h3>
 <p>In order to bind jgmenu to the super-key, take the following steps:</p>
 <ol type="1">
