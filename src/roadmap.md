@@ -1,29 +1,20 @@
 # Roadmap
 
-## 2020 Q3
+## 4.x
 
 - Add strict xdg compliant execl function (i.e. without "sh -c" wrapper).
 - Add CSV field for `strict_xdg_exec`
 - Widgets: Parse align field
-- Finish off columns implementation
+- Column implementation
     * Support moving left/right between columns
     * Deal with `menu_width` more intelligently
     * Deal with `menu_height` (incl dyamic mode) more intelligently
-
-## 2020 Q4
-
-- Add better timer support
-  * Add blinking cursor to search field
-  * Support widgets which refresh in real time
-- ^rootpipe()
-- Split t2conf.c code into separate module and call using hooks. This will simplify the code base.
 - Widgets: Add widget which refreshes each time menu is awoken (if mtime changed - possibly 'file' and 'exec') [https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333](https://forums.bunsenlabs.org/viewtopic.php?pid=91333#p91333)
-
-## 2021+
-
 - Scroll bar indicator (issue #34)
-- Support for adding favourites in real-time (e.g. keyboard shortcut for locking
-  menu-item onto the root menu - or similar)
+
+## 5.0
+
+- Split t2conf.c code into separate module and call using hooks. This will simplify the code base.
 
 ## Unlikely {#unlikely}
 
