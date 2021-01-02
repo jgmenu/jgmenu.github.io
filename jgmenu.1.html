@@ -109,7 +109,7 @@ dd p {
        [--icon-size=&lt;<em>size</em>&gt;] [--at-pointer] [--hide-on-startup]<br />
        [--simple] [--vsimple] [--csv-file=&lt;<em>file</em>&gt;]<br />
        [--csv-cmd=&lt;<em>command</em>&gt;] [--die-when-loaded]<br />
-       [--center]</p>
+       [--center] [--persistent]</p>
 <p>Use these commands to get started</p>
 <dl>
 <dt><code>jgmenu_run</code></dt>
@@ -160,8 +160,8 @@ dd p {
 <dl>
 <dt><code>,</code></dt>
 <dd><p>As commas are used as field separators, individual fields can only contain commas if they are triple quoted. For example:</p>
-<p>foo,&quot;&quot;“^pipe(find . -printf ‘%f,display %p,%p
-’)”&quot;&quot;</p>
+<p>foo,""“^pipe(find . -printf ‘%f,display %p,%p
+’)”""</p>
 </dd>
 <dt><code>&lt; &gt; &amp;</code></dt>
 <dd><p>The description field is parsed as pango markup, so <code>&lt;</code>, <code>&gt;</code>, and <code>&amp;</code> need to be escaped as <code>&amp;lt;</code>, <code>&amp;gt;</code>, and <code>&amp;amp;</code> respectively.</p>
@@ -217,6 +217,9 @@ submenu1,^sub(echo &quot;item1.0&quot; | jgmenu --simple)</code></pre>
 <dt><code>^filter()</code></dt>
 <dd><p>Invoke search</p>
 </dd>
+<dt><code>^quit()</code></dt>
+<dd><p>Quit</p>
+</dd>
 </dl>
 <h2 id="icons">Icons</h2>
 <p>Icons will be displayed if the third field is populated, for example:</p>
@@ -259,6 +262,9 @@ Firefox,firefox,firefox</code></pre>
 </dd>
 <dt><code>--center</code></dt>
 <dd><p>Center align menu horizontally and vertically.</p>
+</dd>
+<dt><code>--persistent</code></dt>
+<dd><p>Same as the persistent config option. See config option section below for details.</p>
 </dd>
 </dl>
 <h1 id="user-interface">USER INTERFACE</h1>
@@ -306,7 +312,7 @@ Firefox,firefox,firefox</code></pre>
 <dd><p>Rectangle with a 1px thick border drawn using <code>fgcol</code></p>
 </dd>
 <dt><code>search</code></dt>
-<dd><p>Search box showing the current filter (what the user has typed) or the specifed <code>text</code> if no filter has been invoked.</p>
+<dd><p>Search box showing the current filter (what the user has typed) or the specified <code>text</code> if no filter has been invoked.</p>
 </dd>
 <dt><code>icon</code></dt>
 <dd><p>Icon</p>
@@ -384,6 +390,9 @@ Firefox,firefox,firefox</code></pre>
 </dd>
 <dt><code>stay_alive</code> = <strong>boolean</strong> (default 1)</dt>
 <dd><p>If set to 1, the menu will “hide” rather than “exit” when the following events occur: clicking on menu item; clicking outside the menu; pressing escape. When in the hidden mode, a USR1 signal will “un-hide” the menu.</p>
+</dd>
+<dt><code>persistent</code> = <strong>boolean</strong> (default 0)</dt>
+<dd><p>If set to 1, the menu will not exit nor hide when the following events occur: clicking on menu item; clicking outside the menu; pressing escape. Use in conjunction with the ^quit() markup.</p>
 </dd>
 <dt><code>hide_on_startup</code> = <strong>boolean</strong> (default 0)</dt>
 <dd><p>If set to 1, jgmenu start in “hidden” mode. This is useful for starting jgmenu during the boot process and then sending a <code>killall -SIGUSR1 jgmenu</code> to show the menu.</p>
@@ -488,6 +497,9 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <dt><code>menu_valign</code> = (top | bottom | center) (default bottom)</dt>
 <dd><p>Vertical alignment of menu. See <code>menu_halign</code>.</p>
 </dd>
+<dt><code>menu_gradient_pos</code> = (none | top | right | bottom | left | top_left | top_right | bottom_left | bottom_right ) (default none)</dt>
+<dd><p>Start position of menu window gradient. The end position is at the opposite side or corner. Colors color_menu_bg and color_menu_bg_to specify the start (from) and finish (to).</p>
+</dd>
 <dt><code>sub_spacing</code> = <strong>integer</strong> (default 1)</dt>
 <dd><p>Horizontal space between windows. A negative value results in each submenu window overlapping its parent window.</p>
 </dd>
@@ -535,7 +547,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 </dd>
 <dt><code>sep_markup</code> = <strong>string</strong> (unset by default)</dt>
 <dd><p>If specified, <code>&lt;span $sep_markup&gt;foo&lt;/span&gt;</code> will be passed to pango for ^sep(foo).</p>
-<p>See the following link for pango <span> attributes: <a href="https://developer.gnome.org/pango/stable/pango-Markup.html" class="uri">https://developer.gnome.org/pango/stable/pango-Markup.html</a></p>
+<p>See the following link for pango <span> attributes: <a href="https://developer.gnome.org/pango/stable/pango-Markup.html">https://developer.gnome.org/pango/stable/pango-Markup.html</a></p>
 <p>Keywords include (but are not limited to):</p>
 <ul>
 <li>font</li>
@@ -578,7 +590,10 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <dd><p>Width allowed for <code>arrow_string</code>. Set to 0 to hide arrow.</p>
 </dd>
 <dt><code>color_menu_bg</code> = <strong>color</strong> (default #000000 100)</dt>
-<dd><p>Background colour of menu window</p>
+<dd><p>Background colour of menu window. If gradients are enabled, this will be the ‘from’ color.</p>
+</dd>
+<dt><code>color_menu_bg_to</code> = <strong>color</strong> (default #000000 100)</dt>
+<dd><p>Background ‘to’ colour of menu window - for use with gradients</p>
 </dd>
 <dt><code>color_menu_border</code> = <strong>color</strong> (default #eeeeee 8)</dt>
 <dd><p>Border colour of menu window</p>
@@ -599,10 +614,10 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <dd><p>Border color of the currently selected menu item.</p>
 </dd>
 <dt><code>color_sep_fg</code> = <strong>color</strong> (default #ffffff 20)</dt>
-<dd><p>Font (foreground) colour of seperators without text</p>
+<dd><p>Font (foreground) colour of separators without text</p>
 </dd>
 <dt><code>color_title_fg</code> = <strong>color</strong> (default #eeeeee 50)</dt>
-<dd><p>Font (foreground) colour of separators with text. The font colour can be overriden by <code>sep_markup</code></p>
+<dd><p>Font (foreground) colour of separators with text. The font colour can be overridden by <code>sep_markup</code></p>
 </dd>
 <dt><code>color_title_bg</code> = <strong>color</strong> (default #000000 0)</dt>
 <dd><p>Background colour of separators with text.</p>
@@ -731,7 +746,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <p>A hook in jgmenu is a rule which optionally triggers a command and then performs a restart if a file or directory has has changed since the last time the instance of jgmenu was mapped (=made visible - normally by running jgmenu_run).</p>
 <p>Hooks are specified in the file $HOME/.config/jgmenu/hooks are take the format</p>
 <pre><code>&lt;file&gt;,&lt;command&gt;</code></pre>
-<p>For example, to syncronise with the GTK theme, use this hook:</p>
+<p>For example, to synchronise with the GTK theme, use this hook:</p>
 <pre><code>~/.config/gtk-3.0/settings.ini,jgmenu_run gtktheme</code></pre>
 <p>Leave the <code>&lt;command&gt;</code> empty to just restart.</p>
 <p>A number of restart-hooks are built-in by default, for example ~/.config/jgmenu/{jgmenurc,append.csv,prepend.csv} and /usr/share/applications.</p>
@@ -744,7 +759,7 @@ csv_cmd = cat ~/mymenu.csv</code></pre>
 <li><code>jgmenututorial(7)</code></li>
 <li><code>jgmenuunicode(7)</code></li>
 </ul>
-<p>The jgmenu source code and documentation can be downloaded from <a href="https://github.com/johanmalm/jgmenu/" class="uri">https://github.com/johanmalm/jgmenu/</a></p>
+<p>The jgmenu source code and documentation can be downloaded from <a href="https://github.com/johanmalm/jgmenu/">https://github.com/johanmalm/jgmenu/</a></p>
 </main>
 </body>
 </html>
