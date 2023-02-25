@@ -13,6 +13,7 @@ Window Managers
 - [openbox](#openbox)
 - [i3](#i3)
 - [dwm](#dwm)
+- [xmonad](#xmonad)
 
 Other
 
@@ -201,6 +202,22 @@ and add the following to jgmenurc
 
 ```
 at_pointer          = 1
+```
+
+### xmonad {#xmonad}
+
+To launch jgmenu on a keyboard shortcut (super+p in this case), add the following to
+your keys def in `xmonad.hs`:
+
+```haskell
+customKeys (XConfig { modMask = modm }) = M.fromList
+  [ ((modm, xK_p), spawn "jgmenu_run") ...
+```
+
+To trigger on, say, super+right click, add the following to your mouse bindings def:
+```haskell
+customMouseBindings (XConfig { modMask = modm }) = M.fromList
+  [ ((modm, button2), const $ spawn "jgmenu_run") ...
 ```
 
 ## Other
