@@ -105,25 +105,36 @@ dd p {
 <a href='index.html'>Home</a><br> JGMENU-OB(1)<h1 id="name">NAME</h1>
 <p>jgmenu-ob - convert openbox menu data to jgmenu flavoured CSV</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p><code>jgmenu_run ob</code> [--tag=&lt;<em>tag</em>&gt;] [--cmd=&lt;<em>cmd</em>&gt; | &lt;<em>file</em>&gt;]</p>
+<p><code>jgmenu_run ob</code> [--tag=&lt;<em>tag</em>&gt;]
+[--cmd=&lt;<em>cmd</em>&gt; | &lt;<em>file</em>&gt;]</p>
 <h1 id="description">DESCRIPTION</h1>
-<p><code>jgmenu_run ob</code> converts openbox XML menu data to jgmenu flavoured CSV. If no <code>&lt;file&gt;</code> or <code>--cmd=&lt;cmd&gt;</code> is specified, <code>~/.config/openbox/menu.xml</code> or <code>/etc/xdg/openbox/menu.xml</code> will be used if they exist, giving higher precedence to the former.</p>
+<p><code>jgmenu_run ob</code> converts openbox XML menu data to jgmenu
+flavoured CSV. If no <code>&lt;file&gt;</code> or
+<code>--cmd=&lt;cmd&gt;</code> is specified,
+<code>~/.config/openbox/menu.xml</code> or
+<code>/etc/xdg/openbox/menu.xml</code> will be used if they exist,
+giving higher precedence to the former.</p>
 <h1 id="options">OPTIONS</h1>
 <dl>
 <dt><code>&lt;file&gt;</code></dt>
-<dd><p>Specify openbox XML file.</p>
+<dd>
+<p>Specify openbox XML file.</p>
 </dd>
 <dt><code>--cmd=&lt;cmd&gt;</code></dt>
-<dd><p>Specify command to produce openbox XML menu data.</p>
+<dd>
+<p>Specify command to produce openbox XML menu data.</p>
 </dd>
 <dt><code>--tag=&lt;tag&gt;</code></dt>
-<dd><p>Specify value of root <code>^tag()</code>. This can be useful for pipemenus to avoid clashing tag-names</p>
+<dd>
+<p>Specify value of root <code>^tag()</code>. This can be useful for
+pipemenus to avoid clashing tag-names</p>
 </dd>
 </dl>
 <h1 id="environment-variables">ENVIRONMENT VARIABLES</h1>
 <dl>
 <dt><code>JGMENU_I18N</code></dt>
-<dd><p>See <code>csv_i18n</code> in jgmenu(1) and jgmenu-i18n(1)</p>
+<dd>
+<p>See <code>csv_i18n</code> in jgmenu(1) and jgmenu-i18n(1)</p>
 </dd>
 </dl>
 </main>

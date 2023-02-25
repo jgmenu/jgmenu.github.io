@@ -105,9 +105,13 @@ dd p {
 <a href='index.html'>Home</a><br> JGMENU-APPS(1)<h1 id="name">NAME</h1>
 <p>jgmenu-apps - generate jgmenu flavoured CSV menu data</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p><code>jgmenu_run apps</code> [--help] [--no-append] [--no-prepend]</p>
+<p><code>jgmenu_run apps</code>
+[--help] [--no-append] [--no-prepend]</p>
 <h1 id="description">DESCRIPTION</h1>
-<p><code>jgmenu_run apps</code> generates jgmenu flavoured CSV menu data for system applications using built-in schema data or a specified schema file to map categories to directories, rather than system .directory files.</p>
+<p><code>jgmenu_run apps</code> generates jgmenu flavoured CSV menu data
+for system applications using built-in schema data or a specified schema
+file to map categories to directories, rather than system .directory
+files.</p>
 <p>A schema is searched for in the following locations and order:</p>
 <ul>
 <li><code>$XDG_CONFIG_HOME/jgmenu/schema</code><br />
@@ -118,8 +122,12 @@ dd p {
 </li>
 <li><code>/etc/xdg/jgmenu/schema</code></li>
 </ul>
-<p>The root menu is appended and/or prepended by the contents of the files <code>$HOME/.config/jgmenu/{append,prepend}.csv</code> if they exist.</p>
-<p>Applications which do not belong in any of the categories in the schema file, are placed in ‘Other’ (which is the one with no Categories= field)</p>
+<p>The root menu is appended and/or prepended by the contents of the
+files <code>$HOME/.config/jgmenu/{append,prepend}.csv</code> if they
+exist.</p>
+<p>Applications which do not belong in any of the categories in the
+schema file, are placed in ‘Other’ (which is the one with no Categories=
+field)</p>
 <p>Example schema file:</p>
 <pre><code>Name=Accessories
 Name[sv]=Tillbehör
@@ -177,34 +185,44 @@ Categories=Emulator;System;</code></pre>
 <h1 id="options">OPTIONS</h1>
 <dl>
 <dt><code>--help</code></dt>
-<dd>Show help message and exit
+<dd>
+Show help message and exit
 </dd>
 <dt><code>--no-prepend</code></dt>
-<dd>Do not output ~/.config/jgmenu/prepend.csv before root menu
+<dd>
+Do not output ~/.config/jgmenu/prepend.csv before root menu
 </dd>
 <dt><code>--no-append</code></dt>
-<dd>Do not output ~/.config/jgmenu/append.csv after root menu
+<dd>
+Do not output ~/.config/jgmenu/append.csv after root menu
 </dd>
 </dl>
 <h1 id="environment-variables">ENVIRONMENT VARIABLES</h1>
 <dl>
 <dt><code>JGMENU_SINGLE_WINDOW</code></dt>
-<dd><p>If set, <code>^checkout()</code> items will be replaced by <code>^root()</code></p>
+<dd>
+<p>If set, <code>^checkout()</code> items will be replaced by
+<code>^root()</code></p>
 </dd>
 <dt><code>JGMENU_NO_DIRS</code></dt>
-<dd><p>If set, applications will be listed without a directory structure</p>
+<dd>
+<p>If set, applications will be listed without a directory structure</p>
 </dd>
 <dt><code>JGMENU_NO_PEND</code></dt>
-<dd><p>Do not read append.csv or prepend.csv</p>
+<dd>
+<p>Do not read append.csv or prepend.csv</p>
 </dd>
 <dt><code>JGMENU_NAME_FORMAT</code></dt>
-<dd><p>See <code>csv_name_format</code> in jgmenu(1)</p>
+<dd>
+<p>See <code>csv_name_format</code> in jgmenu(1)</p>
 </dd>
 <dt><code>JGMENU_NO_DUPLICATES</code></dt>
-<dd><p>See <code>csv_no_duplicates</code> in jgmenu(1)</p>
+<dd>
+<p>See <code>csv_no_duplicates</code> in jgmenu(1)</p>
 </dd>
 <dt><code>JGMENU_I18N</code></dt>
-<dd><p>See <code>csv_i18n</code> in jgmenu(1) and jgmenu-i18n(1)</p>
+<dd>
+<p>See <code>csv_i18n</code> in jgmenu(1) and jgmenu-i18n(1)</p>
 </dd>
 </dl>
 </main>
